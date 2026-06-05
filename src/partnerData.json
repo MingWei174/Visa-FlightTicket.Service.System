@@ -1,0 +1,4329 @@
+[
+  {
+    "country": "South African南非",
+    "name": "Central University of Technology",
+    "nameCn": "中央技術大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "Douglas College",
+    "nameCn": "道格拉斯學院",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "Douglas College",
+    "nameCn": "道格拉斯學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "The University of Manitoba",
+    "nameCn": "曼尼托巴大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Supplementary Student Exchange Agreement"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "Universite De Montreal",
+    "nameCn": "蒙特婁大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "Universite De Montreal",
+    "nameCn": "蒙特婁大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Canada 加拿大",
+    "name": "Universite De Montreal",
+    "nameCn": "蒙特婁大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "General Collaboration Agreement"
+  },
+  {
+    "country": "Panama 巴拿馬",
+    "name": "Latin American University of Science and Technology",
+    "nameCn": "拉丁美洲科技大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Letter of Intention for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "Panama 巴拿馬",
+    "name": "Technology University of Panama",
+    "nameCn": "巴拿馬科技大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Letter of Intent for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "Panama 巴拿馬",
+    "name": "University of Panama",
+    "nameCn": "巴拿馬大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Letter of Intent for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "1+1 (MS Degree in Business Analytics)",
+    "department": "1+1 (MS Degree in Business Analytics)",
+    "term": "Arizona State Universitsy and National Central University 1+1 Double Master Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "1+1 (MS Degree in Business Analytics)",
+    "department": "1+1 (MS Degree in Business Analytics)",
+    "term": "Arizona State University and National Central University Double Master Degree Program Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "資管系",
+    "type": "1+1 (MS Degree in Business Analytics)",
+    "department": "1+1 (MS Degree in Business Analytics)",
+    "term": "Arizona State University and National Central University Double Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "1+1 (MS Degree in Finance)",
+    "department": "1+1 (MS Degree in Finance)",
+    "term": "Arizona State Universitsy and National Central University 1+1 Double Master Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "1+1 (MS Degree in Global Logistics)",
+    "department": "1+1 (MS Degree in Global Logistics)",
+    "term": "Arizona State Universitsy and National Central University 1+1 Double Master Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "1+1 (MS Degree in Management)",
+    "department": "1+1 (MS Degree in Management)",
+    "term": "Arizona State Universitsy and National Central University 1+1 Double Master Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "3+2 (MS Degree in Business Analytics)",
+    "department": "3+2 (MS Degree in Business Analytics)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "3+2 (MS Degree in Business Analytics)",
+    "department": "3+2 (MS Degree in Business Analytics)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "經濟系",
+    "type": "3+2 (MS Degree in Business Analytics)",
+    "department": "3+2 (MS Degree in Business Analytics)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "資管系",
+    "type": "3+2 (MS Degree in Business Analytics)",
+    "department": "3+2 (MS Degree in Business Analytics)",
+    "term": "Arizona State University and National Central Unviersity 3+2 degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "3+2 (MS Degree in Finance)",
+    "department": "3+2 (MS Degree in Finance)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "3+2 (MS Degree in Global Logistics)",
+    "department": "3+2 (MS Degree in Global Logistics)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "企管系",
+    "type": "3+2 (MS Degree in Management)",
+    "department": "3+2 (MS Degree in Management)",
+    "term": "Arizona State Universitsy and National Central University 3+2 Degree Program Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Arizona State University (ASU)",
+    "nameCn": "亞歷桑納州立大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "General Collaboration Agreement between The Arizona Board of Regents for and on behalf of Arizona State University and National Central University Declarations"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Murray State University",
+    "nameCn": "墨瑞州立大學",
+    "level": "校",
+    "type": "Addendum",
+    "department": "Addendum",
+    "term": "Agreement between National Cetral Uniersity and Murray State University Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Murray State University",
+    "nameCn": "墨瑞州立大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Partnership Agreement between Murray State University and National Central University"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "New Mexico State University",
+    "nameCn": "新墨西哥州立大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Northern Arizona University",
+    "nameCn": "北亞利桑那大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Cooperative Academic Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Oberlin College",
+    "nameCn": "歐柏林學院",
+    "level": "總教學中心",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Intent for Collaboration"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "State University of New York, Oswego, USA",
+    "nameCn": "紐約大學奧斯維格分校",
+    "level": "校",
+    "type": "Addendum",
+    "department": "Addendum",
+    "term": "Addendum to Institutional Agreement of Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "State University of New York, Oswego, USA",
+    "nameCn": "紐約大學奧斯維格分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Institutional Agreement of Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Temple University-- Of The Commonwealth System of Higher Education",
+    "nameCn": "天普大學",
+    "level": "校",
+    "type": "DBMD",
+    "department": "DBMD",
+    "term": "Affiliation Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Temple University-- Of The Commonwealth System of Higher Education",
+    "nameCn": "天普大學",
+    "level": "校",
+    "type": "學生交換及短期交流",
+    "department": "學生交換及短期交流",
+    "term": "Affiliation Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Temple University-- Of The Commonwealth System of Higher Education",
+    "nameCn": "天普大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "THE BOARD OF TRUSTEES OF THE UNIVERSITY OF ILLINOIS",
+    "level": "校",
+    "type": "3+2",
+    "department": "3+2",
+    "term": "A cooperative Education Program"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "THE BOARD OF TRUSTEES OF THE UNIVERSITY OF ILLINOIS",
+    "level": "管院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Agreement for Cooperative Education Program"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "THE BOARD OF TRUSTEES OF THE UNIVERSITY OF ILLINOIS",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The Regents of the Unviersity of California on Behalf of its Daivs Campus",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Undrestanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The Regents of the Unviersity of California on Behalf of its Daivs Campus",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University at Albany, State University of New York, USA",
+    "nameCn": "紐約州立大學奧爾巴尼分校",
+    "level": "地科院",
+    "type": "雙聯學位 (2+2大學/1+1碩)",
+    "department": "雙聯學位 (2+2大學/1+1碩)",
+    "term": "Undergraduate and Graduate Dual Degree Partnership Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of Akron",
+    "nameCn": "艾克朗大學",
+    "level": "校",
+    "type": "3+2",
+    "department": "3+2",
+    "term": "Memorandum of Understanding for International Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of Arizona (UA)",
+    "nameCn": "亞歷桑納大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "International Memorandum of Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of California, Irvine",
+    "nameCn": "加利福尼亞大學爾灣分校",
+    "level": "校",
+    "type": "3+2 Engineering",
+    "department": "3+2 Engineering",
+    "term": "Collaboration Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of California, Irvine",
+    "nameCn": "加利福尼亞大學爾灣分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Collaboration Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of Florida Board of Trustees",
+    "nameCn": "佛羅里達大學",
+    "level": "電機系",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "The University of Oklahoma",
+    "nameCn": "奧克拉荷馬大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Tulane University",
+    "level": "資電院、工院、理院、地科院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University at Buffalo, The State University of New York",
+    "nameCn": "紐約州立大學水牛城分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of California San Diego ",
+    "nameCn": "聖地牙哥加利福尼亞大學",
+    "level": "土木系",
+    "type": "雙聯學位",
+    "department": "雙聯學位",
+    "term": "Collaboration Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of California San Diego ",
+    "nameCn": "聖地牙哥加利福尼亞大學",
+    "level": "機械系",
+    "type": "雙聯學位",
+    "department": "雙聯學位",
+    "term": "Collaboration Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Hawaii at Manoa",
+    "nameCn": "夏威夷大學馬諾阿分校",
+    "level": "大氣系",
+    "type": "3+2",
+    "department": "3+2",
+    "term": "Memorandum of Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Hawaii at Manoa",
+    "nameCn": "夏威夷大學馬諾阿分校",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Agreement for Student Exchange"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Hawaii at Manoa",
+    "nameCn": "夏威夷大學馬諾阿分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding For Cooperation and Exchange"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Massachusetts Lowell",
+    "nameCn": "麻薩諸塞大學洛厄爾分校",
+    "level": "生醫理工學院",
+    "type": "3+2 program",
+    "department": "3+2 program",
+    "term": "Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Massachusetts Lowell",
+    "nameCn": "麻薩諸塞大學洛厄爾分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "University of Wisconsin-Madison",
+    "nameCn": "威斯康辛大學麥迪遜分校",
+    "level": "經濟系",
+    "type": "3+1+1",
+    "department": "3+1+1",
+    "term": "Agreement between National Cetral Uniersity and University of Wisconsin-Madison on a 3+1+1 program in Agricultural and Applied Economics"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Utah State University",
+    "nameCn": "猶他州立大學",
+    "level": "校",
+    "type": "Addendum",
+    "department": "Addendum",
+    "term": "Governmental Entity & Higher Education Addendum"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Utah State University",
+    "nameCn": "猶他州立大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Cooperative Agreement"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Utah State University",
+    "nameCn": "猶他州立大學",
+    "level": "校",
+    "type": "學術合作備忘錄",
+    "department": "學術合作備忘錄",
+    "term": "Memorandum of Cooperation"
+  },
+  {
+    "country": "U.S.A 美國",
+    "name": "Western Michigan University",
+    "nameCn": "西密西根大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Agreement for Academic Cooperation"
+  },
+  {
+    "country": "Egypt 埃及",
+    "name": "Pharos University in Alexandria",
+    "nameCn": "亞歷山大法羅斯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Ahmedabad University",
+    "nameCn": "艾哈邁達巴德大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "Ahmedabad University",
+    "nameCn": "艾哈邁達巴德大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Amity University Haryana",
+    "level": "生醫系",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Bennett Unviersity",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "Chandigarh University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "Chandigarh University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Indian Institute of Management Jammu",
+    "level": "管院",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Indian Institute of Technology Roorkee",
+    "nameCn": "印度理工學院羅克分校",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding for Academic Cooperation"
+  },
+  {
+    "country": "India 印度",
+    "name": "Jawaharlal Nehru University (JNU), New Delhi",
+    "nameCn": "賈瓦哈拉爾・尼赫魯大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "Jawaharlal Nehru University (JNU), New Delhi",
+    "nameCn": "賈瓦哈拉爾・尼赫魯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "KPR Institute of Engineering and Technology",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Manav Rachna International Institute of Research and Studies (MRIIRS), Manav Rachna Universisty (MRU)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "Manav Rachna International Institute of Research and Studies (MRIIRS), Manav Rachna Universisty (MRU)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "NITTE",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "India 印度",
+    "name": "NITTE",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "SSN College of Engineering",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "University of Science & Technology Meghalaya (USTM)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "VEL TECH RANGARAJAN DR. SAGUNTHALA R&D INSTITUTE OF SCIENCE AND TECHNOLOGY",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Woxsen University",
+    "nameCn": "沃克森大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "India 印度",
+    "name": "Yogi Vemana University",
+    "nameCn": "瑜伽維馬納大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "土木系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "化學系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "生科系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "企管系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "地科院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "物理系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "資工系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "電機系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "數學系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "機械系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "企管系",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "機械系",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Dual Doctoral Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Brawijaya University",
+    "nameCn": "無",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Hasanuddin University",
+    "level": "工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement on Academic Cooperation"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Bandung (ITB)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Bandung (ITB)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Dan Bisnis Asia Malang",
+    "level": "資電院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "土木系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Master Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "生科系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "材料所",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Master Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "資工系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "機械系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Master Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "土木系",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Dual Doctoral Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "機械系",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Dual Doctoral Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sepuluh November (ITS)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sumatera (ITERA)",
+    "nameCn": "蘇門答臘理工學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Institut Teknologi Sumatera (ITERA)",
+    "nameCn": "蘇門答臘理工學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Malang National Institute of Technology (ITN Malang)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Petra Christian University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding "
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Politeknik Negeri Malang",
+    "nameCn": "瑪瑯理工大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "STMKG (The State College of Meteorology, Climatology, and Geophysics of the Republic of Indonesia)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Syiah Kuala University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Airlangga",
+    "nameCn": "艾爾朗加大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Airlangga",
+    "nameCn": "艾爾朗加大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Atma Jaya Yogyakarta",
+    "level": "土木系",
+    "type": "3+2",
+    "department": "3+2",
+    "term": "3+2 Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Atma Jaya Yogyakarta",
+    "level": "工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Atma Jaya Yogyakarta",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Diponegoro",
+    "nameCn": "迪波內戈羅大學",
+    "level": "管院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Gadjah Mada",
+    "nameCn": "加札馬達大學",
+    "level": "物理系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum on the Implementation of the Dual-Degree Master's Program"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Gadjah Mada",
+    "nameCn": "加札馬達大學",
+    "level": "資工系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Gadjah Mada",
+    "nameCn": "加札馬達大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Gadjah Mada",
+    "nameCn": "加札馬達大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Negeri Malang (UM)",
+    "level": "理學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Negeri Yogyakarta",
+    "nameCn": "日惹國立大學",
+    "level": "網學所",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Addendum to Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Negeri Yogyakarta",
+    "nameCn": "日惹國立大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Negeri Yogyakarta",
+    "nameCn": "日惹國立大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "UNIVERSITAS of MUHAMMADIYAH YOGYAKARTA (UMY)",
+    "nameCn": "日惹穆罕默迪亞大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "UNIVERSITAS of MUHAMMADIYAH YOGYAKARTA (UMY)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Sebelas Maret (UNS)",
+    "level": "土木系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Sebelas Maret (UNS)",
+    "level": "機械系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Sebelas Maret (UNS)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Warmadewa",
+    "level": "土木系",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Warmadewa",
+    "level": "土木系",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "Universitas Warmadewa",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "University of HKBP NOMMENSEN",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Indonesia 印尼",
+    "name": "University of HKBP NOMMENSEN",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Israel 以色列",
+    "name": "Tel Aviv University",
+    "nameCn": "臺拉維夫大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Agreement of Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Acid Deposition and Oxidant Research Center",
+    "nameCn": "酸雨研究所",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chiba University",
+    "nameCn": "千葉大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Student Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chiba University",
+    "nameCn": "千葉大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chuo University",
+    "nameCn": "中央大學",
+    "level": "工學院、理學院、生醫理工學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chuo University",
+    "nameCn": "中央大學",
+    "level": "理學院、工學院、資電學院、生醫理工學院",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Memorandum for the Double Doctoral Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chuo University",
+    "nameCn": "中央大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum on Faculty Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chuo University",
+    "nameCn": "中央大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Chuo University",
+    "nameCn": "中央大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Gifu University",
+    "nameCn": "岐阜大學",
+    "level": "文學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student and Faculty Exchanges"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Gifu University",
+    "nameCn": "岐阜大學",
+    "level": "文學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding for Academic Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "工學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "工學院",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Memorandum for the Double Doctoral Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "理學院",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Memorandum for the Double Doctoral Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Mega-Scale Academic Exchange Pact: Fostering Global Learning Partnerships "
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Student Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "資電學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hiroshima University",
+    "nameCn": "廣島大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding on Academic and Educational Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hokkaido University ",
+    "nameCn": "北海道大學",
+    "level": "理學院、工學院",
+    "type": "Intern",
+    "department": "Intern",
+    "term": "Memorandum of Understanding on Internship Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hokkaido University ",
+    "nameCn": "北海道大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hokkaido University ",
+    "nameCn": "北海道大學",
+    "level": "理學院、工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hokkaido University ",
+    "nameCn": "北海道大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Academic Exchange Agreement "
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hokkaido University ",
+    "nameCn": "北海道大學",
+    "level": "理學院、工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Academic Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Hosei University",
+    "nameCn": "法政大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Institute of Science Tokyo (以前叫Tokyo Institute of Technology)",
+    "nameCn": "東京科學大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Implementing Agreement for Promotion of Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Institute of Science Tokyo (以前叫Tokyo Institute of Technology)",
+    "nameCn": "東京科學大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Japan Advanced Institute of Science and Technology (JAIST)",
+    "nameCn": "北陸先端科學技術大學院大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Japan Advanced Institute of Science and Technology (JAIST)",
+    "nameCn": "北陸先端科學技術大學院大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understasnding on Academic Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kagoshima University",
+    "nameCn": "鹿兒島大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on a Academic Exchange Program for Students "
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kagoshima University",
+    "nameCn": "鹿兒島大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding on Academic Exchanges"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "工學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "生醫理工學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "理學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "資電學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Memorandum for the Double Master's Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Undergraduate and Graduate Student Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "理學院、工學院、資電院、生醫理工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Undergraduate and Graduate Student Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University",
+    "nameCn": "關西大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Basic Agreement on International Exchange Programs"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University of International Studies ",
+    "nameCn": "關西國際大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kansai University of International Studies ",
+    "nameCn": "關西國際大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kindai University",
+    "nameCn": "近畿大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Komatsu University",
+    "nameCn": "小松大學",
+    "level": "英文系及語言中心",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Komatsu University",
+    "nameCn": "小松大學",
+    "level": "英文系及語言中心",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Komazawa University",
+    "nameCn": "駒澤大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding for the Exchange of Students"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Komazawa University",
+    "nameCn": "駒澤大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Educational Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kumamoto University",
+    "nameCn": "熊本大學",
+    "level": "生醫理工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kumamoto University",
+    "nameCn": "熊本大學",
+    "level": "生醫理工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement on Academic Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kyushu Institute of Technology ",
+    "nameCn": "九州工業大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Students and Staff Exhcnage Agreement Appendix to the Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Kyushu Institute of Technology ",
+    "nameCn": "九州工業大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Meiji University",
+    "nameCn": "明治大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on the Implementation of Student Exchange Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Meiji University",
+    "nameCn": "明治大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Nagoya University of Foreign Studies",
+    "nameCn": "名古屋外國語大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Nagoya University of Foreign Studies",
+    "nameCn": "名古屋外國語大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Nagoya University\r\n",
+    "nameCn": "名古屋大學",
+    "level": "理學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Nagoya University\r\n",
+    "nameCn": "名古屋大學",
+    "level": "理學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Niigata University",
+    "nameCn": "新潟大學",
+    "level": "工學院",
+    "type": "雙聯學位",
+    "department": "雙聯學位",
+    "term": "Memorandum of Understanding on the Double Dgree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Niigata University",
+    "nameCn": "新潟大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "International Student Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Niigata University",
+    "nameCn": "新潟大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Osaka Metropolitan University",
+    "nameCn": "大阪市立大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Osaka Metropolitan University",
+    "nameCn": "大阪市立大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "RIKEN",
+    "level": "校",
+    "type": "國際聯合研究生課程協議",
+    "department": "國際聯合研究生課程協議",
+    "term": "Agreement for International Joint Graduate Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Ryukoku University",
+    "nameCn": "龍谷大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Shibaura Institute of Technology (SIT)",
+    "nameCn": "芝浦工業大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Mobility Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Shibaura Institute of Technology (SIT)",
+    "nameCn": "芝浦工業大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "ShinShu University",
+    "nameCn": "信州大學",
+    "level": "校",
+    "type": "Research",
+    "department": "Research",
+    "term": "Agreement for Cooperation and Exchange in Research"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "ShinShu University",
+    "nameCn": "信州大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Exchange of Students"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "ShinShu University",
+    "nameCn": "信州大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Academic Cooperation and Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Shizuoka University",
+    "nameCn": "靜岡大學",
+    "level": "工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding "
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Shizuoka University\r\nFaculty of Engineering and The graduate School of Integrated Science and Technology",
+    "nameCn": "靜岡大學",
+    "level": "工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Shizuoka University\r\nGraduate School of Integrated Science and Technology",
+    "nameCn": "靜岡大學",
+    "level": "工學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Agreement on the Double Degree Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tohoku University",
+    "nameCn": "東北大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding on Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tohoku University",
+    "nameCn": "東北大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement on Academic Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tokyo City University",
+    "nameCn": "東京都市大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tokyo City University",
+    "nameCn": "東京都市大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tokyo Metropolitan University",
+    "nameCn": "首都大學",
+    "level": "資電院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding on Student Exchanges under the Co-Tutorial Program"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Tokyo Metropolitan University",
+    "nameCn": "首都大學",
+    "level": "資電院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding for Academic Exchange and Research Collaboration"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Fukui",
+    "nameCn": "福井大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum on Student Exchange Subject to the Agreement on Academic Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Fukui",
+    "nameCn": "福井大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement on Academic Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Toyama",
+    "nameCn": "富山大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum in Accordance with the Agreement of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Toyama",
+    "nameCn": "富山大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Tsukuba",
+    "nameCn": "筑波大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Appendix-Details of the Agreement for Student Exchange"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "University of Tsukuba",
+    "nameCn": "筑波大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Academic Exchanges and Cooperation"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Waseda University",
+    "nameCn": "早稻田大學",
+    "level": "資電院",
+    "type": "大學+碩\r\n碩+碩\r\n碩+博",
+    "department": "大學+碩\r\n碩+碩\r\n碩+博",
+    "term": "Addendum to the Academic Agreement "
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Waseda University",
+    "nameCn": "早稻田大學",
+    "level": "資電院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Japan 日本",
+    "name": "Yamagata University",
+    "nameCn": "山形大學",
+    "level": "工學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Academic Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Busan University of Foreign Studies",
+    "nameCn": "釜山外國語大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Busan University of Foreign Studies",
+    "nameCn": "釜山外國語大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Chung-Ang University (CAU)",
+    "nameCn": "中央大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Dankook University (DKU)",
+    "nameCn": "檀國大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Dankook University (DKU)",
+    "nameCn": "檀國大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Dongguk University",
+    "nameCn": "東國大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Ewha Womans University",
+    "nameCn": "黎花女子大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Academic Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Ewha Womans University",
+    "nameCn": "黎花女子大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Cooperation"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Gachon University",
+    "nameCn": "嘉泉大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Gachon University",
+    "nameCn": "嘉泉大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Gwangju Institute of Science and Technology",
+    "nameCn": "光州科學技術院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Hanyang University",
+    "nameCn": "漢陽大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Hanyang University",
+    "nameCn": "漢陽大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Academic Cooperation"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Inha University",
+    "nameCn": "仁荷大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Inha University",
+    "nameCn": "仁荷大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Jeju National University",
+    "nameCn": "國立濟州大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Kangwon National University",
+    "nameCn": "國立江原大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Kangwon National University",
+    "nameCn": "國立江原大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Kyonggi University (KU)",
+    "nameCn": "京畿大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Kyonggi University (KU)",
+    "nameCn": "京畿大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Educational Cooperation"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Kyonggi University (KU)",
+    "nameCn": "京畿大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Educational Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Pukyong National University",
+    "nameCn": "釜慶大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Sejong University",
+    "nameCn": "世忠大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Sookmyung Women's University",
+    "nameCn": "淑明女子大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Sookmyung Women's University",
+    "nameCn": "淑明女子大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Soongsil University",
+    "nameCn": "崇實大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Soongsil University",
+    "nameCn": "崇實大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Sungshin Women's University",
+    "nameCn": "誠信女子大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "Sungshin Women's University",
+    "nameCn": "誠信女子大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "The Catholic University of Korea (CUK)",
+    "nameCn": "韓國天主教大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "University of Seoul",
+    "nameCn": "首爾市立大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Korea 韓國",
+    "name": "University of Seoul",
+    "nameCn": "首爾市立大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "INTI INTERNATIONAL UNIVERSITY & COLLEGES ",
+    "nameCn": "英迪國際大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "Universiti Sains Malaysia (USM)",
+    "nameCn": "馬來西亞理科大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "Universiti Teknologi Malaysia (UTM)",
+    "nameCn": "馬來西亞理工大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "Universiti Tunkul Abdul Rahman (UTAR)",
+    "nameCn": "拉曼大學",
+    "level": "生醫理工學院",
+    "type": "雙聯學位",
+    "department": "雙聯學位",
+    "term": "Agreement on Dual Degree for Postgraduate Programmes"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "Universiti Tunkul Abdul Rahman (UTAR)",
+    "nameCn": "拉曼大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "Universiti Tunkul Abdul Rahman (UTAR)",
+    "nameCn": "拉曼大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Malaysia 馬來西亞",
+    "name": "University of Malaya (UM)",
+    "nameCn": "馬來亞大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Programme Agreement"
+  },
+  {
+    "country": "Mongolia 蒙古",
+    "name": "Mongolian University of Life Sciences",
+    "nameCn": "蒙古國立農業大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Nepal 尼泊爾",
+    "name": "Tribhuvan Unviersity",
+    "level": "生醫理工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "Bicol University",
+    "nameCn": "比科爾大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "De La Salle University",
+    "nameCn": "德拉薩爾大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "Mindanao State University-Iligan Institute of Technology (MSU-IIT)",
+    "nameCn": "民答那峨州立大學-伊利甘技術學院",
+    "level": "物理系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "Tarlac State University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "Tarlac State University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "University of San Carlos",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "University of Santo Tomas",
+    "nameCn": "聖多湯瑪斯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "University of the Philippines",
+    "nameCn": "菲律賓大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Philippines 菲律賓",
+    "name": "University of the Philippines Los Banos (UPLB)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Singapore 新加坡",
+    "name": "Nanyang Polytechnic School of Business Management (NYP)",
+    "nameCn": "南洋理工商管學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Singapore 新加坡",
+    "name": "Nanyang Technological University",
+    "nameCn": "南洋理工大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Agreement Student Exchange Programme"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Chiang Mai University",
+    "nameCn": "清邁大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Kasetsart University",
+    "nameCn": "農業大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "King Mongkut’s University of Technology North Bangkok (KMUTNB)",
+    "nameCn": "北曼谷國王科技大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Mahidol University",
+    "nameCn": "馬希竇大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "General Memorandum of Understanding for Academic Cooperation"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Shinawatra Unviersity",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Silpakorn University",
+    "nameCn": "泰國藝術大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Silpakorn University",
+    "nameCn": "泰國藝術大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Thailand 泰國",
+    "name": "Srinakharinwirot University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Can Tho University",
+    "nameCn": "肯特大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Can Tho University",
+    "nameCn": "肯特大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Can Tho University of Technology",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Hanoi University of Mining and Geology",
+    "nameCn": "礦業地質大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Ho Chi Min City University of Technology and Education",
+    "nameCn": "胡志明市科技師範大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Ho Chi Min City University of Technology and Education",
+    "nameCn": "胡志明市科技師範大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "International University, Viet Nam National University",
+    "nameCn": "胡志明市國際大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "International University, Viet Nam National University",
+    "nameCn": "胡志明市國際大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "International University, Vietnam National University- Ho Chi Minh City",
+    "level": "生醫理工學院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Nam Can Tho University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "University of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Nong Lam University",
+    "nameCn": "農林大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Phenikaa University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Phenikaa University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "THAI NGUYEN UNIVERSITY OF AGRICULTURE AND FORESTRY (TUAF)",
+    "nameCn": "太原大學農林大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "THAI NGUYEN UNIVERSITY OF AGRICULTURE AND FORESTRY (TUAF)",
+    "nameCn": "太原大學農林大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Tra Vinh University",
+    "nameCn": "茶榮大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Van Lang University (VLU)",
+    "nameCn": "文郎大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Excahnge"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Van Lang University (VLU)",
+    "nameCn": "文郎大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Viet Nam Institute of Geosciences and Mineral Resoruces, Ministry of Natural Resoruces and Emvironoment of the Socialist Republic of Vietnam",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Vietnamese Academy of Social Sciences(VASS)\r\nInstitute for Northeast Asian Studies",
+    "nameCn": "越南社會科學研究院東北亞研究所",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Vietnamese Academy of Social Sciences(VASS)\r\nInstitute of Chinese Studies",
+    "nameCn": "越南社科院中國研究所",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "Vietnamese Academy of Social Sciences(VASS)\r\nInstitute of Psychology",
+    "nameCn": "越南社科院心理學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "VNUHCM-University of Science, Ho Chi Minh City (HCMUS)",
+    "nameCn": "胡志明市自然科學大學",
+    "level": "光電系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Agreement of Double Master Degree Program"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "VNUHCM-University of Science, Ho Chi Minh City (HCMUS)",
+    "nameCn": "胡志明市自然科學大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Vietnam 越南",
+    "name": "VNUHCM-University of Science, Ho Chi Minh City (HCMUS)",
+    "nameCn": "胡志明市自然科學大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Bahamas 巴哈馬",
+    "name": "University of The Bahamas",
+    "nameCn": "巴哈馬大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Bahamas 巴哈馬",
+    "name": "University of The Bahamas",
+    "nameCn": "巴哈馬大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Austria 奧地利",
+    "name": "The University of Applied Sciences Upper Austria",
+    "nameCn": "上奧地利應用科學大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Austria 奧地利",
+    "name": "The University y of Salzburg",
+    "nameCn": "薩爾茲堡大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Austria 奧地利",
+    "name": "The University y of Salzburg",
+    "nameCn": "薩爾茲堡大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Hasselt University",
+    "nameCn": "哈瑟爾特大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "The Universite libre de Bruxelles (ULB)",
+    "nameCn": "自由大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "The Universite libre de Bruxelles (ULB)",
+    "nameCn": "自由大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Cooperation Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Thomas More University of Applied Sciences (Thomas More Mechelen-Antwerpen vzw and Thomas More Kempen vzm)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Addendum to the Memorandum of Understanding: Agreement on Student Exchange "
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Thomas More University of Applied Sciences (Thomas More Mechelen-Antwerpen vzw and Thomas More Kempen vzm)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Universite' Catholique de Louvain",
+    "nameCn": "魯汶大學",
+    "level": "文學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Inter-Institutional Student and Staff Exchange Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Universite de Liege",
+    "nameCn": "列日大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange "
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Universite de Liege",
+    "nameCn": "列日大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Universite De MONS (UMONS)",
+    "nameCn": "蒙斯大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Bilateral Student and Staff Exchange Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "Universite De MONS (UMONS)",
+    "nameCn": "蒙斯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Cooperation Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "University of Namur",
+    "nameCn": "那慕爾大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Erasmus+ Programme Bilateral Inter-Institutional Agreement"
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "University of Namur",
+    "nameCn": "那慕爾大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange "
+  },
+  {
+    "country": "Belgium 比利時",
+    "name": "University of Namur",
+    "nameCn": "那慕爾大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Bulgaria 保加利亞",
+    "name": "Sofia University St. Kliment Ohridski",
+    "nameCn": "索非亞大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for co-operation"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Brno University of Technology",
+    "nameCn": "布爾諾科技大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Brno University of Technology",
+    "nameCn": "布爾諾科技大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Czech Technical University in Prague",
+    "nameCn": "布拉格捷克理工大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Czech Technical University in Prague",
+    "nameCn": "布拉格捷克理工大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Masarykova Univerzita (Masaryk University)",
+    "nameCn": "馬薩里克大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Mendel University in Brno",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "Mendel University in Brno",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "University of Pardubice",
+    "nameCn": "巴爾杜比採",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "University of West Bohemia",
+    "nameCn": "西波西米亞大學",
+    "level": "資電院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "VSB-Technical University of Ostrava",
+    "nameCn": "奧斯特拉瓦科技大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "EXCHANGE AGREEMENT"
+  },
+  {
+    "country": "Czech Republic 捷克",
+    "name": "VSB-Technical University of Ostrava",
+    "nameCn": "奧斯特拉瓦科技大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Denmark 丹麥",
+    "name": "Aarhus University School of Engineering",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "England 英國",
+    "name": "University of Bolton",
+    "nameCn": "英國博爾頓大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding "
+  },
+  {
+    "country": "England 英國",
+    "name": "University of Surrey",
+    "nameCn": "薩里大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "LAB University of Applied Science",
+    "nameCn": "拉赫蒂應用科技大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "South-Eastern Finland University of Applied Sciences",
+    "nameCn": "東南芬蘭應用科學大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "South-Eastern Finland University of Applied Sciences",
+    "nameCn": "東南芬蘭應用科學大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "University of Eastern Finland",
+    "nameCn": "東芬蘭大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "University of Eastern Finland",
+    "nameCn": "東芬蘭大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "University of Turku",
+    "nameCn": "圖爾庫大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Finland 芬蘭",
+    "name": "University of Turku",
+    "nameCn": "圖爾庫大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "CLERMONT AUVERGNE INSTITUT NATIONAL POLYTECHNIQUE (INP)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Addendum Regarding Student Exchanges"
+  },
+  {
+    "country": "France 法國",
+    "name": "CLERMONT AUVERGNE INSTITUT NATIONAL POLYTECHNIQUE (INP)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "General Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "CY Cergy Paris University",
+    "nameCn": "塞爾吉-蓬圖瓦茲大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "De Vinci Higher Education (DVHE) ",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "ECE ecole d'ingenieurs (ECE Engineering School)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Ecole Central Marseille (ECM)",
+    "nameCn": "馬賽中央理工",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Ecole des Ingenieurs de la Ville de Paris (EIVP-Paris)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Ecole Nationale Superieure de l'Electronique et de ses Applications ( ENSEA )",
+    "nameCn": "國立高等應用電子學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "EDC Paris Business School",
+    "nameCn": "企業創造領導學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "EDHEC Business School ",
+    "nameCn": "北方高等商業學院",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Memorandum of Understanding for Academic Exchange and Cooperation"
+  },
+  {
+    "country": "France 法國",
+    "name": "EIGSI La Rochelle-Casablanca Engineering School",
+    "nameCn": "EIGSI 拉羅歇爾工程學校",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "EM NORMANDIE",
+    "level": "管院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Double Degree Exchange Agreement (Master)"
+  },
+  {
+    "country": "France 法國",
+    "name": "EM NORMANDIE",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "EM NORMANDIE",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "GROUPE ESC Clermont\r\n2024更名為Clermont School of Business",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "GROUPE ESC Clermont\r\n2024更名為Clermont School of Business",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "IDRAC Business School",
+    "nameCn": "法商學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "IDRAC Business School",
+    "nameCn": "法商學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "IMT Mines Ales",
+    "nameCn": "阿萊斯礦業學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Academic Interchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "IMT Mines Ales",
+    "nameCn": "阿萊斯礦業學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Academic and Scientific Cooperation"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut Catholique de Paris (ICP)",
+    "nameCn": "巴黎天主教大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut Catholique de Paris (ICP)",
+    "nameCn": "巴黎天主教大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut de Management et de Communication Interculturels (ISIT)",
+    "nameCn": "跨文化管理與通訊研究所",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut National des Sciences Appliquees de Toulouse (INSA Toulouse)",
+    "nameCn": "國立土魯斯應用科學研究院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Programme"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut National des Sciences Appliquees de Toulouse (INSA Toulouse)",
+    "nameCn": "國立土魯斯應用科學研究院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut Polytechnique des Sciences Avancees (IPSA)",
+    "nameCn": "高等科學技術學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Students Exchange Program"
+  },
+  {
+    "country": "France 法國",
+    "name": "Institut Polytechnique des Sciences Avancees (IPSA)",
+    "nameCn": "高等科學技術學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Neoma Business School",
+    "nameCn": "諾歐商學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Partner Exchange agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Neoma Business School",
+    "nameCn": "諾歐商學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Rennes School of Business (RSB)",
+    "nameCn": "雷恩商學院",
+    "level": "校",
+    "type": "雙聯學位",
+    "department": "雙聯學位",
+    "term": "Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Rennes School of Business (RSB)",
+    "nameCn": "雷恩商學院",
+    "level": "管理學院",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Double Degree Articulation Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Rennes School of Business (RSB)",
+    "nameCn": "雷恩商學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Sorbonne Nouvelle University",
+    "nameCn": "巴黎第三大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Sorbonne Nouvelle University",
+    "nameCn": "巴黎第三大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "UniLaSalle",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement of Cooperation and Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Catholique de Lyon (ESTRI)",
+    "nameCn": "法國里昂天主教大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Franche-Comte (UFC)\r\n2025更名為Université Marie et Louis Pasteur (UMLP)",
+    "nameCn": "楓舍孔泰大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Franche-Comte (UFC)\r\n2025更名為Université Marie et Louis Pasteur (UMLP)",
+    "nameCn": "楓舍孔泰大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Framework Agreement for Cultural and Scientific Cooperation "
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Montpellier (Faculty of Science)",
+    "nameCn": "法國蒙貝利耶大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Academic Partnership Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Montpellier (Management)",
+    "nameCn": "法國蒙貝利耶大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Academic Partnership Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Montpellier (Polytech)",
+    "nameCn": "法國蒙貝利耶大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Academic Partnership Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Reims Champange-Ardenne (URCA)",
+    "nameCn": "漢斯大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Additional Covenant Student Exchange Program"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Reims Champange-Ardenne (URCA)",
+    "nameCn": "漢斯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "International Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Strasbourg",
+    "nameCn": "史特拉斯堡大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Additional Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Strasbourg",
+    "nameCn": "史特拉斯堡大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "International Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Technologie de Belfort-Montbeliard (UTBM)",
+    "nameCn": "貝爾福-蒙博裡亞技術大學",
+    "level": "資工系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Addendum to Dual Degree Program Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Technologie de Belfort-Montbeliard (UTBM)",
+    "nameCn": "貝爾福-蒙博裡亞技術大學",
+    "level": "機械系",
+    "type": "碩士雙聯學位",
+    "department": "碩士雙聯學位",
+    "term": "Dual Degree Program Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Technologie de Belfort-Montbeliard (UTBM)",
+    "nameCn": "貝爾福-蒙博裡亞技術大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Exchange of Students and Faculty"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite de Technologie de Belfort-Montbeliard (UTBM)",
+    "nameCn": "貝爾福-蒙博裡亞技術大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite De Technologie de Troyes (UTT)",
+    "nameCn": "特魯瓦特科技大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Agreement for Educational and Scientific Cooperation and Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite De Toulouse Jean Jaures",
+    "nameCn": "土魯斯第二大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Grenoble Alpes",
+    "nameCn": "格勒諾布爾大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Implementing Agreement to the International Cooperation Memroandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Grenoble Alpes",
+    "nameCn": "格勒諾布爾大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Jean Moulin - Lyon 3",
+    "nameCn": "里昂第三大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Jean Moulin - Lyon 3",
+    "nameCn": "里昂第三大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Cooperation"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Lumiere Lyon 2",
+    "nameCn": "里昂第二大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Implementation Agreement Regarding Student Exchanges"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Lumiere Lyon 2",
+    "nameCn": "里昂第二大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "International Cooperation Framework Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Paris Nanterre",
+    "nameCn": "法國西巴黎大學\r\n巴黎十大",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Universite Paris Saclay",
+    "nameCn": "凡爾賽大學",
+    "level": "校",
+    "type": "博士雙聯學位",
+    "department": "博士雙聯學位",
+    "term": "Framework Cooperation Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "Université Sorbonne Paris Nord (Paris 13)",
+    "nameCn": "巴黎第十三大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement Specification"
+  },
+  {
+    "country": "France 法國",
+    "name": "Université Sorbonne Paris Nord (Paris 13)",
+    "nameCn": "巴黎第十三大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement for Cooperation"
+  },
+  {
+    "country": "France 法國",
+    "name": "University of Limoges",
+    "nameCn": "里摩日大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Memorandum of Agreement"
+  },
+  {
+    "country": "France 法國",
+    "name": "University of Rouen Normandy",
+    "nameCn": "魯昂-諾曼第大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "France 法國",
+    "name": "University of Rouen Normandy",
+    "nameCn": "魯昂-諾曼第大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Aschaffenburg University of Applied Science",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Academic Interchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Aschaffenburg University of Applied Science",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Baden-Wuerttemberg Cooperative State University (DHBW)",
+    "nameCn": "巴登-符騰堡州立合作大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Memorandum of Undersrtanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Bauhaus-Universitat Weimar",
+    "nameCn": "魏瑪包豪斯大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Agreement for Academic Cooperation and Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Hochschule Bremen, City University of Applied Sciences",
+    "nameCn": "不萊梅應用科學大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "International Memorandum of Understasnding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Hochschule München University of Applied Sciences (HM) ",
+    "nameCn": "慕尼黑應用科技大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Karlsruhe University of Applied Science (HsKA)",
+    "nameCn": "卡斯魯爾應用科學大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Karlsruhe University of Applied Science (HsKA)",
+    "nameCn": "卡斯魯爾應用科學大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Leuphana University of Lueneburg",
+    "nameCn": "呂訥堡大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Leuphana University of Lueneburg",
+    "nameCn": "呂訥堡大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Ostfalia University of Applied Science",
+    "nameCn": "歐斯特法利亞應用科學大學",
+    "level": "工學院/資電院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Ostfalia University of Applied Science",
+    "nameCn": "歐斯特法利亞應用科學大學",
+    "level": "管理學院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Rheinisch-Westfalische Technische Hochschule Aachen (RWTH Aachen University)",
+    "nameCn": "亞琛亞亨工業大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Trier University of Applied Sciences",
+    "nameCn": "德國特里爾應用科大",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understasnding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Universisty of Regensburg",
+    "nameCn": "雷根斯堡大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "Universisty of Regensburg",
+    "nameCn": "雷根斯堡大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "University of Hohenheim",
+    "nameCn": "霍恩海姆大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum on Student Exchange"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "University of Würzburg in Bavaria(UniWue)",
+    "level": "管院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Germany 德國",
+    "name": "University of Würzburg in Bavaria(UniWue)",
+    "level": "管院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Framework Agreement"
+  },
+  {
+    "country": "Italy 義大利",
+    "name": "Università Ca' Foscari Venezia",
+    "nameCn": "威尼斯卡佛斯卡里大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Italy 義大利",
+    "name": "UNIVERSITÀ PER STRANIERI DI SIENA (Universisty of Foreigners of Siena)",
+    "nameCn": "錫耶納外國人大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Studentn Exchange"
+  },
+  {
+    "country": "Italy 義大利",
+    "name": "University of Florence (Universita Degli Studi di Firenze)",
+    "nameCn": "佛羅倫斯大學 ",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Agreement of Cultural and Scientific Cooperation between the University of Florence and National Central University"
+  },
+  {
+    "country": "Italy 義大利",
+    "name": "University of Udine (Universita Degli Studi Di Udine)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Italy 義大利",
+    "name": "University of Udine (Universita Degli Studi Di Udine)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Lithuania 立陶宛",
+    "name": "Kaunas University of Technology",
+    "nameCn": "考納斯理工大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange Agreement"
+  },
+  {
+    "country": "Lithuania 立陶宛",
+    "name": "Kaunas University of Technology",
+    "nameCn": "考納斯理工大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Lithuania 立陶宛",
+    "name": "Vilnius University",
+    "nameCn": "維爾紐斯大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Lithuania 立陶宛",
+    "name": "Vilnius University",
+    "nameCn": "維爾紐斯大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Monaco 摩納哥",
+    "name": "International University of Monaco",
+    "nameCn": "摩納哥國際大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Partnership Agreement"
+  },
+  {
+    "country": "Monaco 摩納哥",
+    "name": "International University of Monaco",
+    "nameCn": "摩納哥國際大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Norway 挪威 ",
+    "name": "Nord University",
+    "nameCn": "諾爾蘭大學",
+    "level": "校",
+    "type": "附錄",
+    "department": "附錄",
+    "term": "Privacy addendum"
+  },
+  {
+    "country": "Norway 挪威 ",
+    "name": "Nord University",
+    "nameCn": "諾爾蘭大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Exchange and Study Abraod Agreement"
+  },
+  {
+    "country": "Norway 挪威 ",
+    "name": "Nord University",
+    "nameCn": "諾爾蘭大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Poland 波蘭",
+    "name": "Nicolaus Copernicus University in Torun, Poland",
+    "nameCn": "波蘭托倫哥白尼大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Agreement on Scientific Cooperation in Ocean and Earth Sciences"
+  },
+  {
+    "country": "Poland 波蘭",
+    "name": "Nicolaus Copernicus University in Torun, Poland",
+    "nameCn": "波蘭托倫哥白尼大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Cooperation"
+  },
+  {
+    "country": "Portugal 葡萄牙",
+    "name": "Universidade Do Minho",
+    "nameCn": "米尼奧大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Inter-Institutional Agreement 2021-2027"
+  },
+  {
+    "country": "Portugal 葡萄牙",
+    "name": "Universidade Do Minho",
+    "nameCn": "米尼奧大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Addendum to the Memorandum of Understanding between The University of Minho, Protugal and National Central University, Taiwan for the Implementation of exchange periods"
+  },
+  {
+    "country": "Portugal 葡萄牙",
+    "name": "Universidade Do Minho",
+    "nameCn": "米尼奧大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandume of Understanding"
+  },
+  {
+    "country": "Romania 羅馬尼亞",
+    "name": "Romanian-American University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Romania 羅馬尼亞",
+    "name": "Romanian-American University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Slovak Republic 斯洛伐克 ",
+    "name": "Bratislava University of Economics and Management",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Slovak Republic 斯洛伐克 ",
+    "name": "Bratislava University of Economics and Management",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Slovak Republic 斯洛伐克 ",
+    "name": "Comenius University Bratislava",
+    "nameCn": "布拉迪斯拉發夸美紐斯大學",
+    "level": "管院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "CESINE DESIGN & Business School",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "CESINE DESIGN & Business School",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "FUNDACIÓ PRIVADA UNIVERSITAT I TECNOLOGÍA, LA SALLE-UNIVERSITAT RAMON LLULL",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Specific Collaboration Agreement for Academic Student Exchange"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "FUNDACIÓ PRIVADA UNIVERSITAT I TECNOLOGÍA, LA SALLE-UNIVERSITAT RAMON LLULL",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding for Academic, Scientific, Technological and Cultural Cooperaiton"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "UNIVERSIDAD EUROPEA",
+    "nameCn": "歐洲大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "UNIVERSIDAD EUROPEA",
+    "nameCn": "歐洲大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "Universidad Politecnica de Madrid",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "Universidad Politecnica de Madrid",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "Universidad Pontificia Comillas, Madrid, Spain",
+    "nameCn": "柯米亞斯宗座大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "UNIVERSITAT POLITÈCNICA DE CATALUNYA (UPC)",
+    "nameCn": "加泰隆尼亞理工大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreeement"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "University of Alicante",
+    "nameCn": "阿利坎特大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "International Student Exchange Agreement"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "University of Deusto",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "University of Deusto",
+    "nameCn": "德烏斯托大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Spain 西班牙",
+    "name": "University of Jaen",
+    "nameCn": "國立哈恩大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "General Agreement on Exchange and Academic Cooperaiton"
+  },
+  {
+    "country": "Sweden 瑞典",
+    "name": "Chalmers Tekniska Hogskola AB (Chalmers university of technology)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Student Exchange Agreement"
+  },
+  {
+    "country": "Sweden 瑞典",
+    "name": "Linkoping University",
+    "nameCn": "林雪平大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Sweden 瑞典",
+    "name": "Linkoping University",
+    "nameCn": "林雪平大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Sweden 瑞典",
+    "name": "Stockholm School of Economics",
+    "nameCn": "斯德哥爾摩經濟學院",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Sweden 瑞典",
+    "name": "Stockholm School of Economics",
+    "nameCn": "斯德哥爾摩經濟學院",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Switzerland 瑞士",
+    "name": "Lucerne University of Applied Science and Arts",
+    "nameCn": "琉森應用科技藝術大學",
+    "level": "校對資電院",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Switzerland 瑞士",
+    "name": "Lucerne University of Applied Science and Arts",
+    "nameCn": "陸森應用科學與藝術大學",
+    "level": "校對資電院",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Switzerland 瑞士",
+    "name": "University of Geneva",
+    "nameCn": "日內瓦大學",
+    "level": "校",
+    "type": "Scholarship",
+    "department": "Scholarship",
+    "term": "Memorandum of Understanding on Exchange Student Scholarship"
+  },
+  {
+    "country": "Switzerland 瑞士",
+    "name": "University of Geneva",
+    "nameCn": "日內瓦大學",
+    "level": "校",
+    "type": "學術交流及學生交換",
+    "department": "學術交流及學生交換",
+    "term": "Collaboration Agreement"
+  },
+  {
+    "country": "Switzerland 瑞士",
+    "name": "Zurich Unviersity of Applied Sciences (ZHAW)\r\nSchool of Engineering",
+    "nameCn": "蘇黎世應用科技大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Academic Exchange"
+  },
+  {
+    "country": "The Netherlands 荷蘭",
+    "name": "Hanzhehogeschool Groningen/Hanze University of Applied Sciences Groningen",
+    "nameCn": "葛洛寧恩漢斯大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Alanya Alaaddin Keykubat University (ALKU)",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreememnt on Student Exchange"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Alanya Alaaddin Keykubat University (ALKU)",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Altinba University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement for Academic Exchange andn Co-operation"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Altinba University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Bingol University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Erasmus+ Programme Bilateral Inter-Institutional Agreement"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Cukurova University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Educational Cooperation"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Ozyegin University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Ozyegin University",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Sabanci University",
+    "nameCn": "薩班克大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Agreement on Student Exchange"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Sabanci University",
+    "nameCn": "薩班克大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Türkiye 土耳其",
+    "name": "Suleyman Demirel University",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Mevlana Exchange Programme Protocol"
+  },
+  {
+    "country": "Australia 澳洲",
+    "name": "Australian National University",
+    "nameCn": "澳洲國立大學",
+    "level": "語言中心",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  },
+  {
+    "country": "Australia 澳洲",
+    "name": "The University of Western Sydney (UWS)",
+    "nameCn": "西雪梨大學",
+    "level": "校",
+    "type": "學生交換",
+    "department": "學生交換",
+    "term": "Supplemental Letter of Agreement (EXCHANGE)"
+  },
+  {
+    "country": "Australia 澳洲",
+    "name": "The University of Western Sydney (UWS)",
+    "nameCn": "西雪梨大學",
+    "level": "校",
+    "type": "學術交流合作備忘錄",
+    "department": "學術交流合作備忘錄",
+    "term": "Memorandum of Understanding"
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "name": "EduVoyage",
+  "description": "Student Visa & Flight Portal",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

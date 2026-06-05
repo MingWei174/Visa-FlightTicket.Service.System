@@ -1,0 +1,58 @@
+Created At: 2026-06-05T15:24:35Z
+Completed At: 2026-06-05T15:24:35Z
+File Path: `file:///c:/Projects/Projects/%E7%95%99%E5%AD%B8%E6%A9%9F%E7%A5%A8%E8%88%87%E5%AD%B8%E7%94%9F%E7%B0%BD%E8%AD%89%E6%9C%8D%E5%8B%99%E7%B3%BB%E7%B5%B1/src/components/FlightPriceTracker.tsx`
+Total Lines: 175
+Total Bytes: 8564
+Showing lines 1 to 50
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import React, { useState, useEffect } from 'react';
+2: import { Plane, Search, Sparkles, Globe, ShieldCheck, Coffee, ChevronRight } from 'lucide-react';
+3: 
+4: interface FlightPriceTrackerProps {
+5:   globalCountry?: string;
+6:   onTriggerToast: (msg: string) => void;
+7: }
+8: 
+9: // Pre-compute flight data outside of template literals to avoid escaping issues
+10: function generateRandomTime(): string {
+11:   const h = String(Math.floor(Math.random() * 24)).padStart(2, '0');
+12:   const m = String(Math.floor(Math.random() * 60)).padStart(2, '0');
+13:   return h + ':' + m;
+14: }
+15: 
+16: function generateDuration(): string {
+17:   const hours = 5 + Math.floor(Math.random() * 12);
+18:   const mins = Math.floor(Math.random() * 60);
+19:   return hours + 'h ' + mins + 'm';
+20: }
+21: 
+22: function generateBaggage(): string {
+23:   const kg = 20 + Math.floor(Math.random() * 2) * 10;
+24:   return kg + ' KG';
+25: }
+26: 
+27: function generateSeatPitch(): string {
+28:   const inches = 30 + Math.floor(Math.random() * 4);
+29:   return inches + ' 吋寬敞座位';
+30: }
+31: 
+32: export default function FlightPriceTracker({ globalCountry = 'Australia 澳洲', onTriggerToast }: FlightPriceTrackerProps) {
+33:   const rawCountry = globalCountry.split(' ')[0] || 'Australia';
+34:   const code = rawCountry.substring(0, 3).toUpperCase();
+35:   
+36:   const [isSearching, setIsSearching] = useState(false);
+37:   const [flights, setFlights] = useState<any[]>([]);
+38: 
+39:   useEffect(() => {
+40:     setIsSearching(true);
+41:     const timer = setTimeout(() => {
+42:       const airlines = [
+43:         '長榮航空 EVA Air',
+44:         '中華航空 China Airlines',
+45:         '星宇航空 STARLUX',
+46:         '國泰航空 Cathay Pacific',
+47:         '阿聯酋航空 Emirates',
+48:         '新加坡航空 Singapore Airlines'
+49:       ];
+50:       const mealTypes = ['標準飛機餐', '海鮮總匯餐', '低脂/健康餐', '素食餐', '日式懷石料理'];
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,28 @@
+Created At: 2026-06-05T20:40:56Z
+Completed At: 2026-06-05T20:40:56Z
+File Path: `file:///c:/Projects/Projects/%E7%95%99%E5%AD%B8%E6%A9%9F%E7%A5%A8%E8%88%87%E5%AD%B8%E7%94%9F%E7%B0%BD%E8%AD%89%E6%9C%8D%E5%8B%99%E7%B3%BB%E7%B5%B1/src/App.tsx`
+Total Lines: 571
+Total Bytes: 32900
+Showing lines 1 to 20
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /**
+2:  * @license
+3:  * SPDX-License-Identifier: Apache-2.0
+4:  */
+5: 
+6: import React, { useState, useEffect } from 'react';
+7: import { 
+8:   Plane, 
+9:   Calendar, 
+10:   CheckCglobalCountry={globalCountry} 
+11:                           setGlobalCountry={setGlobalCountry} 
+12:                           onSetTarget={(country, uni) => {
+13:                             setGlobalCountry(country);
+14:                             setGlobalUniversity(uni);
+15:                             setStudentTab('overview');
+16:                             triggerToast(`已將留學目標設為：${uni}`);
+17:                           }}
+18:                         />
+19:                       </motion.div>
+20:                     )}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

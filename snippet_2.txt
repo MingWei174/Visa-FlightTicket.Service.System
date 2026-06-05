@@ -1,0 +1,64 @@
+Created At: 2026-06-05T10:59:28Z
+Tool is running as a background task with task id: 1f6be08a-b34e-418b-a09b-d6bbe494bbab/task-645
+Task Description: node -e "
+const fs = require('fs');
+fs.writeFileSync('replace.js', `
+const fs = require('fs');
+let c = fs.readFileSync('src/App.tsx', 'utf8');
+
+if(c.includes('import React, { useState } from')) {
+    c = c.replace('import React, { useState } from', 'import React, { useState, useEffect } from');
+}
+c = c.replace('const [hasSeenAbout, setHasSeenAbout] = useState(false);', 'const [hasSeenAbout, setHasSeenAbout] = useState(false);\\n  const [globalCountry, setGlobalCountry] = useState(\\'Australia 澳洲\\');');
+
+c = c.replace(/EduVoyage/g, 'Atlas.');
+
+// UI Replacements
+c = c.replace(/bg-\\[#F5F5F0\\]\\\\/95/g, 'bg-white');
+c = c.replace(/bg-\\[#EAE8E3\\]/g, 'bg-white');
+c = c.replace(/bg-white\\\\/80/g, 'bg-white');
+c = c.replace(/bg-gray-100/g, 'bg-white');
+c = c.replace(/border-gray-200/g, 'border-[#E5E5E0]');
+c = c.replace(/border-gray-100/g, 'border-[#E5E5E0]');
+c = c.replace(/w-64 shrink-0 h-\\[calc\\(100vh-32px\\)\\]/g, 'w-64 shrink-0 h-screen fixed left-0 top-0');
+c = c.replace(/className=\\"flex h-screen bg-\\[#FDFBF7\\] p-4 gap-4 overflow-hidden\\"/g, 'className=\\"flex h-screen bg-white overflow-hidden\\"');
+c = c.replace(/className=\\"flex-1 h-\\[calc\\(100vh-32px\\)\\] overflow-hidden flex flex-col\\"/g, 'className=\\"flex-1 h-screen overflow-hidden flex flex-col ml-64 p-8\\"');
+
+// Update Target Country Selector
+const startStr = '{/* 留學國家 */}';
+const endStr = '</div>\\n        </div>';
+const startIdx = c.indexOf(startStr);
+if (startIdx !== -1) {
+    const endIdx = c.indexOf(endStr, startIdx) + endStr.length;
+    const newSection = \`{/* 留學國家 */}
+        <div className=\\"space-y-4 px-2\\">
+          <div className=\\"flex items-center gap-2 text-[#111] mb-2\\">
+            <MapPin className=\\"h-4 w-4\\" />
+            <h3 className=\\"text-[10px] font-bold font-sans uppercase tracking-[0.15em]\\">Target Destination</h3>
+          </div>
+          <select 
+            value={globalCountry}
+            onChange={(e) => setGlobalCountry(e.target.value)}
+            className=\\"w-full bg-transparent border-b border-[#E5E5E5] py-2 text-sm text-[#111] font-serif focus:outline-none focus:border-[#111] transition-colors cursor-pointer appearance-none\\"
+          >
+            <option value=\\"Australia 澳洲\\">Australia 澳洲</option>
+            <option value=\\"Japan 日本\\">Japan 日本</option>
+            <option value=\\"Canada 加拿大\\">Canada 加拿大</option>
+            <option value=\\"U.S.A 美國\\">U.S.A 美國</option>
+            <option value=\\"United Kingdom 英國\\">United Kingdom 英國</option>
+            <option value=\\"France 法國\\">France 法國</option>
+            <option value=\\"Germany 德國\\">Germany 德國</option>
+          </select>
+        </div>\`;
+    c = c.slice(0, startIdx) + newSection + c.slice(endIdx);
+}
+
+c = c.replace('<VisaScheduler />', '<VisaScheduler globalCountry={globalCountry} />');
+c = c.replace('<FlightPriceTracker />', '<FlightPriceTracker globalCountry={globalCountry} />');
+c = c.replace('<LoanAndOshc />', '<LoanAndOshc globalCountry={globalCountry} />');
+c = c.replace('<GlobalUniversityMap />', '<GlobalUniversityMap globalCountry={globalCountry} setGlobalCountry={setGlobalCountry} />');
+
+fs.writeFileSync('src/App.tsx', c);
+`);
+" && node replace.js
+Task logs are available at: file:///C:/Users/USER/.gemini/antigravity-ide/brain/1f6be08a-b34e-418b-a09b-d6bbe494bbab/.system_generated/tasks/task-645.log

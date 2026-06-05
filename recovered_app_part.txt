@@ -1,0 +1,21 @@
+Created At: 2026-06-05T16:10:13Z
+Completed At: 2026-06-05T16:10:13Z
+The following changes were made by the replace_file_content tool to: c:\Projects\Projects\留學機票與學生簽證服務系統\src\App.tsx. If relevant, proactively run terminal commands to execute this code for the USER. Don't ask for permission.
+[diff_block_start]
+@@ -120,7 +120,7 @@
+ 
+ export default function App() {
+   // Persistence state per country destination
+-  const [tasksByCountry, setTasksByCountry] = useState<Record<'AU' | 'JP' | 'CA' | 'US', Task[]>>({
++  const [tasksByCountry, setTasksByCountry] = useState<Record<'AU' | 'JP' | 'CA' | 'US' | 'Global', Task[]>>({
+     AU: initialTasksByCountry.AU,
+     JP: initialTasksByCountry.JP,
+     CA: initialTasksByCountry.CA,
+@@ -127,3 +127,4 @@
++    Global: initialTasksByCountry.Global,
+   });
+ 
+   const [selectedCountry, setSelectedCountry] = useState<'AU' | 'JP' | 'CA' | 'US' | 'Global'>('AU');
+[diff_block_end]
+
+Please note that the above snippet only shows the MODIFIED lines from the last change. It shows up to 3 lines of unchanged lines before and after the modified lines. The actual file contents may have many more lines not shown.
