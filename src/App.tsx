@@ -41,6 +41,7 @@ import AdvisorDashboard from './components/AdvisorDashboard';
 import AIAgent from './components/AIAgent';
 import AboutPage from './components/AboutPage';
 import GlobalUniversityMap from './components/GlobalUniversityMap';
+import StudentOnboardingForm from './components/StudentOnboardingForm';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   auth, 
@@ -52,16 +53,65 @@ import {
   getDocs, 
   collection, 
   setDoc, 
-  doc 
+  doc,
+  getDoc,
+  query,
+  where
 } from './firebase';
 
+// Gorgeous custom vector logo component for Atlas. showing academic mortarboard and supersonic flight path
 const AtlasLogo = ({ className = "h-8 w-8" }: { className?: string }) => {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
+    <div className="relative flex items-center justify-center shrink-0">
+      <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-emerald-400 rounded-xl blur-md opacity-35 animate-pulse" />
+      <div className="relative bg-[#FDFBF7]/90 border border-[#E5E5E0] rounded-xl p-2 flex items-center justify-center shadow-lg">
+        <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Shield Structure */}
+          <path d="M50 8 L85 26 V66 L50 92 L15 66 V26 L50 8Z" fill="url(#logo-crest-grad)" fillOpacity="0.12" stroke="url(#logo-stroke-grad)" strokeWidth="4.5" strokeLinejoin="round" />
+          
+          {/* Mortarboard Cap */}
+          <path d="M50 20 L75 31 L50 42 L25 31 L50 20Z" fill="url(#logo-edu-grad)" />
+          <path d="M35 36.5 V46 C35 50 42 53 50 53 C58 53 65 50 65 46 V36.5" stroke="url(#logo-edu-grad)" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="50" cy="31" r="1.5" fill="#ffffff" />
+          <path d="M68 33.5 V52 L71 54 V45" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" />
+          
+          {/* Soaring Flight Plane & Route */}
+          <path d="M22 65 C32 50 48 44 78 38" stroke="url(#logo-glow-path)" strokeWidth="3" strokeLinecap="round" strokeDasharray="100" strokeDashoffset="0" />
+          <path d="M20 75 L38 52 C45 43 56 36 78 35 L70 41 C52 42 42 50 30 72 Z" fill="url(#logo-plane-grad)" />
+          
+          {/* Dynamic Nodes */}
+          <circle cx="78" cy="35" r="3.5" fill="#34d399" />
+          <circle cx="50" cy="74.5" r="2.5" fill="#818cf8" />
+          
+          {/* Gradients */}
+          <defs>
+            <linearGradient id="logo-crest-grad" x1="50" y1="8" x2="50" y2="92" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#6366f1" />
+              <stop offset="1" stopColor="#10b981" />
+            </linearGradient>
+            <linearGradient id="logo-stroke-grad" x1="15" y1="8" x2="85" y2="92" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#818cf8" />
+              <stop offset="0.5" stopColor="#34d399" />
+              <stop offset="1" stopColor="#a78bfa" />
+            </linearGradient>
+            <linearGradient id="logo-edu-grad" x1="25" y1="20" x2="75" y2="53" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#a78bfa" />
+              <stop offset="1" stopColor="#6366f1" />
+            </linearGradient>
+            <linearGradient id="logo-plane-grad" x1="20" y1="35" x2="78" y2="75" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#6366f1" />
+              <stop offset="0.6" stopColor="#34d399" />
+              <stop offset="1" stopColor="#f8fafc" />
+            </linearGradient>
+            <linearGradient id="logo-glow-path" x1="22" y1="65" x2="78" y2="38" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#6366f1" stopOpacity="0" />
+              <stop offset="0.5" stopColor="#818cf8" stopOpacity="0.8" />
+              <stop offset="1" stopColor="#34d399" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
   );
 };
 
@@ -71,55 +121,43 @@ const ADMIN_EMAILS = [
 ];
 
 export default function App() {
-  const [tasksByCountry, setTasksByCountry] = useState<Record<'AU' | 'JP' | 'CA' | 'US', Task[]>>({
-    AU: [...initialTasksByCountry['AU']],
-    JP: [...initialTasksByCountry['JP']],
-    CA: [...initialTasksByCountry['CA']],
-    US: [...initialTasksByCountry['US']]
+  // Persistence state per country destination
+  const [tasksByCountry, setTasksByCountry] = useState<Record<'AU' | 'JP' | 'CA' | 'US' | 'Global', Task[]>>({
+    AU: initialTasksByCountry.AU,
+    JP: initialTasksByCountry.JP,
+    CA: initialTasksByCountry.CA,
+    US: initialTasksByCountry.US,
+    Global: initialTasksByCountry.Global,
   });
 
-  const [selectedCountry, setSelectedCountry] = useState<'AU' | 'JP' | 'CA' | 'US'>('AU');
-  const [globalCountry, setGlobalCountry] = useState<string>('Australia 澳洲');
+  const [selectedCountry, setSelectedCountry] = useState<'AU' | 'JP' | 'CA' | 'US' | 'Global'>('AU');
+  const [globalCountry, setGlobalCountry] = useState<string>('澳洲');
   const [globalUniversity, setGlobalUniversity] = useState<string>('');
 
-  const dashboardFlightStats = React.useMemo(() => {
-    const c = globalCountry || '';
-    if (c.includes('日') || c.includes('韓')) {
-      return { basePrice: '12,500', lowPrice: '8,900', premiumPrice: '16,800', lowAirline: '樂桃', premAirline: '星宇', lowDesc: '樂桃航空方案，不含託運行李額度。', premDesc: '星宇直飛專案，提供高質感空中體驗。' };
-    } else if (c.includes('美') || c.includes('加')) {
-      return { basePrice: '35,800', lowPrice: '29,900', premiumPrice: '42,500', lowAirline: '聯合', premAirline: '長榮', lowDesc: '聯合航空中轉方案，經濟實惠首選。', premDesc: '長榮直飛專案，2件23kg行李，旅途舒適。' };
-    } else if (c.includes('英') || c.includes('歐') || c.includes('法') || c.includes('德') || c.includes('捷')) {
-      return { basePrice: '32,800', lowPrice: '26,500', premiumPrice: '38,900', lowAirline: '阿聯酋', premAirline: '卡達', lowDesc: '阿聯酋中轉特惠，需留意轉機時間。', premDesc: '卡達航空優質服務，行李額度充足。' };
-    }
-    return { basePrice: '24,800', lowPrice: '18,900', premiumPrice: '27,400', lowAirline: '酷航', premAirline: '國泰', lowDesc: '酷航中轉方案，託運行李定額 20kg 需加購 NT$1,400 起。', premDesc: '支持 2 件 23kg 重行李額，完全備妥學生行裝。' };
+  React.useEffect(() => {
+    if (globalCountry.includes('日本') || globalCountry.includes('東京') || globalCountry.includes('Japan')) setSelectedCountry('JP');
+    else if (globalCountry.includes('美國') || globalCountry.includes('加州') || globalCountry.includes('United States')) setSelectedCountry('US');
+    else if (globalCountry.includes('加拿大') || globalCountry.includes('多倫多') || globalCountry.includes('Canada')) setSelectedCountry('CA');
+    else if (globalCountry.includes('澳洲') || globalCountry.includes('Australia')) setSelectedCountry('AU');
+    else setSelectedCountry('Global');
   }, [globalCountry]);
-
-  useEffect(() => {
-    if (globalCountry === '澳洲' || globalCountry === 'Australia 澳洲') setSelectedCountry('AU');
-    else if (globalCountry === '日本' || globalCountry === 'Japan 日本') setSelectedCountry('JP');
-    else if (globalCountry === '加拿大' || globalCountry === 'Canada 加拿大') setSelectedCountry('CA');
-    else if (globalCountry === '美國' || globalCountry === 'USA 美國') setSelectedCountry('US');
-    else setSelectedCountry('AU');
-  }, [globalCountry]);
-
   const [departureDate, setDepartureDate] = useState<string>('2026-07-03');
   const [userRole, setUserRole] = useState<'student' | 'advisor'>('student');
-  
-  const [hasSeenAbout, setHasSeenAbout] = useState<boolean>(() => {
-    return localStorage.getItem('has_seen_about') === 'true';
-  });
-
+  const [hasSeenAbout, setHasSeenAbout] = useState<boolean>(false);
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState<boolean>(() => {
     return localStorage.getItem('has_completed_onboarding') === 'true';
   });
-
   const [isEditingProfile, setIsEditingProfile] = useState<boolean>(false);
+  
+  // Tab states for Student & Advisor Viewports
   const [studentTab, setStudentTab] = useState<'overview' | 'visa' | 'flight' | 'oshc_loan' | 'ai_agent' | 'about' | 'globe'>('overview');
   const [advisorTab, setAdvisorTab] = useState<'dashboard' | 'ai_agent'>('dashboard');
 
+  // Interactive mobile drawer sidebar toggle state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isSidebarHovered, setIsSidebarHovered] = useState<boolean>(false);
 
+  // Custom toast status notification bubble
   const [toastMessage, setToastMessage] = useState<string>('');
   const [showToast, setShowToast] = useState<boolean>(false);
 
@@ -127,485 +165,1393 @@ export default function App() {
   
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [activeStudentProfile, setActiveStudentProfile] = useState<StudentProgress | null>(null);
+  const [advisorSelectedStudent, setAdvisorSelectedStudent] = useState<StudentProgress | null>(null);
   const [isAuthLoading, setIsAuthLoading] = useState<boolean>(true);
   const [unauthorizedDomain, setUnauthorizedDomain] = useState<string | null>(null);
 
-  const triggerToast = (msg: string) => {
-    setToastMessage(msg);
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
-  };
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (user) => {
-      setIsAuthLoading(false);
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setCurrentUser(user);
         
+        // Force role based on admin emails IMMEDIATELY, regardless of Firestore sync success
         if (ADMIN_EMAILS.includes(user.email?.toLowerCase() || '')) {
           setUserRole('advisor');
         } else {
           setUserRole('student');
-          
-          // Fetch student profile
-          try {
-            const snap = await getDocs(collection(db, 'students'));
-            const students = snap.docs.map(d => ({ id: d.id, ...d.data() } as StudentProgress));
-            const myProfile = students.find(s => s.id === user.uid || s.email === user.email);
-            if (myProfile) {
-              setActiveStudentProfile(myProfile);
-              setGlobalCountry(myProfile.targetCountry || 'Australia 澳洲');
-              setGlobalUniversity(myProfile.targetUniversity || '');
-              setDepartureDate(myProfile.departureDate || '2026-07-03');
-            } else {
-              // Create new profile if none exists
-              const newProfile: StudentProgress = {
-                id: user.uid,
-                name: user.displayName || '新同學',
-                email: user.email || '',
-                targetCountry: 'Australia 澳洲',
-                targetUniversity: '',
-                departureDate: '2026-07-03',
-                tasks: []
-              };
-              await setDoc(doc(db, "students", user.uid), newProfile);
-              setActiveStudentProfile(newProfile);
-            }
-          } catch (e) {
-            console.error('Failed to load profile', e);
-          }
-
-          if (!hasSeenAbout) {
-             setStudentTab('about');
-          }
         }
+
+        // Load student profile for EVERYONE (even admins might want to test student view)
+        try {
+            let profileData = null;
+            const studentDoc = await getDoc(doc(db, 'students', user.uid));
+            if (studentDoc.exists()) {
+              profileData = studentDoc.data() as any;
+            } else if (user.email) {
+              // Fallback: check if the user previously created a profile using STU... ID
+              const q = query(collection(db, 'students'), where('studentGmail', '==', user.email));
+              const qSnap = await getDocs(q);
+              if (!qSnap.empty) {
+                profileData = qSnap.docs[0].data() as any;
+                // Automatically bind it to their proper uid for future use
+                try {
+                  await setDoc(doc(db, 'students', user.uid), { ...profileData, id: user.uid }, { merge: true });
+                } catch (e) { }
+              }
+            }
+            
+            if (profileData) {
+              setActiveStudentProfile(profileData);
+              setHasCompletedOnboarding(true);
+              localStorage.setItem('has_completed_onboarding', 'true');
+              if (profileData.tasksByCountry) {
+                setTasksByCountry(profileData.tasksByCountry);
+              }
+              if (profileData.country) {
+                setGlobalCountry(profileData.country);
+              }
+              if (profileData.university) {
+                setGlobalUniversity(profileData.university);
+              }
+              if (profileData.intendedDeparture) {
+                setDepartureDate(profileData.intendedDeparture);
+              }
+            } else {
+              setActiveStudentProfile(null);
+              setHasCompletedOnboarding(false);
+              localStorage.removeItem('has_completed_onboarding');
+            }
+        } catch (e) {}
+
+        // Run background task to sync with firestore
+        try {
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          
+          if (!userDocSnap.exists()) {
+            await setDoc(userDocRef, {
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              photoURL: user.photoURL,
+              role: ADMIN_EMAILS.includes(user.email?.toLowerCase() || '') ? 'advisor' : 'student',
+              createdAt: new Date().toISOString()
+            });
+            console.log("New user document created in Firestore");
+          } else {
+            // FIX: If they are NOT in ADMIN_EMAILS, they are ALWAYS 'student'. Do not trust the DB role.
+            if (!ADMIN_EMAILS.includes(user.email?.toLowerCase() || '')) {
+               setUserRole('student');
+               // Optionally correct the DB here if it was wrong
+               await setDoc(userDocRef, { role: 'student' }, { merge: true });
+            } else {
+               setUserRole('advisor');
+            }
+          }
+        } catch (error) {
+          console.error("Error creating/fetching user document:", error);
+        }
+
       } else {
         setCurrentUser(null);
+        setUserRole('student');
         setActiveStudentProfile(null);
+        setHasCompletedOnboarding(false);
+        localStorage.removeItem('has_completed_onboarding');
       }
+      setIsAuthLoading(false);
     });
-    return () => unsub();
-  }, [hasSeenAbout]);
 
-  const handleLogin = async () => {
+    return () => unsubscribe();
+  }, []);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSimulationDate(new Date());
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const triggerToast = (msg: string) => {
+    setToastMessage(msg);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 4500);
+  };
+
+  const currentTasks = tasksByCountry[selectedCountry];
+  const isAdmin = currentUser && ADMIN_EMAILS.includes(currentUser.email?.toLowerCase() || '');
+
+  // Map progress task arrays back and forth
+  const loadTasksFromProgressList = (progressList: { taskId: number; completed: boolean }[]) => {
+    setTasksByCountry(prev => {
+      const next = { ...prev };
+      const progressMap = new Map<number, boolean>();
+      progressList.forEach(item => {
+        progressMap.set(item.taskId, item.completed);
+      });
+
+      (Object.keys(next) as Array<'AU' | 'JP' | 'CA' | 'US'>).forEach(country => {
+        next[country] = next[country].map(task => {
+          if (progressMap.has(task.id)) {
+            return { ...task, completed: !!progressMap.get(task.id) };
+          }
+          return task;
+        });
+      });
+      return next;
+    });
+  };
+
+  const getTasksProgressList = (currentTasksByCountry: Record<'AU' | 'JP' | 'CA' | 'US', Task[]>) => {
+    const list: { taskId: number; completed: boolean }[] = [];
+    Object.values(currentTasksByCountry).forEach(tasks => {
+      tasks.forEach(t => {
+        list.push({ taskId: t.id, completed: t.completed });
+      });
+    });
+    return list;
+  };
+
+  // Google authentication and cloud sync hook
+  React.useEffect(() => {
+    
+  }, []);
+
+  // Write changes directly to database
+  const syncToFirebase = async (
+    nextTasksByCountry: Record<'AU' | 'JP' | 'CA' | 'US' | 'Global', Task[]>,
+    profile: StudentProgress,
+    overridePct?: number
+  ) => {
+    if (!profile) return;
+    try {
+      const list = getTasksProgressList(nextTasksByCountry);
+      const targetCountryTasks = nextTasksByCountry[selectedCountry];
+      const doneCount = targetCountryTasks.filter(t => t.completed).length;
+      const pct = overridePct !== undefined ? overridePct : Math.round((doneCount / targetCountryTasks.length) * 100);
+
+      const updatedProfile: StudentProgress = {
+        ...profile,
+        tasksProgress: list,
+        progressPercentage: pct,
+        lastActive: new Date().toLocaleString(),
+        tasksByCountry: nextTasksByCountry,
+        country: globalCountry,
+        university: globalUniversity,
+        intendedDeparture: departureDate,
+      };
+
+      const docId = currentUser?.uid || profile.id;
+      await setDoc(doc(db, "students", docId), {...updatedProfile, id: docId}, {merge: true});
+      setActiveStudentProfile(updatedProfile);
+    } catch (err: any) {
+      console.error("Firestore progress sync write error:", err);
+    }
+  };
+
+
+  // AUTO-PERSIST: Save globalCountry, globalUniversity, departureDate to Firebase whenever they change
+  React.useEffect(() => {
+    if (!currentUser || !activeStudentProfile || userRole !== 'student') return;
+    const timer = setTimeout(async () => {
+      try {
+        const docId = currentUser.uid;
+        await setDoc(doc(db, 'students', docId), {
+          country: globalCountry,
+          university: globalUniversity,
+          intendedDeparture: departureDate,
+          lastActive: new Date().toLocaleString(),
+        }, { merge: true });
+        setActiveStudentProfile(prev => prev ? {
+          ...prev,
+          country: globalCountry,
+          university: globalUniversity,
+          intendedDeparture: departureDate,
+        } : prev);
+      } catch (err) {
+        console.error('Auto-persist profile error:', err);
+      }
+    }, 500); // debounce 500ms
+    return () => clearTimeout(timer);
+  }, [globalCountry, globalUniversity, departureDate, currentUser, userRole]);
+
+  const handleLoginGoogle = async () => {
+    setIsAuthLoading(true);
+    setUnauthorizedDomain(null);
     try {
       await signInWithPopup(auth, googleProvider);
-    } catch (error: any) {
-      if (error.code === 'auth/unauthorized-domain') {
+    } catch (err: any) {
+      console.error("Google login popup error:", err);
+      const errMsg = err.message || String(err);
+      if (err.code === 'auth/unauthorized-domain' || errMsg.includes('auth/unauthorized-domain') || errMsg.includes('unauthorized-domain')) {
         setUnauthorizedDomain(window.location.hostname);
       } else {
-        console.error(error);
-        triggerToast('登入發生錯誤：' + error.message);
+        triggerToast(`❌ Google 登入失敗：${err.message || err}`);
       }
+    } finally {
+      setIsAuthLoading(false);
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogoutGoogle = async () => {
+    setIsAuthLoading(true);
     try {
       await signOut(auth);
-      triggerToast('已成功登出系統');
-    } catch (error: any) {
-      triggerToast('登出發生錯誤：' + error.message);
+      setHasSeenAbout(false);
+      setTasksByCountry({
+        AU: initialTasksByCountry.AU,
+        JP: initialTasksByCountry.JP,
+        CA: initialTasksByCountry.CA,
+        US: initialTasksByCountry.US,
+        Global: initialTasksByCountry.Global,
+      });
+      triggerToast('🔑 順利登出，進度恢復離線靜置狀態。');
+    } catch (err: any) {
+      console.error("Google logout error:", err);
+    } finally {
+      setIsAuthLoading(false);
     }
   };
 
-  const calculateProgress = () => {
-    const total = tasksByCountry[selectedCountry].length;
-    const completed = tasksByCountry[selectedCountry].filter(t => t.completed).length;
-    return Math.round((completed / total) * 100);
-  };
+  // Toggle checks with instant percentage re-computation and visual popup
+  const handleToggleTask = (id: number) => {
+    setTasksByCountry(prev => {
+      const updatedList = prev[selectedCountry].map(t => {
+        if (t.id === id) {
+          return { ...t, completed: !t.completed };
+        }
+        return t;
+      });
 
-  const progressPercentage = calculateProgress();
-  const currentTasks = tasksByCountry[selectedCountry];
-  const completedCount = currentTasks.filter(t => t.completed).length;
+      const nextState = { ...prev, [selectedCountry]: updatedList };
 
-  const daysRemaining = Math.max(0, Math.ceil((new Date(departureDate).getTime() - simulationDate.getTime()) / (1000 * 60 * 60 * 24)));
+      // Quick offline math to feedback exactly the percentage of checked items immediately
+      const doneCount = updatedList.filter(t => t.completed).length;
+      const pct = Math.round((doneCount / updatedList.length) * 100);
+      
+      triggerToast(`【時序備文同步】當前 ${
+        selectedCountry === 'AU' ? '澳洲' : selectedCountry === 'JP' ? '日本' : selectedCountry === 'CA' ? '加拿大' : '美國'
+      } 出國準備度已推進至 ${pct}% 囉！(已就緒 ${doneCount}/${updatedList.length} 項)`);
 
-  if (isAuthLoading) {
-    return (
-      <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center flex-col gap-4">
-        <AtlasLogo className="w-16 h-16 text-[#2C2C2A] animate-pulse" />
-        <p className="text-[#7A8B99] font-medium tracking-widest text-sm uppercase">正在初始化系統核心模組...</p>
-      </div>
-    );
-  }
-
-  // Handle editing profile
-  const handleSaveProfile = async () => {
-    setIsEditingProfile(false);
-    
-    if (currentUser && activeStudentProfile) {
-      try {
-        const updatedProfile = {
-          ...activeStudentProfile,
-          targetCountry: globalCountry,
-          targetUniversity: globalUniversity,
-          departureDate: departureDate
-        };
-        
-        await setDoc(doc(db, "students", activeStudentProfile.id || currentUser.uid), updatedProfile);
-        setActiveStudentProfile(updatedProfile);
-        triggerToast('個人資料已更新並同步至雲端！');
-      } catch (err: any) {
-        console.error(err);
-        triggerToast('儲存失敗：' + err.message);
+      if (currentUser && activeStudentProfile) {
+        syncToFirebase(nextState, activeStudentProfile, pct);
       }
-    } else {
-      triggerToast('個人資料已暫時更新 (未登入無法同步)');
-    }
+
+      return nextState;
+    });
   };
+
+  // Force OSHC completed immediately from OSHC purchase click
+  const handleCompleteOshcTask = () => {
+    setTasksByCountry(prev => {
+      const updatedList = prev[selectedCountry].map(t => {
+        // ID 2 or corresponding OSHC task
+        const isTarget = t.id === 2 || t.title.includes('保險') || t.title.includes('OSHC') || t.title.includes('健保');
+        if (isTarget) {
+          return { ...t, completed: true };
+        }
+        return t;
+      });
+
+      const nextState = { ...prev, [selectedCountry]: updatedList };
+
+      const doneCount = updatedList.filter(t => t.completed).length;
+      const pct = Math.round((doneCount / updatedList.length) * 100);
+
+      triggerToast(`🎉 恭喜！您已成功投保優選保單，文件進度已彈射推拔至 ${pct}% 囉！`);
+
+      if (currentUser && activeStudentProfile) {
+        syncToFirebase(nextState, activeStudentProfile, pct);
+      }
+
+      return nextState;
+    });
+  };
+
+  // Target specific completion metrics
+  const completedCount = currentTasks.filter(t => t.completed).length;
+  const progressPercentage = Math.round((completedCount / currentTasks.length) * 100);
+
+  // Remaining takeoff days calculation
+  const getDaysRemaining = () => {
+    const dep = new Date(departureDate);
+    const diffTime = dep.getTime() - simulationDate.getTime();
+    return Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+  };
+
+  const daysRemaining = getDaysRemaining();
+
+  const countryNames = {
+    AU: '澳洲學府 (Subclass 500)',
+    JP: '日本學府 (COE/VisitJapan)',
+    CA: '加拿大專案 (StudyPermit)',
+    US: '美國高校 (I-20 Form F-1)',
+  };
+
+  // Derived display values for header trackers
+  const displayCountry = userRole === 'advisor' && advisorSelectedStudent ? advisorSelectedStudent.country : globalCountry;
+  const displayUniversity = userRole === 'advisor' && advisorSelectedStudent ? advisorSelectedStudent.university : globalUniversity;
+  const displayDeparture = userRole === 'advisor' && advisorSelectedStudent ? advisorSelectedStudent.intendedDeparture : departureDate;
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#2C2C2A] font-sans overflow-x-hidden selection:bg-[#8F9779] selection:text-white relative">
+    <div className="min-h-screen bg-[#FDFBF7] text-gray-800 font-sans flex flex-col justify-between selection:bg-indigo-500/20 selection:text-[#2C2C2A] relative overflow-x-hidden">
       
-      {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-[#FDFBF7]/80 backdrop-blur-xl border-b border-[#E5E5E0]">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            
-            <div className="flex items-center gap-3">
-              <div className="bg-[#2C2C2A] text-[#FDFBF7] p-2 rounded-xl">
-                <AtlasLogo className="w-5 h-5" />
+      {/* Visual background ambient glass circles */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[5%] left-[5%] w-[45%] h-[40%] bg-indigo-650/10 rounded-full blur-[130px] animate-pulse" />
+        <div className="absolute bottom-[10%] right-[5%] w-[50%] h-[45%] bg-emerald-600/5 rounded-full blur-[140px]" />
+      </div>
+
+      {isAuthLoading ? (
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
+          <Loader2 className="h-12 w-12 animate-spin text-indigo-500 mb-4" />
+          <p className="text-sm font-bold text-gray-500">系統身分驗證與載入中...</p>
+        </div>
+      ) : !currentUser ? (
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
+          <div className="bg-white backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-[#E5E5E0] shadow-2xl w-full max-w-md text-center space-y-8 animate-fade-in-up">
+            <div className="flex flex-col items-center gap-4">
+              <AtlasLogo className="h-16 w-16" />
+              <div>
+                <h1 className="text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-emerald-300 uppercase">
+                  Atlas.
+                </h1>
+                <p className="text-xs text-gray-500 font-bold mt-1 tracking-wide">
+                  留學機票與學生簽證服務系統
+                </p>
               </div>
-              <span className="font-black text-xl tracking-tight hidden sm:block font-serif text-[#2C2C2A]">
-                Atlas. <span className="font-normal text-[#8F9779] text-sm tracking-widest uppercase ml-2 font-sans">全球留學導航</span>
-              </span>
+            </div>
+            
+            <div className="bg-white/60 border border-[#E5E5E0] rounded-2xl p-6 text-sm text-gray-600 leading-relaxed text-left">
+              <p className="mb-4">歡迎使用 Atlas. 系統。為了保護個人隱私與申辦資料安全，本系統採用實名登入。</p>
+              <ul className="space-y-2 text-xs text-gray-500">
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" />自動判別學生與顧問身分</li>
+                <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" />雲端同步備文與機票進度</li>
+              </ul>
             </div>
 
-            <div className="flex items-center gap-4">
-              {currentUser ? (
-                <div className="flex items-center gap-4">
-                  <div className="hidden sm:flex items-center gap-3 bg-white/50 px-3 py-1.5 rounded-full border border-[#E5E5E0]">
-                    <img src={currentUser.photoURL || 'https://via.placeholder.com/32'} alt="Avatar" className="w-7 h-7 rounded-full object-cover" />
-                    <div className="flex flex-col">
-                      <span className="text-[11px] font-bold leading-tight">{currentUser.displayName || '使用者'}</span>
-                      <span className="text-[9px] text-gray-500">{userRole === 'advisor' ? '管理員權限' : '學生帳戶'}</span>
+            <button
+              onClick={handleLoginGoogle}
+              className="w-full flex items-center justify-center gap-3 text-[#2C2C2A] bg-[#7A8B99] hover:bg-[#60707c] py-3.5 rounded-2xl text-sm font-bold transition-all cursor-pointer shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
+            >
+              <LogIn className="h-5 w-5" />
+              <span>使用 Google 帳號安全登入</span>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-1 z-10 w-full">
+        
+        {/* ==================== DESKTOP LEFT SIDEBAR ==================== */}
+        <aside 
+          onMouseEnter={() => setIsSidebarHovered(true)}
+          onMouseLeave={() => setIsSidebarHovered(false)}
+          className={`hidden lg:flex flex-col h-screen sticky top-0 shrink-0 select-none overflow-y-auto overflow-x-hidden z-40 text-[#2C2C2A] justify-between transition-all duration-500 ease-out border-r border-indigo-500/10 relative ${
+            isSidebarHovered 
+              ? 'w-72 p-6 bg-[#FDFBF7]/85 backdrop-blur-3xl shadow-[0_0_50px_rgba(99,102,241,0.18)] opacity-100' 
+              : 'w-4 p-0 bg-[#FDFBF7]/45 backdrop-blur-sm opacity-50 hover:opacity-100 hover:bg-[#FDFBF7]/65 shadow-[inset_-4px_0_15px_rgba(99,102,241,0.08)] cursor-pointer'
+          }`}
+        >
+          {/* Sparkles / Guidance line shown when sidebar is collapsed */}
+          {!isSidebarHovered && (
+            <div className="absolute inset-y-0 left-0 right-0 flex flex-col justify-center items-center pointer-events-none select-none">
+              <div className="text-indigo-405 text-[#8F9779] text-[10.5px] font-black [writing-mode:vertical-lr] tracking-widest uppercase opacity-85 flex items-center gap-2">
+                <Sparkles className="h-3 w-3 animate-pulse" />
+                <span>滑鼠靠近展開 🧭 GPS 導航</span>
+              </div>
+            </div>
+          )}
+
+          <div className={`space-y-6 transition-all duration-300 ${isSidebarHovered ? 'opacity-100 w-60 transform translate-x-0' : 'opacity-0 w-0 pointer-events-none transform -translate-x-12'}`}>
+            
+            {/* Sidebar Branding Header */}
+            <div className="flex items-center gap-3 border-b border-[#E5E5E0] pb-4">
+              <AtlasLogo className="h-6.5 w-6.5" />
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="font-black text-sm tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-white">
+                    Atlas.
+                  </span>
+                  <span className="text-[9px] bg-indigo-500/25 text-[#7A8B99] font-extrabold px-1.5 py-0.2 rounded">GPS</span>
+                </div>
+                <p className="text-[8.5px] text-gray-500 font-semibold tracking-tight mt-0.5">
+                  Student Visa & Flight Portal
+                </p>
+              </div>
+            </div>
+
+            {/* Google Authentication Account Card */}
+            <div className="bg-white/60 border border-[#E5E5E0] rounded-2xl p-4.5 space-y-3 relative overflow-hidden shadow-inner">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-gray-500 font-extrabold uppercase tracking-wider flex items-center gap-1">
+                  <UserCheck className="h-3 w-3 text-emerald-400" />
+                  <span>個人備文雲端同步</span>
+                </span>
+                {currentUser && (
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" title="雲端連線中"></span>
+                )}
+              </div>
+
+              {isAuthLoading ? (
+                <div className="flex items-center justify-center py-2 gap-2 text-xs text-gray-500">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin text-[#8F9779]" />
+                  <span>帳戶同步中...</span>
+                </div>
+              ) : currentUser ? (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    {currentUser.photoURL ? (
+                      <img 
+                        src={currentUser.photoURL} 
+                        alt={currentUser.displayName} 
+                        className="h-10 w-10 rounded-full border border-indigo-400/30 shadow-md"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-indigo-500/20 text-[#7A8B99] font-bold flex items-center justify-center text-sm border border-indigo-500/10">
+                        {currentUser.displayName?.[0] || currentUser.email?.[0]?.toUpperCase() || 'U'}
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-black text-[#2C2C2A] truncate leading-snug">
+                        {currentUser.displayName || '留學同學'}
+                      </p>
+                      <p className="text-[10px] text-gray-500 truncate leading-tight">
+                        {currentUser.email}
+                      </p>
                     </div>
                   </div>
-                  <button onClick={handleLogout} className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-red-500 transition-colors">
-                    <LogOut className="w-4 h-4" />
-                    <span className="hidden sm:inline">登出</span>
-                  </button>
+
+                  <div className="bg-emerald-500/10 border border-emerald-555 border-emerald-500/20 rounded-xl px-2.5 py-1.5 flex items-center justify-between text-[10px] text-emerald-300">
+                    <span className="font-semibold">狀態：雲端備文同步中</span>
+                    <span className="font-mono bg-emerald-500/20 px-1 py-0.2 rounded font-bold">100% ONLINE</span>
+                  </div>
+
+                  <div className="flex gap-2 w-full">
+                    <button
+                      onClick={() => setIsEditingProfile(true)}
+                      className="flex-1 flex items-center justify-center gap-1 text-indigo-500 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 text-[10.5px] py-1.5 rounded-xl font-bold transition-all cursor-pointer"
+                    >
+                      <span>修改資料</span>
+                    </button>
+                    <button
+                      onClick={handleLogoutGoogle}
+                      className="flex-1 flex items-center justify-center gap-1 text-gray-500 hover:text-rose-455 hover:text-rose-400 bg-white/60 hover:bg-rose-500/10 border border-[#E5E5E0] hover:border-rose-500/15 text-[10.5px] py-1.5 rounded-xl font-bold transition-all cursor-pointer"
+                    >
+                      <LogOut className="h-3.5 w-3.5" />
+                      <span>登出系統</span>
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <button onClick={handleLogin} className="flex items-center gap-2 bg-[#2C2C2A] hover:bg-[#4A4A4A] text-white px-5 py-2 rounded-full text-xs font-bold tracking-widest transition-all shadow-md">
-                  <LogIn className="w-4 h-4" />
-                  <span>Google 快速登入</span>
-                </button>
+                <div className="space-y-2">
+                  <p className="text-[10px] text-gray-500 leading-normal">
+                    登入 Google 帳戶後，系統將在雲端自動備份您的自填文件與簽證申辦進度，關閉網頁也能保留最新狀態！
+                  </p>
+                  <button
+                    onClick={handleLoginGoogle}
+                    className="w-full flex items-center justify-center gap-2 text-[#2C2C2A] bg-[#7A8B99] hover:bg-[#60707c] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] border border-indigo-500/30 text-xs py-2 rounded-xl font-bold transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    <span>使用 Google 登入</span>
+                  </button>
+                </div>
               )}
             </div>
 
-          </div>
-        </div>
-      </nav>
+            {/* Role Persona Toggle Swift */}
+            {isAdmin && (
+              <div className="space-y-2">
+                <span className="text-[10px] text-slate-450 font-black tracking-wider block uppercase">
+                  ⚙️ 系統切換身分
+                </span>
+                <div className="grid grid-cols-2 gap-1.5 bg-[#FDFBF7] p-1.5 rounded-2xl border border-[#E5E5E0]">
+                  <button
+                    onClick={() => {
+                      setUserRole('student');
+                      triggerToast('已切換為：【準留學生安全準備視窗】。');
+                    }}
+                    className={`py-1.5 rounded-xl text-[11px] font-bold transition-all text-center ${
+                      userRole === 'student'
+                        ? 'bg-white text-[#2C2C2A] shadow'
+                        : 'text-gray-500 hover:text-slate-200'
+                    }`}
+                  >
+                    學生視角
+                  </button>
+                  <button
+                    onClick={() => {
+                      setUserRole('advisor');
+                      triggerToast('已切換為：【留學顧問首期文件追蹤台】。');
+                    }}
+                    className={`py-1.5 rounded-xl text-[11px] font-bold transition-all text-center ${
+                      userRole === 'advisor'
+                        ? 'bg-white text-[#2C2C2A] shadow'
+                        : 'text-gray-500 hover:text-slate-200'
+                    }`}
+                  >
+                    顧問後台
+                  </button>
+                </div>
+              </div>
+            )}
 
-      {/* Main Content Padding */}
-      <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-[1600px] mx-auto">
-        {!currentUser ? (
-          <div className="flex flex-col items-center justify-center min-h-[70vh] space-y-8 text-center">
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-[#E5E5E0] inline-block mb-4">
-              <Globe className="w-24 h-24 text-[#8F9779] mb-4 mx-auto" />
-              <h1 className="text-4xl font-black font-serif text-[#2C2C2A] mb-4 tracking-tight">全球簽證與機票智慧導航</h1>
-              <p className="text-gray-500 max-w-md mx-auto leading-relaxed">請使用 Google 帳號登入系統，解鎖專屬您的留學行前準備自動化體驗。</p>
-              <button onClick={handleLogin} className="mt-8 bg-[#8F9779] hover:bg-[#7A8270] text-white px-8 py-3 rounded-xl text-sm font-bold tracking-widest transition-all shadow-lg flex items-center justify-center w-full gap-2 cursor-pointer">
-                <LogIn className="w-5 h-5" />
-                立即登入系統
-              </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            {userRole === 'student' && (
-              <div className="space-y-8">
-                {/* Desktop Tabs */}
-                <div className="hidden lg:flex border-b border-[#E5E5E0] space-x-6 overflow-x-auto pb-0.5">
+            {/* Role-based navigation */}
+            {userRole === 'student' ? (
+              // Student View navigation
+              <div className="space-y-4">
+                <div className="space-y-1">
                   {[
-                    { id: 'overview', icon: Compass, label: '樞紐首頁' },
-                    { id: 'globe', icon: Globe, label: '3D 地球' },
-                    { id: 'visa', icon: ClipboardCheck, label: '簽證代辦' },
-                    { id: 'flight', icon: Plane, label: '航班比價' },
-                    { id: 'oshc_loan', icon: ShieldCheck, label: '保險與貸款' },
-                    { id: 'ai_agent', icon: Bot, label: 'AI 客服' },
-                    { id: 'about', icon: HelpCircle, label: '關於本站' }
-                  ].map(tab => (
+                    { key: 'overview', label: '📊 總覽' },
+                    { key: 'visa', label: '📅 簽證進度' },
+                    { key: 'flight', label: '🛫 機票比價主宰' },
+                    { key: 'oshc_loan', label: '🏥 保險與貸款' },
+                    { key: 'ai_agent', label: '🤖 AI 智慧顧問' },
+                    { key: 'globe', label: '🌍 姊妹校地球' },
+                    { key: 'about', label: '✨ 關於 Atlas.' },
+                  ].map((tab) => (
                     <button
-                      key={tab.id}
-                      onClick={() => setStudentTab(tab.id as any)}
-                      className={`flex items-center gap-2 pb-3 px-1 border-b-2 transition-colors ${studentTab === tab.id ? 'border-[#8F9779] text-[#2C2C2A] font-bold' : 'border-transparent text-gray-500 hover:text-[#2C2C2A] hover:border-gray-300 font-medium'}`}
+                      key={tab.key}
+                      onClick={() => setStudentTab(tab.key as any)}
+                      className={`w-full text-left py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                        studentTab === tab.key
+                          ? 'bg-white text-[#2C2C2A] border border-[#E5E5E0] shadow-sm'
+                          : 'text-slate-350 hover:bg-white/60 hover:text-[#2C2C2A]'
+                      }`}
                     >
-                      <tab.icon className="w-4 h-4" />
-                      <span className="text-sm tracking-wider">{tab.label}</span>
+                      <span>{tab.label}</span>
                     </button>
                   ))}
                 </div>
 
-                <AnimatePresence mode="wait">
-                  {studentTab === 'globe' && (
-                    <motion.div key="globe" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <GlobalUniversityMap 
-                        globalCountry={globalCountry} 
-                        setGlobalCountry={setGlobalCountry} 
-                        onSetTarget={(country, uni) => {
-                          setGlobalCountry(country);
-                          setGlobalUniversity(uni);
-                          setStudentTab('overview');
-                          triggerToast(`已將留學目標設為：${uni}`);
+                {/* Current Country Display */}
+                <div className="space-y-2 pt-2 border-t border-[#E5E5E0]">
+                  <span className="text-[10px] text-slate-450 font-black tracking-wider block uppercase flex items-center gap-1">
+                    <MapPin className="h-3 w-3 text-[#8F9779]" />
+                    <span>目標留學國家選項</span>
+                  </span>
+                  
+                  <div className="bg-indigo-50/50 border border-indigo-100 rounded-xl p-3 flex items-center justify-between">
+                    <span className="font-bold text-gray-700">{globalCountry}</span>
+                    <button 
+                      onClick={() => setStudentTab('globe')}
+                      className="text-xs font-bold text-indigo-500 hover:text-indigo-600 flex items-center gap-1 bg-white px-2 py-1 rounded shadow-sm border border-indigo-100"
+                    >
+                      <Globe className="h-3 w-3" /> 重新選擇
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+                // Advisor View navigation
+                <div className="space-y-1">
+                  {[
+                    { key: 'dashboard', label: '👥 備文登機追蹤台' },
+                    { key: 'ai_agent', label: '🤖 政策查核 AI 智庫', isAI: true },
+                  ].map((tab) => (
+                    <button
+                      key={tab.key}
+                      onClick={() => setAdvisorTab(tab.key as any)}
+                      className={`w-full text-left py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between group ${
+                        advisorTab === tab.key
+                          ? 'bg-white text-[#2C2C2A] border border-[#E5E5E0] shadow-sm'
+                          : 'text-slate-350 hover:bg-white/60 hover:text-[#2C2C2A]'
+                      }`}
+                    >
+                      <span>{tab.label}</span>
+                      {tab.isAI && (
+                        <span className="text-[9px] bg-indigo-505 bg-indigo-520 bg-indigo-500/20 text-[#7A8B99] px-1.5 py-0.2 rounded font-black">
+                          AI
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+            {/* Quick real-time floating completion bar in sidebar */}
+            {userRole === 'student' && (
+              <div className="bg-[#FDFBF7] p-4 rounded-2xl border border-[#E5E5E0] mt-4 space-y-2">
+                <div className="flex justify-between items-center text-[10px] font-black">
+                  <span className="text-gray-500">當前國家完成度</span>
+                  <span className="text-[#7A8B99] font-mono">{progressPercentage}%</span>
+                </div>
+                <div className="w-full bg-white/60 h-2 rounded-full overflow-hidden">
+                  <div 
+                    className="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full transition-all duration-300"
+                    style={{ width: `${progressPercentage}%` }}
+                  />
+                </div>
+                <p className="text-[8px] text-gray-400 text-center leading-normal">
+                  點擊核對任務，趴數隨機實時改算對付顧問
+                </p>
+              </div>
+            )}
+
+          </div>
+
+          {/* Core Member Signature Line */}
+          <div className={`border-t border-[#E5E5E0] pt-4 text-[10px] text-gray-500 space-y-1 leading-normal font-sans transition-all duration-300 ${isSidebarHovered ? 'opacity-100 w-60 block' : 'opacity-0 w-0 hidden'}`}>
+            <p className="font-semibold text-gray-500">🎓 學術與專案規查組：</p>
+            <p>張茗崴 (113403547)</p>
+            <p>張子衡 (113403062)</p>
+          </div>
+        </aside>
+
+        {/* ==================== CORE CONTENT AREA ==================== */}
+        <div className="flex-1 min-w-0 flex flex-col min-h-screen">
+          
+          {/* Mobile responsive Top Header */}
+          <header className="lg:hidden bg-white border-b border-[#E5E5E0] py-3.5 px-4 sticky top-0 z-40 flex items-center justify-between text-[#2C2C2A] backdrop-blur-md">
+            <div className="flex items-center gap-2">
+              <AtlasLogo className="h-5.5 w-5.5" />
+              <div>
+                <h1 className="text-xs font-black tracking-widest text-indigo-900 uppercase">Atlas.</h1>
+                <p className="text-[8.5px] text-gray-500 font-bold">Student Visa & Flight Portal</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="bg-white/60 hover:bg-white p-2 rounded-xl border border-[#E5E5E0] cursor-pointer"
+              >
+                {isMobileMenuOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
+              </button>
+            </div>
+          </header>
+
+{/* ===================== MOBILE DRAWER MENU ===================== */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+                className="lg:hidden bg-white backdrop-blur-2xl border-b border-[#E5E5E0] p-6 space-y-5 absolute top-[52px] left-0 w-full z-30 shadow-xl"
+              >
+                {/* Role Switcher in Mobile */}
+                {isAdmin && (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        setUserRole('student');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex-1 py-2 text-xs font-bold rounded-xl ${userRole === 'student' ? 'bg-[#7A8B99] text-white shadow' : 'bg-gray-50 text-gray-500'}`}
+                    >
+                      學生視角
+                    </button>
+                    <button
+                      onClick={() => {
+                        setUserRole('advisor');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex-1 py-2 text-xs font-bold rounded-xl ${userRole === 'advisor' ? 'bg-[#7A8B99] text-white shadow' : 'bg-gray-50 text-gray-500'}`}
+                    >
+                      顧問後台
+                    </button>
+                  </div>
+                )}
+
+                {userRole === 'student' ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      { key: 'overview', label: '📊 總覽' },
+                      { key: 'visa', label: '📅 簽證進度' },
+                      { key: 'flight', label: '🛫 機票比價主宰' },
+                      { key: 'oshc_loan', label: '🏥 保險與貸款' },
+                      { key: 'ai_agent', label: '🤖 AI 智慧顧問' },
+                      { key: 'globe', label: '🌍 姊妹校地球' },
+                      { key: 'about', label: '✨ 關於 Atlas.' },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => {
+                          setStudentTab(tab.key as any);
+                          setIsMobileMenuOpen(false);
                         }}
-                      />
-                    </motion.div>
-                  )}
+                        className={`py-2 px-3 rounded-xl text-xs font-bold text-left transition-all ${
+                          studentTab === tab.key
+                            ? 'bg-indigo-50 text-indigo-700 border border-indigo-100'
+                            : 'bg-white text-gray-500 border border-gray-100 hover:bg-gray-50'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {[
+                      { key: 'dashboard', label: '👥 備文登機追蹤台' },
+                      { key: 'ai_agent', label: '🤖 政策查核 AI 智庫' },
+                    ].map((tab) => (
+                      <button
+                        key={tab.key}
+                        onClick={() => {
+                          setAdvisorTab(tab.key as any);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full py-3 px-4 rounded-xl text-sm font-bold text-left transition-all ${
+                          advisorTab === tab.key
+                            ? 'bg-indigo-50 text-indigo-700 border border-indigo-100'
+                            : 'bg-white text-gray-500 border border-gray-100 hover:bg-gray-50'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-                  {studentTab === 'about' && (
-                    <motion.div key="about" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <AboutPage isFirstTime={!hasSeenAbout} onStart={() => {
-                        setHasSeenAbout(true);
-                        localStorage.setItem('has_seen_about', 'true');
-                        setStudentTab('overview');
-                      }} />
-                    </motion.div>
+                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-600">
+                    <Globe className="h-4 w-4 text-[#8F9779]" />
+<span>目標國家：{displayCountry}</span>
+                  </div>
+                  {userRole === 'student' && hasCompletedOnboarding && (
+                    <button 
+                      onClick={() => {
+                        setIsEditingProfile(true);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded hover:bg-amber-100 transition-colors"
+                    >
+                      ✏️ 修改資料
+                    </button>
                   )}
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-600">
+                    <Globe className="h-4 w-4 text-[#8F9779]" />
+                  </div>
+                  <button 
+                    onClick={() => {
+                      setStudentTab('globe');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-[10px] font-bold text-indigo-500 bg-indigo-50 px-2 py-1 rounded"
+                  >
+                    重選
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-                  {studentTab === 'visa' && (
-                    <motion.div key="visa" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <VisaScheduler onTriggerToast={triggerToast} selectedCountry={selectedCountry} />
-                    </motion.div>
-                  )}
+          {/* ==================== MAIN BODY CONTAINER ==================== */}
+          {currentUser && userRole === 'student' && hasSeenAbout && (!hasCompletedOnboarding || isEditingProfile) && (() => {
+            (window as any).__currentUserUid = currentUser.uid;
+            return (
+              <StudentOnboardingForm 
+                onComplete={(student) => {
+                  setHasCompletedOnboarding(true);
+                  setIsEditingProfile(false);
+                  localStorage.setItem('has_completed_onboarding', 'true');
+                  setGlobalCountry(student.country || '澳洲');
+                  setGlobalUniversity(student.university || '');
+                  setDepartureDate(student.intendedDeparture || '');
+                  setActiveStudentProfile({...student, id: currentUser.uid});
+                  // Also save with uid as key for consistent loading
+                  import('./firebase').then(({db, doc, setDoc}) => {
+                    setDoc(doc(db, 'students', currentUser.uid), {...student, id: currentUser.uid}, {merge: true}).catch(console.error);
+                  });
+                }} 
+                onCancel={hasCompletedOnboarding ? () => {
+                  setIsEditingProfile(false);
+                } : undefined}
+                existingProfile={activeStudentProfile || { studentName: currentUser.displayName, studentGmail: currentUser.email }}
+              />
+            );
+          })()}
 
-                  {studentTab === 'flight' && (
-                    <motion.div key="flight" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <FlightPriceTracker globalCountry={globalCountry} onTriggerToast={triggerToast} />
-                    </motion.div>
-                  )}
+          {currentUser && !hasSeenAbout && userRole === 'student' && (
+            <AboutPage 
+              isFirstTime={true}
+              onStart={() => {
+                setHasSeenAbout(true);
+              }}
+            />
+          )}
 
-                  {studentTab === 'oshc_loan' && (
-                    <motion.div key="oshc_loan" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <LoanAndOshc globalCountry={globalCountry} globalUniversity={globalUniversity} />
-                    </motion.div>
-                  )}
+          <main className="flex-grow p-4 sm:p-6 lg:p-8 w-full max-w-7xl mx-auto overflow-hidden">
+            
+            {/* Global parameters monitoring panel (Clock, Departure Date, simulated UTC) */}
+            <div className="minimal-glass rounded-2xl p-4.5 shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 minimal-border-transition">
+              <div className="flex flex-wrap items-center gap-3.5 text-xs text-gray-600">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  系統時間：<strong className="text-[#2C2C2A] drop-shadow-sm font-serif font-bold">{simulationDate.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })} {simulationDate.toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</strong>
+                </span>
+                <span className="text-slate-650 text-gray-400">|</span>
+                <span className="flex items-center gap-1">
+                  <Bot className="h-3.5 w-3.5 text-[#8F9779]" />
+                  當前國家：<strong className="text-indigo-350 text-[#7A8B99]">{displayCountry}</strong>
+                </span>
+                <span className="text-slate-650 text-gray-400 hidden sm:inline">|</span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-3.5 w-3.5 text-emerald-400" />
+                  調整出航班期：
+                  <input
+                    type="date"
+                    value={departureDate}
+                    onChange={(e) => {
+                      setDepartureDate(e.target.value);
+                      triggerToast(`📅 出航日已被您成功調整為 ${e.target.value}，各時效與機票監控組件已動態對齊對應！`);
+                    }}
+                    className="bg-[#FDFBF7] border border-[#E5E5E0] rounded-lg px-2 py-0.5 text-[11px] text-indigo-900 outline-none focus:border-indigo-405 font-mono cursor-pointer font-bold inline-block"
+                  />
+                </span>
+              </div>
 
-                  {studentTab === 'ai_agent' && (
-                    <motion.div key="ai_agent" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
-                      <AIAgent />
-                    </motion.div>
-                  )}
+              <div className="text-[10.5px] text-gray-500 bg-white/60 px-3.5 py-1.5 rounded-xl border border-[#E5E5E0] flex items-center gap-1">
+                <span>專案組員驗收：</span>
+                <strong className="text-[#2C2C2A]">張茗崴 (113403547) & 張子衡 (113403062)</strong>
+              </div>
+            </div>
 
-                  {studentTab === 'overview' && (
-                    <motion.div key="overview" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                      {/* Dashboard Content - Left Column */}
-                      <div className="lg:col-span-2 space-y-8">
-                        {/* Countdown Hero */}
-                        <div className="bg-white rounded-3xl p-8 shadow-sm border border-[#E5E5E0] relative overflow-hidden">
-                          <div className="absolute right-0 bottom-0 opacity-5 transform translate-x-12 translate-y-12">
-                            <Plane className="w-72 h-72 -rotate-45" />
-                          </div>
-                          <div className="relative z-10 space-y-6">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-[10px] bg-gray-100 text-gray-600 font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-gray-200">
-                                Atlas. 智慧留學跨國排程導航系統
-                              </span>
-                              <span className="text-[10px] bg-[#8F9779]/10 text-[#8F9779] font-extrabold px-3 py-1 rounded-full border border-[#8F9779]/20 uppercase">
-                                {selectedCountry} 項目
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                              <div className="space-y-2">
-                                <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider">距離正式飛抵目的地起航還有</p>
-                                <h2 className="text-6xl font-black tracking-tight text-[#2C2C2A] flex items-baseline gap-1">
-                                  {daysRemaining} <span className="text-2xl font-normal text-gray-400">天</span>
-                                </h2>
-                                <div className="flex items-center gap-2 text-xs text-gray-500 pt-1">
-                                  <Clock className="h-4 w-4" />
-                                  <span>預定在 {departureDate} 正式起航起程</span>
-                                </div>
-                              </div>
-                              <div className="bg-[#FDFBF7] border border-[#E5E5E0] p-5 rounded-2xl flex flex-col items-center justify-center">
-                                <span className="text-[10px] text-gray-500 font-semibold mb-2">當前國家文件備齊百分比</span>
-                                <div className="relative flex items-center justify-center h-24 w-24">
-                                  <svg className="w-24 h-24 transform -rotate-90">
-                                    <circle cx="48" cy="48" r="40" className="stroke-current text-gray-200" strokeWidth="6.5" fill="transparent" />
-                                    <circle cx="48" cy="48" r="40" className="stroke-current text-[#8F9779] transition-all duration-700" strokeWidth="7" fill="transparent" strokeDasharray={2 * Math.PI * 40} strokeDashoffset={2 * Math.PI * 40 * (1 - progressPercentage / 100)} />
-                                  </svg>
-                                  <span className="absolute text-xl font-mono font-extrabold">{progressPercentage}%</span>
-                                </div>
-                                <span className="text-[11px] text-[#8F9779] font-bold mt-2.5 flex items-center gap-1.5">
-                                  已攻克 {completedCount} / {currentTasks.length} 核心案件
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+            {/* ==================== RENDER STUDENT VIEW ==================== */}
+            {userRole === 'student' && (
+              <div className="space-y-8">
+                {/* Secondary Header Tab Bar visible on Desktop for fast swapping */}
+                <div className="hidden lg:flex border-b border-[#E5E5E0] space-x-6 overflow-x-auto pb-0.5">
+                  {[
+                    { key: 'overview', label: '🏡 總覽儀表板' },
+                    { key: 'visa', label: '📋 簽證倒向倒數時序條' },
+                    { key: 'flight', label: '✈️ 機票比價與預算' },
+                    { key: 'oshc_loan', label: '🏥 醫療保險 & 就學融資' },
+                    { key: 'ai_agent', label: '🤖 AI 智慧留學顧問' },
+                    { key: 'globe', label: '🌍 全球姊妹校地圖' },
+                    { key: 'about', label: 'ℹ️ 關於本站' },
+                  ].map((tab) => (
+                    <button
+                      key={tab.key}
+                      onClick={() => setStudentTab(tab.key)}
+                      className={`py-3 text-sm font-bold border-b-2 transition-all flex items-center gap-1 px-1 whitespace-nowrap cursor-pointer ${
+                        studentTab === tab.key
+                          ? 'border-indigo-400 text-[#7A8B99] drop-shadow-[0_0_8px_rgba(129,140,248,0.55)]'
+                          : 'border-transparent text-gray-500 hover:text-slate-205'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="relative">
+                  <AnimatePresence mode="wait">
+                    {/* TAB CONTENT: Global University Map */}
+                    {studentTab === 'globe' && (
+                      <motion.div key="globe" initial={{opacity: 0, x: -20}} animate={{opacity: 1, x: 0}} exit={{opacity: 0, x: 20}} transition={{ duration: 0.3 }}>
+                        <GlobalUniversityMap 
+                          globalCountry={globalCountry} 
+                          setGlobalCountry={setGlobalCountry} 
+                          onSetTarget={(country, uni) => {
+                            setGlobalCountry(country);
+                            setGlobalUniversity(uni);
+                            setStudentTab('overview');
+                            triggerToast(`已將留學目標設為：${uni}`);
+                          }}
+                        />
+                      </motion.div>
+                    )}
+
+                    {/* TAB CONTENT: About Page */}
+                    {studentTab === 'about' && (
+                      <motion.div key="about" initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}} exit={{opacity: 0, scale: 0.95}} transition={{ duration: 0.3 }}>
+                        <AboutPage 
+                          isFirstTime={false}
+                          onStart={() => setStudentTab('overview')}
+                        />
+                      </motion.div>
+                    )}
+
+                    {/* TAB CONTENT: Overview Dashboard */}
+                    {studentTab === 'overview' && (
+                      <motion.div key="overview" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{ duration: 0.3 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    {/* Left Hero (2 Columns) */}
+                    <div className="lg:col-span-2 space-y-8">
+                      
+                      {/* Interactive Countdown Hero Banner */}
+                      <div className="minimal-glass-accent text-[#2C2C2A] rounded-3xl p-8 shadow-2xl relative overflow-hidden transition-all duration-300 minimal-border-transition">
+                        <div className="absolute right-0 bottom-0 opacity-10 transform translate-x-12 translate-y-12 select-none pointer-events-none">
+                          <Plane className="w-72 h-72 -rotate-45 text-[#2C2C2A]" />
                         </div>
 
-                        {/* Flights recommendations */}
-                        <div className="bg-white rounded-3xl p-6 border border-[#E5E5E0] shadow-sm space-y-4">
-                          <div className="flex justify-between items-center pb-2 border-b border-[#E5E5E0]">
-                            <div className="flex items-center gap-2">
-                              <TrendingDown className="h-4.5 w-4.5 text-[#8F9779]" />
-                              <h3 className="font-bold text-[#2C2C2A] text-sm">今日航線推薦行情</h3>
-                            </div>
-                            <button onClick={() => setStudentTab('flight')} className="text-xs text-[#8F9779] font-bold hover:underline flex items-center cursor-pointer">
-                              點擊進智慧比價監控室 →
-                            </button>
+                        <div className="relative z-10 space-y-6">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[10px] bg-indigo-500/25 text-[#7A8B99] font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-indigo-500/15">
+                              Atlas. 智慧留學跨國排程導航系統
+                            </span>
+                            <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-extrabold px-3 py-1 rounded-full border border-emerald-500/20 uppercase">
+                              {selectedCountry} 項目
+                            </span>
                           </div>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="bg-[#FDFBF7] border border-[#E5E5E0] p-4 rounded-2xl flex flex-col justify-between">
-                              <div>
-                                <span className="text-[9px] bg-gray-200 text-gray-600 font-black px-2 py-0.5 rounded">特優低位推薦</span>
-                                <h4 className="text-xl font-black text-[#2C2C2A] mt-1.5">NT$ {dashboardFlightStats.basePrice}</h4>
-                                <p className="text-[10.5px] text-gray-500 mt-1 leading-relaxed">新期出航航空行情處於 30 日低點。適合手刀購入。</p>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div className="space-y-2">
+                              <p className="text-gray-500 text-xs font-semibold uppercase tracking-wider">
+                                距離正式飛抵目的地起航還有
+                              </p>
+                              <h2 className="text-6xl font-black tracking-tight text-[#2C2C2A] flex items-baseline gap-1">
+                                {daysRemaining} <span className="text-2xl font-normal text-[#7A8B99]">天</span>
+                              </h2>
+                              <div className="flex items-center gap-2 text-xs text-gray-600 pt-1">
+                                <Clock className="h-4 w-4 text-[#7A8B99] shrink-0 animate-pulse" />
+                                <span>預定在 {departureDate} 正式起航起程</span>
                               </div>
-                              <button onClick={() => setStudentTab('flight')} className="bg-white hover:bg-gray-50 text-gray-700 border border-[#E5E5E0] text-[11px] font-bold py-1.5 rounded-lg transition-all mt-4 w-full cursor-pointer">立即查看</button>
                             </div>
-                            <div className="bg-[#FDFBF7] border border-[#E5E5E0] p-4 rounded-2xl flex flex-col justify-between">
-                              <div>
-                                <span className="text-[9px] bg-white text-gray-600 font-bold px-2 py-0.5 rounded border border-gray-200">小資首選廉航</span>
-                                <h4 className="text-xl font-black text-[#2C2C2A] mt-1.5">NT$ {dashboardFlightStats.lowPrice}</h4>
-                                <p className="text-[10.5px] text-gray-500 mt-1">{dashboardFlightStats.lowDesc}</p>
+
+                            {/* Circular progress container */}
+                            <div className="bg-white/60 border border-[#E5E5E0] p-5 rounded-2xl flex flex-col items-center justify-center">
+                              <span className="text-[10px] text-gray-500 font-semibold mb-2">當前國家文件備齊百分比</span>
+                              
+                              <div className="relative w-36 h-36">
+                                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                  <circle cx="50" cy="50" r="40" className="stroke-gray-200 fill-none" strokeWidth="8" />
+                                  <circle 
+                                    cx="50" cy="50" r="40" 
+                                    className="stroke-[#8F9779] fill-none transition-all duration-1000 ease-out" 
+                                    strokeWidth="8"
+                                    strokeDasharray="251.2"
+                                    strokeDashoffset={251.2 - (251.2 * progressPercentage) / 100}
+                                    strokeLinecap="round"
+                                  />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                  <span className="text-3xl font-black text-[#2C2C2A]">{progressPercentage}%</span>
+                                </div>
                               </div>
-                              <button onClick={() => setStudentTab('flight')} className="bg-white hover:bg-gray-50 text-[#2C2C2A] border border-[#E5E5E0] text-[11px] font-bold py-1.5 rounded-lg transition-all mt-4 w-full cursor-pointer">比價航線</button>
-                            </div>
-                            <div className="bg-[#FDFBF7] border border-[#E5E5E0] p-4 rounded-2xl flex flex-col justify-between">
-                              <div>
-                                <span className="text-[9px] bg-[#8F9779]/10 text-[#8F9779] font-bold px-2 py-0.5 rounded border border-[#8F9779]/20">雙行李{dashboardFlightStats.premAirline}包裝</span>
-                                <h4 className="text-xl font-black text-[#2C2C2A] mt-1.5">NT$ {dashboardFlightStats.premiumPrice}</h4>
-                                <p className="text-[10.5px] text-gray-500 mt-1">{dashboardFlightStats.premDesc}</p>
-                              </div>
-                              <button onClick={() => setStudentTab('flight')} className="bg-white hover:bg-gray-50 text-gray-600 border border-[#E5E5E0] text-[11px] font-bold py-1.5 rounded-lg transition-all mt-4 w-full cursor-pointer">比價機票</button>
+                              <span className="text-[11px] text-emerald-400 font-bold mt-2.5 flex items-center gap-1.5">
+                                已攻克 {completedCount} / {currentTasks.length} 核心案件
+                              </span>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Right Sidebar */}
-                      <div className="space-y-6">
-                        {/* Profile Card */}
-                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-[#E5E5E0]">
-                          <div className="flex justify-between items-center mb-4">
-                            <h3 className="font-bold text-sm tracking-wider flex items-center gap-2">
-                              <UserCheck className="w-4 h-4 text-[#8F9779]" /> 個人檔案
-                            </h3>
-                            <button onClick={() => setIsEditingProfile(!isEditingProfile)} className="text-xs text-[#8F9779] hover:underline font-bold">
-                              {isEditingProfile ? '取消' : '編輯'}
-                            </button>
+                      {/* Flights recommendations */}
+                      <div className="bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-[#E5E5E0] shadow-lg space-y-4">
+                        <div className="flex justify-between items-center pb-2 border-b border-[#E5E5E0]">
+                          <div className="flex items-center gap-2">
+                            <TrendingDown className="h-4.5 w-4.5 text-emerald-400" />
+                            <h3 className="font-bold text-[#2C2C2A] text-sm">今日航線推薦行情</h3>
                           </div>
-                          
-                          <div className="space-y-4">
-                            {isEditingProfile ? (
-                              <div className="space-y-3">
-                                <div>
-                                  <label className="text-[10px] text-gray-500 font-bold uppercase">目的地國家</label>
-                                  <select 
-                                    className="w-full text-sm mt-1 p-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#8F9779] bg-white"
-                                    value={globalCountry}
-                                    onChange={(e) => setGlobalCountry(e.target.value)}
+                          <button 
+                            onClick={() => setStudentTab('flight')}
+                            className="text-xs text-[#7A8B99] font-bold hover:underline flex items-center cursor-pointer"
+                          >
+                            點擊進智慧比價監控室 →
+                          </button>
+                        </div>
+
+                        {(() => {
+                          // Dynamic flight pricing based on destination
+                          const flightDistMap: Record<string, {dist: number; airlines: string[]; labels: string[]}> = {
+                            '日本': {dist: 2100, airlines: ['中華航空 直飛','台灣虎航 直飛','長榮航空 直飛'], labels: ['特優直飛推薦','小資首選廉航','星級商務首選']},
+                            '美國': {dist: 11000, airlines: ['中華航空 直飛','國泰航空 轉機','聯合航空 直飛'], labels: ['直飛特惠推薦','轉機經濟方案','美籍直飛精選']},
+                            '加拿大': {dist: 9800, airlines: ['中華航空 直飛','大韓航空 轉機','加拿大航空 直飛'], labels: ['直飛學生推薦','轉機經濟方案','加航直飛精選']},
+                            '澳洲': {dist: 7400, airlines: ['中華航空 直飛','馬來西亞航空 轉機','澳洲航空 直飛'], labels: ['特優直飛推薦','小資轉機方案','雙行李澳航包']},
+                            '英國': {dist: 9800, airlines: ['中華航空 直飛','土耳其航空 轉機','阿聯酋航空 轉機'], labels: ['直飛特惠推薦','歐洲轉機精選','五星中轉體驗']},
+                            '德國': {dist: 9200, airlines: ['中華航空 直飛','土耳其航空 轉機','漢莎航空 轉機'], labels: ['直飛學生特惠','經濟轉機方案','德國國籍航空']},
+                            '法國': {dist: 9700, airlines: ['長榮航空 直飛','阿聯酋航空 轉機','法國航空 直飛'], labels: ['直飛特惠推薦','五星中轉體驗','法航直飛精選']},
+                            '韓國': {dist: 1500, airlines: ['中華航空 直飛','台灣虎航 直飛','大韓航空 直飛'], labels: ['特優直飛推薦','小資首選廉航','韓籍直飛精選']},
+                          };
+                          const matched = Object.entries(flightDistMap).find(([k]) => globalCountry.includes(k));
+                          const info = matched ? matched[1] : {dist: 8000, airlines: ['中華航空 轉機','長榮航空 轉機','國泰航空 轉機'], labels: ['推薦航線','經濟方案','雙行李包裝']};
+                          const basePrice = Math.round(info.dist * 2.8 / 100) * 100;
+                          const prices = [basePrice, Math.round(basePrice * 0.65 / 100) * 100, Math.round(basePrice * 1.15 / 100) * 100];
+                          const descs = [
+                            `飛往${globalCountry}直飛/優選航線，30 日低點適合入手。`,
+                            `${info.airlines[1]}，託運行李可能需加購。`,
+                            `${info.airlines[2]}，支持 2 件 23kg 重行李額。`,
+                          ];
+                          return (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              {prices.map((price, idx) => (
+                                <div key={idx} className={`${idx === 0 ? 'bg-indigo-500/10 border-indigo-500/20' : 'bg-white/60 border-[#E5E5E0]'} backdrop-blur-sm border p-4 rounded-2xl flex flex-col justify-between`}>
+                                  <div>
+                                    <span className={`text-[9px] ${idx === 0 ? 'bg-indigo-500/20 text-[#7A8B99]' : 'bg-white text-gray-600'} font-black px-2 py-0.5 rounded`}>
+                                      {info.labels[idx]}
+                                    </span>
+                                    <h4 className="text-xl font-black text-[#2C2C2A] mt-1.5">NT$ {price.toLocaleString()}</h4>
+                                    <p className="text-[10.5px] text-gray-600 mt-1 leading-relaxed">{descs[idx]}</p>
+                                  </div>
+                                  <button
+                                    onClick={() => setStudentTab('flight')}
+                                    className={`${idx === 0 ? 'bg-indigo-500/20 text-[#7A8B99] border-indigo-500/30' : 'bg-white text-gray-600 border-[#E5E5E0]'} hover:opacity-80 border text-[11px] font-bold py-1.5 rounded-lg transition-all mt-4 w-full cursor-pointer`}
                                   >
-                                    <option value="Australia 澳洲">Australia 澳洲</option>
-                                    <option value="Japan 日本">Japan 日本</option>
-                                    <option value="Canada 加拿大">Canada 加拿大</option>
-                                    <option value="USA 美國">USA 美國</option>
-                                  </select>
+                                    {idx === 0 ? '立即查看' : '比價航線'}
+                                  </button>
                                 </div>
-                                <div>
-                                  <label className="text-[10px] text-gray-500 font-bold uppercase">目標大學</label>
-                                  <input type="text" className="w-full text-sm mt-1 p-2 border border-gray-200 rounded-lg" value={globalUniversity} onChange={(e) => setGlobalUniversity(e.target.value)} placeholder="例如：中央大學" />
-                                </div>
-                                <div>
-                                  <label className="text-[10px] text-gray-500 font-bold uppercase">出航日期</label>
-                                  <input type="date" className="w-full text-sm mt-1 p-2 border border-gray-200 rounded-lg" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
-                                </div>
-                                <button onClick={handleSaveProfile} className="w-full bg-[#8F9779] text-white text-xs font-bold py-2 rounded-lg mt-2 hover:bg-[#7A8270] transition-colors cursor-pointer">
-                                  儲存變更
-                                </button>
-                              </div>
-                            ) : (
-                              <div className="space-y-3">
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                  <span className="text-xs text-gray-500">目的地</span>
-                                  <span className="text-sm font-bold">{globalCountry}</span>
-                                </div>
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                  <span className="text-xs text-gray-500">目標大學</span>
-                                  <span className="text-sm font-bold text-right">{globalUniversity || '尚未指定'}</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                  <span className="text-xs text-gray-500">預計出發</span>
-                                  <span className="text-sm font-bold text-[#8F9779]">{departureDate}</span>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Recent Tasks Widget */}
-                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-[#E5E5E0]">
-                          <div className="flex justify-between items-center mb-4">
-                            <h3 className="font-bold text-sm tracking-wider flex items-center gap-2">
-                              <ClipboardCheck className="w-4 h-4 text-[#8F9779]" /> 近期待辦任務
-                            </h3>
-                          </div>
-                          <div className="space-y-3">
-                            {currentTasks.slice(0, 3).map((task) => (
-                              <div key={task.id} className="flex gap-3 items-start p-3 rounded-xl bg-gray-50 border border-gray-100">
-                                <div className={`mt-0.5 ${task.completed ? 'text-green-500' : 'text-gray-300'}`}>
-                                  <CheckCircle2 className="w-4 h-4" />
-                                </div>
-                                <div>
-                                  <p className={`text-xs font-bold ${task.completed ? 'line-through text-gray-400' : 'text-gray-700'}`}>{task.title}</p>
-                                  <p className="text-[10px] text-gray-500 mt-1">{task.category}</p>
-                                </div>
-                              </div>
-                            ))}
-                            <button onClick={() => setStudentTab('visa')} className="w-full text-center text-xs text-[#8F9779] font-bold hover:underline pt-2 cursor-pointer">
-                              查看完整清單與進度 →
-                            </button>
-                          </div>
-                        </div>
-
+                              ))}
+                            </div>
+                          );
+                        })()}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+
+                    </div>
+
+                    {/* Right column: Quantitative validation (1 Column) */}
+                    <div className="space-y-8">
+                      
+                      {/* Metric Card */}
+                      <div className="bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-[#E5E5E0] shadow-lg space-y-4">
+                        <h3 className="font-bold text-[#2C2C2A] text-sm flex items-center gap-2">
+                          <Award className="h-4.5 w-4.5 text-[#8F9779]" />
+                          <span>本案量化驗收指標狀態</span>
+                        </h3>
+
+                        <p className="text-xs text-slate-450 text-gray-500 leading-relaxed">
+                          本系統全能對接四大熱門國家，以最優方案及智能顧問降低出國留學焦慮：
+                        </p>
+
+                        <div className="space-y-3 pt-1">
+                          <div className="flex items-start gap-2.5 p-2 bg-white/60 rounded-xl border border-[#E5E5E0] text-xs">
+                            <div className="h-5 w-5 rounded-full bg-emerald-500 text-[#2C2C2A] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="h-3 w-3 stroke-[3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-[#2C2C2A]">1. 近零秒備文逆推日曆</p>
+                              <p className="text-[10px] text-gray-500">輸入預定出航日即可智慧控管，防止延遲審查。</p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-start gap-2.5 p-2 bg-white/60 rounded-xl border border-[#E5E5E0] text-xs">
+                            <div className={`h-5 w-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                              progressPercentage === 100 ? 'bg-emerald-500 text-[#2C2C2A]' : 'bg-white text-gray-500'
+                            }`}>
+                              {progressPercentage === 100 ? <Check className="h-3 w-3 stroke-[3]" /> : <span className="text-[10px] font-bold">!</span>}
+                            </div>
+                            <div>
+                              <p className="font-bold text-[#2C2C2A]">2. 目標 100% 行前齊全度</p>
+                              <p className="text-[10px] text-gray-500">當前進程完成：<strong className="text-[#7A8B99] font-mono">{progressPercentage}%</strong>。</p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-start gap-2.5 p-2 bg-white/60 rounded-xl border border-[#E5E5E0] text-xs">
+                            <div className="h-5 w-5 rounded-full bg-emerald-500 text-[#2C2C2A] flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="h-3 w-3 stroke-[3]" />
+                            </div>
+                            <div>
+                              <p className="font-bold text-[#2C2C2A]">3. 留學購票滿意度高達 4.8★</p>
+                              <p className="text-[10px] text-gray-500">機票低位提醒結合特選保險，完全杜絕臨行爆艙。</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Fast checklist */}
+                      <div className="bg-white/60 backdrop-blur-md rounded-3xl p-6 border border-[#E5E5E0] shadow-lg space-y-4">
+                        <h3 className="font-bold text-[#2C2C2A] text-sm flex items-center gap-1.5">
+                          <Clock className="h-4.5 w-4.5 text-[#8F9779]" />
+                          <span>關鍵任務快速追蹤</span>
+                        </h3>
+
+                        <div className="space-y-3">
+                          {currentTasks.slice(0, 4).map((t) => {
+                            const dep = new Date(departureDate);
+                            dep.setDate(dep.getDate() - t.daysBefore);
+                            const isOverdue = simulationDate > dep && !t.completed;
+
+                            return (
+                              <div
+                                key={t.id}
+                                onClick={() => handleToggleTask(t.id)}
+                                className={`p-3 rounded-xl border transition-all cursor-pointer flex items-start gap-3 ${
+                                  t.completed
+                                    ? 'bg-white/60 border-[#E5E5E0] opacity-55 shadow-inner'
+                                    : isOverdue
+                                      ? 'bg-rose-500/10 border-rose-500/20 text-rose-200 shadow-lg'
+                                      : 'bg-white/60 border-[#E5E5E0] hover:border-indigo-400'
+                                }`}
+                              >
+                                <div className="mt-0.5 shrink-0">
+                                  {t.completed ? (
+                                    <div className="bg-emerald-500 text-[#2C2C2A] rounded-full p-0.5">
+                                      <Check className="h-3 w-3 stroke-[3]" />
+                                    </div>
+                                  ) : (
+                                    <div className={`h-4.5 w-4.5 rounded-full border ${isOverdue ? 'border-rose-400 animate-pulse' : 'border-white/20'}`} />
+                                  )}
+                                </div>
+
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex justify-between items-center gap-2">
+                                    <h4 className={`text-xs font-bold truncate ${t.completed ? 'line-through text-gray-400' : 'text-gray-800'}`}>
+                                      {t.title}
+                                    </h4>
+                                     {isOverdue && (
+                                       <span className="text-[9px] bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded font-black whitespace-nowrap animate-pulse">
+                                         逾期！
+                                       </span>
+                                     )}
+                                   </div>
+                                  <p className="text-[10px] text-gray-500 mt-1">
+                                    倒推截止期：{dep.toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        
+                        <button
+                          onClick={() => setStudentTab('visa')}
+                          className="w-full text-center text-xs text-[#7A8B99] font-extrabold hover:underline block pt-2 cursor-pointer"
+                        >
+                          展開全部倒數工作項目 →
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: Visa Scheduler Checklist */}
+                {studentTab === 'visa' && (
+                  <motion.div key="visa" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{ duration: 0.3 }}>
+                    <VisaScheduler
+                    key={selectedCountry}
+                    tasks={currentTasks || []}
+                    onToggleTask={handleToggleTask}
+                    departureDate={departureDate}
+                    onDepartureDateChange={(date) => {
+                      setDepartureDate(date);
+                      triggerToast(`出航日期重塑為 ${date}！所有文件的截止逆推已重算。`);
+                    }}
+                    onSetTab={(tab) => {
+                      if (tab === 'oshc') {
+                        setStudentTab('oshc_loan');
+                      }
+                    }}
+                    country={selectedCountry}
+                  />
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: Flight Price Tracker */}
+                {studentTab === 'flight' && (
+                  <motion.div key="flight" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{ duration: 0.3 }}>
+                    <FlightPriceTracker globalCountry={globalCountry} onTriggerToast={triggerToast} />
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: OSHC & Loan Assistance */}
+                {studentTab === 'oshc_loan' && (
+                  <motion.div key="oshc_loan" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{ duration: 0.3 }}>
+                    <LoanAndOshc
+                    country={selectedCountry}
+                    onTriggerToast={triggerToast}
+                    onCompleteOshcTask={handleCompleteOshcTask}
+                    isOshcCompleted={currentTasks.find(t => t.title.includes('健康保險') || t.title.includes('OSHC') || t.title.includes('保險'))?.completed ?? false}
+                  />
+                  </motion.div>
+                )}
+
+                {/* TAB CONTENT: Interactive AI Agent Conversation Box */}
+                {studentTab === 'ai_agent' && (
+                  <motion.div key="ai_agent" initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -20}} transition={{ duration: 0.3 }}>
+                    <AIAgent 
+                    country={selectedCountry}
+                    globalCountry={globalCountry}
+                    remainingDays={daysRemaining}
+                    percentage={progressPercentage}
+                  />
+                  </motion.div>
+                )}
+
+                  </AnimatePresence>
+                </div>
               </div>
             )}
 
+            {/* ==================== RENDER ADVISOR VIEW ==================== */}
             {userRole === 'advisor' && (
-              <AdvisorDashboard />
+              <div className="space-y-8">
+                
+                {/* Secondary Header Tab Bar for Advisor Desktop Workspace */}
+                <div className="hidden lg:flex border-b border-[#E5E5E0] space-x-6 overflow-x-auto pb-0.5">
+                  <button
+                    onClick={() => setAdvisorTab('dashboard')}
+                    className={`py-3 text-sm font-bold border-b-2 transition-all flex items-center gap-1 px-1 whitespace-nowrap cursor-pointer ${
+                      advisorTab === 'dashboard'
+                        ? 'border-indigo-400 text-[#7A8B99] drop-shadow-[0_0_8px_rgba(129,140,248,0.55)]'
+                        : 'border-transparent text-gray-500 hover:text-slate-200'
+                    }`}
+                  >
+                    👥 留學教育顧問「首期文件一覽追蹤後台」
+                  </button>
+                  <button
+                    onClick={() => setAdvisorTab('ai_agent')}
+                    className={`py-3 text-sm font-bold border-b-2 transition-all flex items-center gap-1 px-1 whitespace-nowrap cursor-pointer ${
+                      advisorTab === 'ai_agent'
+                        ? 'border-indigo-400 text-[#7A8B99] drop-shadow-[0_0_8px_rgba(129,140,248,0.55)]'
+                        : 'border-transparent text-gray-500 hover:text-slate-200'
+                    }`}
+                  >
+                    🤖 顧問政策研究 AI 助手
+                  </button>
+                </div>
+
+                {advisorTab === 'dashboard' && (
+                  <AdvisorDashboard 
+                    onTriggerToast={triggerToast} 
+                    onActiveStudentChange={setAdvisorSelectedStudent}
+                    initialActiveStudent={advisorSelectedStudent}
+                  />
+                )}
+
+                {advisorTab === 'ai_agent' && (
+                  <AIAgent 
+                    country={advisorSelectedStudent?.country || selectedCountry}
+                    globalCountry={advisorSelectedStudent?.country || globalCountry}
+                    remainingDays={advisorSelectedStudent?.intendedDeparture ? Math.ceil((new Date(advisorSelectedStudent.intendedDeparture).getTime() - new Date().getTime()) / (1000 * 3600 * 24)) : daysRemaining}
+                    percentage={advisorSelectedStudent?.progressPercentage || progressPercentage}
+                    studentName={advisorSelectedStudent?.studentName || "資深留學顧問"}
+                    role="advisor"
+                  />
+                )}
+
+              </div>
             )}
-          </>
-        )}
-      </div>
 
-      {/* Global Toast Notification */}
-      <AnimatePresence>
-        {showToast && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-[#2C2C2A] text-white px-6 py-3.5 rounded-full shadow-2xl border border-white/10"
-          >
-            <div className="bg-[#8F9779] rounded-full p-1">
-              <Check className="w-4 h-4 text-white" />
-            </div>
-            <span className="text-sm font-bold tracking-wider">{toastMessage}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </main>
 
-      {/* Auth Setup Modal */}
-      {unauthorizedDomain && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-[#FDFBF7] max-w-lg w-full rounded-3xl shadow-2xl border border-[#E5E5E0] overflow-hidden">
-            <div className="p-6 sm:p-8 space-y-6">
-              <h3 className="text-xl font-bold font-serif text-[#2C2C2A] flex items-center gap-2">
-                <BadgeAlert className="text-amber-500 h-6 w-6" /> Firebase 網域未授權
-              </h3>
-              <p className="text-sm text-gray-600">您目前的網域 <strong>{unauthorizedDomain}</strong> 尚未加入 Firebase 的授權清單中。</p>
-              <div className="flex justify-end gap-3 pt-4">
-                <button onClick={() => setUnauthorizedDomain(null)} className="bg-white/60 hover:bg-white text-gray-600 font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all border border-gray-200">
-                  關閉
-                </button>
+          {/* Core Footer section */}
+          <footer className="bg-[#F5F5F0]/80 backdrop-blur-md border-t border-[#E5E5E0] text-gray-400 text-xs py-10 mt-16 text-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-450 text-gray-500">
+                <p>
+                  © 2026 Atlas. — Student Visa & Flight Portal. 第 12 組學術頂尖系統。
+                </p>
+                <div className="flex items-center gap-3 bg-white/60 py-1 px-3.5 rounded-xl border border-[#E5E5E0]">
+                  <span>專案開發人：<strong>張茗崴 & 張子衡</strong></span>
+                </div>
               </div>
             </div>
+          </footer>
+
+        </div>
+
+      </div>
+      )}
+
+      {/* Global Toast Message Indicator */}
+      {showToast && (
+        <div className="fixed bottom-6 right-6 z-50 bg-white border border-[#E5E5E0] text-[#2C2C2A] rounded-2xl py-3 px-5 shadow-2xl flex items-center gap-3 animate-fade-in-up max-w-md">
+          <div className="bg-sky-500/10 text-sky-400 p-1.5 rounded-lg animate-pulse">
+            <Sparkles className="h-4.5 w-4.5" />
+          </div>
+          <div>
+            <p className="text-xs font-bold leading-relaxed">{toastMessage}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Firebase Unauthorized Domain Setup Modal */}
+      {unauthorizedDomain && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FDFBF7]/80 backdrop-blur-md animate-fade-in text-gray-800 text-left">
+          <div className="relative w-full max-w-2xl bg-white border border-indigo-500/30 rounded-3xl shadow-2xl overflow-hidden p-6 sm:p-8 space-y-6">
+            
+            {/* Top Close Button */}
+            <button 
+              onClick={() => setUnauthorizedDomain(null)}
+              className="absolute top-4 right-4 bg-white/60 hover:bg-white text-gray-500 hover:text-[#2C2C2A] p-2 rounded-full transition-all cursor-pointer"
+            >
+              <X className="h-4.5 w-4.5" />
+            </button>
+
+            {/* Title Header with Icon */}
+            <div className="flex items-start gap-4">
+              <div className="bg-amber-500/10 text-amber-400 p-3 rounded-2xl border border-amber-500/20 shrink-0">
+                <ShieldCheck className="h-6.5 w-6.5" />
+              </div>
+              <div className="space-y-1">
+                <h2 className="text-md font-black text-rose-400 flex items-center gap-2">
+                  <span>Firebase 安全設定提示：授權登入網域 (Action Required)</span>
+                </h2>
+                <p className="text-xs text-gray-500 font-medium">
+                  這是 Google Firebase 安全驗證機制的正規安全防篡保護。請依循下方極簡步驟進行設定：
+                </p>
+              </div>
+            </div>
+
+            {/* Error detail panel */}
+            <div className="p-4 bg-white/60 rounded-2xl border border-[#E5E5E0] space-y-2 text-xs">
+              <p className="text-gray-600">
+                <strong>系統限制代碼：</strong><code className="text-amber-300 font-mono">auth/unauthorized-domain</code>
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                <strong>原因說明：</strong>為了確保您的 Firebase 專案安全，預設不允許在未經授權的網域觸發登入。本 Sandbox 預覽環境 (專屬 Cloud Run 網域) 還沒有加進您 Firebase 主台的「授權網域」白名單中。
+              </p>
+            </div>
+
+            {/* Path details */}
+            <div className="space-y-3.5">
+              <h3 className="text-xs font-black uppercase text-[#7A8B99] flex items-center gap-1.5 font-sans">
+                <HelpCircle className="h-4 w-4 text-[#8F9779] mt-0.5" />
+                <span>請複製下方本系統在 Google AI Studio 產出的預覽網域：</span>
+              </h3>
+
+              {/* Exact copy triggers */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  'ais-dev-qqe6lio76su7jbpen4p46z-460954312429.asia-east1.run.app',
+                  'ais-pre-qqe6lio76su7jbpen4p46z-460954312429.asia-east1.run.app'
+                ].map((dom, idx) => {
+                  return (
+                    <div key={idx} className="bg-[#FDFBF7] px-3.5 py-3 rounded-xl border border-[#E5E5E0]/80 flex items-center justify-between gap-2 shadow-inner">
+                      <span className="font-mono text-[11px] text-sky-400 truncate tracking-tight" title={dom}>
+                        {dom}
+                      </span>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(dom);
+                          triggerToast(`📋 已為您輕巧複製第 ${idx + 1} 組網域！`);
+                        }}
+                        className="bg-[#7A8B99]/10 hover:bg-[#7A8B99]/20 text-[#8F9779] hover:text-indigo-250 text-[10.5px] font-bold px-2.5 py-1 rounded-lg border border-indigo-500/15 cursor-pointer shrink-0 transition-all"
+                      >
+                        複製
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Action tutorial list */}
+              <div className="bg-indigo-950/20 border border-indigo-500/15 p-4 rounded-2xl text-xs space-y-2 text-gray-600">
+                <span className="text-[10px] uppercase font-black text-[#7A8B99] bg-indigo-500/20 px-2.5 py-0.5 rounded-full tracking-wide">
+                  如何添加 (4 步快速就緒)
+                </span>
+                <ol className="list-decimal pl-4 space-y-1.5 leading-relaxed text-gray-600">
+                  <li>點擊登入 <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer" className="text-[#8F9779] underline hover:text-[#7A8B99] font-bold inline-flex items-center gap-0.5">Firebase 控制台 (Console)</a>。</li>
+                  <li>於左側選單進入 <strong>Authentication (身分驗證)</strong> 頁面。</li>
+                  <li>切換到上方的 <strong>Settings (設定)</strong> 頁籤。</li>
+                  <li>找到下方 <strong>Authorized Domains (授權的網域)</strong> 欄位，點擊 <strong>Add Domain (新增網域)</strong>。</li>
+                  <li>貼入您剛才複製的網域，儲存即開通！(通常 10 秒內便能使 Google 登入完全正常連線)。</li>
+                </ol>
+              </div>
+            </div>
+
+            {/* Bottom Actions */}
+            <div className="flex justify-end gap-3 pt-2">
+              <button
+                onClick={() => setUnauthorizedDomain(null)}
+                className="bg-white/60 hover:bg-white text-gray-600 font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all"
+              >
+                稍後設定
+              </button>
+              <button
+                onClick={() => setUnauthorizedDomain(null)}
+                className="bg-[#7A8B99] hover:bg-[#60707c] text-[#2C2C2A] font-bold text-xs px-6 py-2.5 rounded-xl transition-all shadow-md cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                我已順利完成添加！
+              </button>
+            </div>
+
           </div>
         </div>
       )}

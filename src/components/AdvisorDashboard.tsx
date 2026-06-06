@@ -22,15 +22,17 @@ const getCountryTasks = (univName: string) => {
 
 interface AdvisorDashboardProps {
   onTriggerToast: (msg: string) => void;
+  onActiveStudentChange?: (student: StudentProgress) => void;
+  initialActiveStudent?: StudentProgress | null;
 }
 
-export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardProps) {
+export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange, initialActiveStudent }: AdvisorDashboardProps) {
 
   const [students, setStudents] = useState<StudentProgress[]>(initialStudents);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedRiskFilter, setSelectedRiskFilter] = useState<string>('all');
-  const [activeStudent, setActiveStudent] = useState<StudentProgress | null>(initialStudents[1]); // Default to show '張美婷'
-  const [counselorText, setCounselorText] = useState<string>(initialStudents[1]?.advisorNotes || '');
+  const [activeStudent, setActiveStudent] = useState<StudentProgress | null>(initialActiveStudent || initialStudents[1]); // Default to show '張美婷' if no initial active student
+  const [counselorText, setCounselorText] = useState<string>(initialActiveStudent?.advisorNotes || initialStudents[1]?.advisorNotes || '');
 
   // Add student sub-state
   const [showAddStudentForm, setShowAddStudentForm] = useState<boolean>(false);
@@ -44,14 +46,14 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
 
   // Sub-states to handle Student Record Editing
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [editName, setEditName] = useState<string>(initialStudents[1]?.studentName || '');
-  const [editSubId, setEditSubId] = useState<string>(initialStudents[1]?.studentId || '');
-  const [editUniv, setEditUniv] = useState<string>(initialStudents[1]?.university || '');
-  const [editDept, setEditDept] = useState<string>(initialStudents[1]?.intendedDeparture || '');
-  const [editRisk, setEditRisk] = useState<'正常' | '預警' | '緊急'>(initialStudents[1]?.riskStatus || '正常');
-  const [editProgress, setEditProgress] = useState<number>(initialStudents[1]?.progressPercentage || 25);
-  const [editGmail, setEditGmail] = useState<string>(initialStudents[1]?.studentGmail || 'meiting.zhang@gmail.com');
-  const [editLineId, setEditLineId] = useState<string>(initialStudents[1]?.lineUserId || '');
+  const [editName, setEditName] = useState<string>(initialActiveStudent?.studentName || initialStudents[1]?.studentName || '');
+  const [editStudentNumber, setEditStudentNumber] = useState<string>(initialActiveStudent?.studentNumber || initialStudents[1]?.studentNumber || '');
+  const [editUniv, setEditUniv] = useState<string>(initialActiveStudent?.university || initialStudents[1]?.university || '');
+  const [editDept, setEditDept] = useState<string>(initialActiveStudent?.intendedDeparture || initialStudents[1]?.intendedDeparture || '');
+  const [editRisk, setEditRisk] = useState<'正常' | '預警' | '緊急'>(initialActiveStudent?.riskStatus || initialStudents[1]?.riskStatus || '正常');
+  const [editProgress, setEditProgress] = useState<number>(initialActiveStudent?.progressPercentage || initialStudents[1]?.progressPercentage || 25);
+  const [editGmail, setEditGmail] = useState<string>(initialActiveStudent?.studentGmail || initialStudents[1]?.studentGmail || 'meiting.zhang@gmail.com');
+  const [editLineId, setEditLineId] = useState<string>(initialActiveStudent?.lineUserId || initialStudents[1]?.lineUserId || '');
 
   // Custom email records notification state
   const [mailLogs, setMailLogs] = useState<{ id: string; email: string; subject: string; body: string; date: string; status: string }[]>([
@@ -91,9 +93,7 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
           risk: activeStudent.riskStatus,
           missingTasks: missingTasksList,
           advisorNotes: counselorText,
-          country: activeStudent.university.includes('雪梨') || activeStudent.university.includes('墨爾本') || activeStudent.university.includes('昆士蘭') || activeStudent.university.includes('新南威爾斯') ? '澳洲' :
-                   activeStudent.university.includes('東京') ? '日本' :
-                   activeStudent.university.includes('多倫多') ? '加拿大' : '美國'
+          country: activeStudent.country || activeStudent.university || '目標國家'
         })
       });
 
@@ -220,12 +220,18 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
   };
 
   // Handle active student inspect selection
+  React.useEffect(() => {
+    if (activeStudent && onActiveStudentChange) {
+      onActiveStudentChange(activeStudent);
+    }
+  }, [activeStudent, onActiveStudentChange]);
+
   const handleSelectStudent = (std: StudentProgress) => {
     setActiveStudent(std);
     setCounselorText(std.advisorNotes);
     setIsEditing(false); // Reset edit state
     setEditName(std.studentName);
-    setEditSubId(std.studentId);
+    setEditStudentNumber(std.studentNumber || '');
     setEditUniv(std.university);
     setEditDept(std.intendedDeparture);
     setEditRisk(std.riskStatus);
@@ -284,10 +290,21 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
   const handleSaveStudentDetails = async () => {
     if (!activeStudent) return;
     
+    // Derive country from editUniv
+    let derivedCountry = '澳洲';
+    if (editUniv.includes('東京') || editUniv.includes('早稻田') || editUniv.includes('慶應') || editUniv.includes('京都')) {
+      derivedCountry = '日本';
+    } else if (editUniv.includes('多倫多') || editUniv.includes('滑鐵盧') || editUniv.includes('不列顛')) {
+      derivedCountry = '加拿大';
+    } else if (editUniv.includes('哈佛') || editUniv.includes('史丹佛') || editUniv.includes('普渡') || editUniv.includes('加州')) {
+      derivedCountry = '美國';
+    }
+
     const updatedStudent: StudentProgress = {
       ...activeStudent,
       studentName: editName,
-      studentId: editSubId,
+      studentNumber: editStudentNumber,
+      country: derivedCountry,
       university: editUniv,
       intendedDeparture: editDept,
       riskStatus: editRisk,
@@ -348,11 +365,22 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
       { taskId: 8, completed: false },
     ];
 
+    // Derive country from addUniv
+    let derivedCountry = '澳洲';
+    if (addUniv.includes('東京') || addUniv.includes('早稻田') || addUniv.includes('慶應') || addUniv.includes('京都')) {
+      derivedCountry = '日本';
+    } else if (addUniv.includes('多倫多') || addUniv.includes('滑鐵盧') || addUniv.includes('不列顛')) {
+      derivedCountry = '加拿大';
+    } else if (addUniv.includes('哈佛') || addUniv.includes('史丹佛') || addUniv.includes('普渡') || addUniv.includes('加州')) {
+      derivedCountry = '美國';
+    }
+
     const newStudent: StudentProgress = {
       id: `std_${Date.now()}`,
       studentName: addName,
       studentId: addId,
       studentGmail: addGmail,
+      country: derivedCountry,
       university: addUniv,
       intendedDeparture: addDept,
       progressPercentage: 0,
@@ -498,7 +526,7 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
                         <p className="font-bold text-[#2C2C2A] flex items-center gap-1.5">
                           {std.studentName}
                         </p>
-                        <p className="text-[10px] text-gray-500">{std.studentId}</p>
+                        <p className="text-[10px] text-gray-500">{std.studentNumber || '未登記學號'}</p>
                       </td>
                       
                       <td className="py-3.5 px-2 text-gray-600 max-w-[180px] truncate">
@@ -585,7 +613,7 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
                     <h3 className="font-extrabold text-[#2C2C2A] text-base flex items-center gap-1">
                       <span>{activeStudent.studentName} 同學</span>
                     </h3>
-                    <p className="text-[10px] text-gray-500 mt-1">學號：{activeStudent.studentId}</p>
+                    <p className="text-[10px] text-gray-500 mt-1">學號：{activeStudent.studentNumber || '未提供'}</p>
                     <p className="text-[10px] text-gray-500 mt-0.5">學籍：{activeStudent.university}</p>
                     <p className="text-[10px] text-gray-500 mt-0.5">出航日：<strong className="text-[#7A8B99]">{activeStudent.intendedDeparture}</strong></p>
                     <p className="text-[10px] text-emerald-400 font-medium mt-1 select-all font-mono flex items-center gap-1"><Mail className="h-3 w-3" /> {activeStudent.studentGmail || '未設定'}</p>
@@ -644,12 +672,12 @@ export default function AdvisorDashboard({ onTriggerToast }: AdvisorDashboardPro
 
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="text-[10px] text-gray-500 block mb-1">學籍卡號</label>
+                        <label className="text-[10px] text-gray-500 block mb-1">學號</label>
                         <input 
                           type="text"
-                          value={editSubId}
-                          disabled
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-xl px-2.5 py-1.5 text-gray-400 text-xs focus:outline-none cursor-not-allowed"
+                          value={editStudentNumber}
+                          onChange={(e) => setEditStudentNumber(e.target.value)}
+                          className="w-full bg-white border border-gray-200 rounded-xl px-2.5 py-1.5 text-[#2C2C2A] text-xs focus:outline-none focus:border-indigo-400"
                         />
                       </div>
                       <div>

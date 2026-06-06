@@ -79,7 +79,7 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
   ];
 
   return (
-    <div className={'w-full flex flex-col items-center justify-center p-6 ' + bgClass}>
+    <div className={'w-full flex flex-col items-center justify-start p-6 ' + bgClass}>
       <motion.div 
         className="max-w-5xl w-full mx-auto"
         variants={containerVariants}

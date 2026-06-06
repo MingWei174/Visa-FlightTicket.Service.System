@@ -24,6 +24,19 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  React.useEffect(() => {
+    if (existingProfile) {
+      if (existingProfile.studentName) setName(existingProfile.studentName);
+      if (existingProfile.studentGmail) setEmail(existingProfile.studentGmail);
+      if (existingProfile.phone) setPhone(existingProfile.phone);
+      if (existingProfile.lineUserId) setLineId(existingProfile.lineUserId);
+      if (existingProfile.studentNumber) setStudentNumber(existingProfile.studentNumber);
+      if (existingProfile.country) setCountry(existingProfile.country);
+      if (existingProfile.university) setUniversity(existingProfile.university);
+      if (existingProfile.intendedDeparture) setDepartureDate(existingProfile.intendedDeparture);
+    }
+  }, [existingProfile]);
+
   const universitiesByCountry = getMergedUniversities();
   const countries = Object.keys(universitiesByCountry);
   const universities = universitiesByCountry[country] || [];
@@ -51,7 +64,6 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
     try {
       const studentId = existingProfile?.id || (typeof window !== 'undefined' && (window as any).__currentUserUid) || 'STU' + new Date().getFullYear().toString().substring(2) + Math.floor(1000 + Math.random() * 9000);
       const newStudent: StudentProgress = {
-        ...(existingProfile || {}),
         id: studentId,
         studentName: name,
         studentId: studentId,
@@ -62,12 +74,20 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
         country: country,
         university: university,
         intendedDeparture: departureDate,
-        progressPercentage: existingProfile ? existingProfile.progressPercentage : 5,
-        riskStatus: existingProfile ? existingProfile.riskStatus : '正常',
-        tasksProgress: existingProfile ? existingProfile.tasksProgress : [],
-        advisorNotes: existingProfile ? existingProfile.advisorNotes : '新生報到，等待顧問初步建檔聯繫。',
-        lastActive: new Date().toISOString().split('T')[0]
+        progressPercentage: existingProfile?.progressPercentage ?? 5,
+        riskStatus: existingProfile?.riskStatus ?? '正常',
+        tasksProgress: existingProfile?.tasksProgress ?? [],
+        advisorNotes: existingProfile?.advisorNotes ?? '新生報到，等待顧問初步建檔聯繫。',
+        lastActive: new Date().toISOString().split('T')[0],
+        tasksByCountry: existingProfile?.tasksByCountry
       };
+      
+      // clean up undefined fields
+      Object.keys(newStudent).forEach(key => {
+        if ((newStudent as any)[key] === undefined) {
+          delete (newStudent as any)[key];
+        }
+      });
 
       await setDoc(doc(db, "students", studentId), newStudent, { merge: true });
       onComplete(newStudent);
@@ -85,7 +105,7 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
         {/* Header */}
         <div className="bg-[#2C2C2A] p-6 text-white relative">
           {onCancel && (
-            <button onClick={onCancel} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+            <button type="button" onClick={onCancel} className="absolute top-4 right-4 bg-white/20 hover:bg-white/40 text-white p-1.5 rounded-full transition-colors" title="取消修改">
               <X className="h-5 w-5" />
             </button>
           )}
@@ -93,8 +113,8 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
             <Sparkles className="h-5 w-5" />
             <h2 className="text-sm font-bold tracking-widest uppercase">Atlas. 專屬留學護照</h2>
           </div>
-          <h1 className="text-2xl font-black mb-1">建立您的留學檔案</h1>
-          <p className="text-sm text-gray-400">填寫資料即可開始您的全球導航計畫</p>
+          <h1 className="text-2xl font-black mb-1">{onCancel ? '修改您的留學檔案' : '建立您的留學檔案'}</h1>
+          <p className="text-sm text-gray-400">{onCancel ? '更新資料以即時對齊全球導航計畫' : '填寫資料即可開始您的全球導航計畫'}</p>
           
           {/* Progress bar */}
           <div className="mt-6 flex gap-2">
@@ -144,7 +164,7 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
               </div>
 
               <div className="flex gap-3 mt-6">
-                {existingProfile && onCancel && (
+                {onCancel && (
                   <button 
                     type="button"
                     onClick={onCancel}
@@ -168,17 +188,16 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
                 
                 <div>
                   <label className="text-xs font-bold text-gray-500 mb-1.5 flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> 目標國家</label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <select
+                    value={country}
+                    onChange={(e) => { setCountry(e.target.value); setUniversity(''); }}
+                    className="w-full bg-[#FDFBF7] border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-[#2C2C2A] focus:outline-none focus:border-indigo-400"
+                  >
+                    <option value="" disabled>請選擇目標國家</option>
                     {countries.map(c => (
-                      <button 
-                        key={c}
-                        onClick={() => { setCountry(c); setUniversity(''); }}
-                        className={`py-2 rounded-xl text-xs font-bold border transition-all ${country === c ? 'bg-indigo-50 border-indigo-300 text-indigo-700' : 'bg-[#FDFBF7] border-gray-200 text-gray-500 hover:border-gray-300'}`}
-                      >
-                        {c}
-                      </button>
+                      <option key={c} value={c}>{c}</option>
                     ))}
-                  </div>
+                  </select>
                 </div>
 
                 <div>
@@ -217,16 +236,17 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
               </div>
 
               <div className="flex gap-3 mt-6">
-                {existingProfile && onCancel && (
+                {onCancel && (
                   <button 
                     type="button"
                     onClick={onCancel}
-                    className="px-6 py-3.5 rounded-xl font-bold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
+                    className="px-4 py-3.5 rounded-xl font-bold bg-rose-50 text-rose-500 hover:bg-rose-100 transition-all border border-rose-200"
                   >
                     取消
                   </button>
                 )}
                 <button 
+                  type="button"
                   onClick={() => setStep(1)}
                   className="px-6 py-3.5 rounded-xl font-bold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all"
                 >
@@ -237,7 +257,7 @@ const StudentOnboardingForm: React.FC<StudentOnboardingFormProps> = ({ onComplet
                   disabled={isLoading}
                   className="flex-1 bg-indigo-500 text-white rounded-xl py-3.5 font-bold hover:bg-indigo-600 transition-all disabled:opacity-70 flex justify-center items-center gap-2"
                 >
-                  {isLoading ? '處理中...' : (existingProfile ? '儲存修改' : '完成並進入控制台')}
+                  {isLoading ? '建立檔案中...' : '完成並進入控制台'}
                 </button>
               </div>
             </div>

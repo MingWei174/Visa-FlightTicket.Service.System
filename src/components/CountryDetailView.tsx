@@ -1,13 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, MapPin, Building2, Globe2, GraduationCap, ArrowLeft, Image as ImageIcon, BookOpen } from 'lucide-react';
-import partnersDataRaw from '../partnerData.json';
+import partnersDataRaw from '../data/partners.json';
 import { UniversityService, University, UniversityDetails } from '../services/UniversityService';
 
 interface CountryDetailViewProps {
   countryName: string;
   onClose: () => void;
   onSetTarget?: (country: string, uni: string) => void;
+}
+
+function PartnerUniversityCard({ u, selectedNcuCountry, countryName, onSetTarget, idx, onSelect }: { u: any, selectedNcuCountry: string, countryName: string, onSetTarget?: Function, idx: number, onSelect?: Function }) {
+  const [wikiData, setWikiData] = useState<{ image?: string, text?: string } | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchWiki = async () => {
+      try {
+        const queryName = u.nameCn || u.name;
+        const res = await fetch(`https://zh.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(queryName)}`);
+        if (res.ok && isMounted) {
+          const data = await res.json();
+          setWikiData({
+            image: data.thumbnail?.source,
+            text: data.extract
+          });
+        }
+      } catch (err) {
+        // ignore
+      }
+    };
+    fetchWiki();
+    return () => { isMounted = false; };
+  }, [u.name, u.nameCn]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: idx * 0.03 }}
+      onClick={() => onSelect && onSelect()}
+      className={`mb-3 bg-white border border-[#EFECE6] p-5 rounded-2xl transition-all ${onSelect ? 'cursor-pointer hover:shadow-lg hover:border-[#8F9779]/50' : 'hover:shadow-md hover:border-[#D6D2C4]'}`}
+    >
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-2">
+        <div className="flex items-start gap-4 flex-1 w-full">
+          <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden shadow-sm border border-gray-100 bg-gray-50 flex items-center justify-center">
+            <img 
+              src={wikiData?.image || `https://picsum.photos/seed/${encodeURIComponent(u.name)}/150/150`} 
+              alt={u.name} 
+              className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+              onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=200&h=200&fit=crop'; }}
+            />
+          </div>
+          <div className="flex-1">
+            <h4 className="font-serif text-[#4A4A4A] text-base font-bold leading-tight">{u.name}</h4>
+            <p className="text-sm text-[#8F9779] font-medium mb-1.5">{u.nameCn}</p>
+            <div className="flex flex-wrap gap-1.5 mb-1">
+              {u.department && <span className="bg-[#8F9779]/10 text-[#5C6551] text-[10px] px-2 py-0.5 rounded font-bold border border-[#8F9779]/20 flex items-center gap-1"><GraduationCap className="h-3 w-3" /> {u.department}</span>}
+              {u.type && <span className="bg-amber-100 text-amber-700 text-[10px] px-2 py-0.5 rounded font-bold flex items-center gap-1"><BookOpen className="h-3 w-3" /> {u.type}</span>}
+            </div>
+            <p className="text-xs text-gray-500 line-clamp-3 mt-2">
+              {wikiData?.text ? wikiData.text : `這是位於 ${selectedNcuCountry} 的姊妹校，與中央大學建立 ${u.department !== '校' ? u.department : '校級'} 合作關係。合約類型為 ${u.type || '學術交流合作備忘錄'}。學生可透過此計畫申請赴該校進行國際交流與學習。`}
+            </p>
+          </div>
+        </div>
+        {onSetTarget && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onSetTarget(countryName, u.name); }}
+            className="shrink-0 text-xs bg-[#5C6551] text-white px-3 py-1.5 rounded-lg hover:bg-[#4A5241] transition-colors font-bold sm:mt-0 mt-2 w-full sm:w-auto"
+          >
+            設為目標
+          </button>
+        )}
+      </div>
+      <div className="space-y-1.5 text-xs text-[#6A6A6A] mt-3 pt-3 border-t border-gray-50">
+        <div className="flex items-center gap-2">
+          <Building2 className="h-3 w-3 text-[#A39D93]" />
+          <span>簽約層級：<strong className="text-[#4A4A4A]">{u.levels?.join('、') || '校級'}</strong></span>
+        </div>
+        {u.agreements && u.agreements.length > 0 && (
+          <div className="flex items-start gap-2">
+            <BookOpen className="h-3 w-3 text-[#A39D93] mt-0.5" />
+            <div>
+              <span className="font-bold text-[#4A4A4A]">合約類別：</span>
+              {[...new Set(u.agreements.map((a: any) => a.type))].slice(0, 3).map((t: any, i: number) => (
+                <span key={i} className="inline-block bg-[#F3F0E9] text-[#5C6551] px-1.5 py-0.5 rounded text-[10px] font-bold mr-1 mt-0.5">{t}</span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
 }
 
 export default function CountryDetailView({ countryName, onClose, onSetTarget }: CountryDetailViewProps) {
@@ -81,7 +165,8 @@ export default function CountryDetailView({ countryName, onClose, onSetTarget }:
     return acc;
   }, {} as Record<string, any[]>);
   const sortedCountries = Object.entries(ncuByCountry).sort((a: any, b: any) => b[1].length - a[1].length);
-  const [selectedNcuCountry, setSelectedNcuCountry] = useState<string | null>(null);
+  const defaultCountryKey = sortedCountries.length > 0 && sortedCountries.some(c => c[0].includes(countryName) || countryName.includes(c[0])) ? sortedCountries.find(c => c[0].includes(countryName) || countryName.includes(c[0]))[0] : null;
+    const [selectedNcuCountry, setSelectedNcuCountry] = useState<string | null>(defaultCountryKey);
 
   return (
     <motion.div 
@@ -249,45 +334,15 @@ export default function CountryDetailView({ countryName, onClose, onSetTarget }:
                         </button>
                         <h3 className="text-lg font-serif font-bold text-[#5C6551] mb-3">{selectedNcuCountry} 姊妹校</h3>
                         {(ncuByCountry[selectedNcuCountry] || []).map((u: any, idx: number) => (
-                          <motion.button
+                          <PartnerUniversityCard 
                             key={idx}
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.03 }}
-                            onClick={() => handleSelectUniversity(u, true)}
-                            className="w-full text-left mb-3 bg-white border border-[#EFECE6] p-5 rounded-2xl hover:shadow-md hover:border-[#D6D2C4] transition-all"
-                          >
-                            <div className="flex items-start justify-between gap-3 mb-2">
-                              <div className="flex-1">
-                                <h4 className="font-serif text-[#4A4A4A] text-base font-bold">{u.name}</h4>
-                                <p className="text-sm text-[#8F9779] font-medium">{u.nameCn}</p>
-                              </div>
-                              {onSetTarget && (
-                                <button
-                                  onClick={(e) => { e.stopPropagation(); onSetTarget(countryName, u.name); }}
-                                  className="shrink-0 text-xs bg-[#5C6551] text-white px-3 py-1.5 rounded-lg hover:bg-[#4A5241] transition-colors font-bold cursor-pointer"
-                                >
-                                  設為目標
-                                </button>
-                              )}
-                            </div>
-                            <div className="space-y-1.5 text-xs text-[#6A6A6A] mt-3 bg-[#F9F8F6] p-3 rounded-xl">
-                              <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <div className="flex items-center gap-1.5">
-                                  <Building2 className="h-3.5 w-3.5 text-[#8F9779]" />
-                                  <span>單位：<strong className="text-[#4A4A4A]">{u.department || '未提供'}</strong></span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                  <BookOpen className="h-3.5 w-3.5 text-[#8F9779]" />
-                                  <span>層級：<strong className="text-[#4A4A4A]">{u.level || '校級'}</strong></span>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-1.5 mt-1.5">
-                                <span className="inline-block bg-[#EFECE6] text-[#5C6551] px-2 py-0.5 rounded text-[10px] font-bold">{u.type || '合約'}</span>
-                                {u.term && <span className="text-[#A39D93] truncate">{u.term}</span>}
-                              </div>
-                            </div>
-                          </motion.button>
+                            u={u}
+                            selectedNcuCountry={selectedNcuCountry}
+                            countryName={countryName}
+                            onSetTarget={onSetTarget}
+                            idx={idx}
+                            onSelect={() => handleSelectUniversity(u, true)}
+                          />
                         ))}
                       </div>
                     )}

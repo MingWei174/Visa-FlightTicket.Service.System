@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Globe from 'react-globe.gl';
-import { Search, Globe2 } from 'lucide-react';
+import { Search, Globe2, GraduationCap } from 'lucide-react';
 import partnersData from '../data/partners.json';
 import { countryCoordinates } from '../data/countryCoordinates';
 import CountryDetailView from './CountryDetailView';
@@ -81,8 +81,22 @@ export default function GlobalUniversityMap({ globalCountry, setGlobalCountry, o
     e.preventDefault();
     if (searchTerm.trim()) {
       handleCountrySelect(searchTerm.trim());
+      setShowSuggestions(false);
     }
   };
+
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative w-full h-[calc(100vh-100px)] rounded-[2.5rem] overflow-hidden bg-white border border-gray-100 shadow-xl flex">
@@ -95,7 +109,7 @@ export default function GlobalUniversityMap({ globalCountry, setGlobalCountry, o
             <h2 className="text-gray-800 font-serif font-black text-lg tracking-wide">全球探索</h2>
           </div>
           
-          <div className="relative">
+          <div className="relative" ref={searchContainerRef}>
             <form onSubmit={handleSearchSubmit} className="relative z-20">
               <Search className="absolute left-3.5 top-3 h-4 w-4 text-gray-400" />
               <input 
@@ -127,55 +141,48 @@ export default function GlobalUniversityMap({ globalCountry, setGlobalCountry, o
                         📍 {c}
                       </button>
                     ))}
-                    <div className="px-4 py-2 bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-t border-gray-200">精選中央大學姊妹校</div>
-                    {partnersData.slice(0, 5).map((p: any, idx: number) => (
+                    <div className="px-4 py-2 bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-widest border-t border-gray-200">全球姊妹校國家分佈</div>
+                    {Object.entries(
+                      partnersData.reduce((acc, p) => {
+                        const c = p.country?.split(' ')[0] || '其他';
+                        acc[c] = (acc[c] || 0) + 1;
+                        return acc;
+                      }, {})
+                    )
+                      .sort((a, b) => b[1] - a[1])
+                      .map(([country, count]) => (
                       <button
-                        key={'default-partner-'+idx}
+                        key={'ncu-country-' + country}
                         className="w-full text-left px-4 py-2 text-sm text-[#5C6551] hover:bg-[#F3F0E9] font-serif border-b border-gray-50 flex flex-col"
                         onMouseDown={(e) => {
                           e.preventDefault();
-                          setSearchTerm(p['合作學校(中文名)']);
+                          setSearchTerm('');
                           setShowSuggestions(false);
-                          handleCountrySelect(p['國別']);
+                          handleCountrySelect(country);
                         }}
                       >
-                        <span className="font-bold truncate">{p['合作學校(中文名)']}</span>
-                        <span className="text-[10px] text-gray-500 truncate">{p['國別']}</span>
+                        <span className="font-bold truncate">📍 {country} <span className="text-xs text-gray-400 font-normal">({count} 所姊妹校)</span></span>
                       </button>
                     ))}
                   </>
                 ) : (
                   <>
-                    {Object.keys(countryCoordinates).filter(c => c.toLowerCase().includes(searchTerm.toLowerCase())).map(c => (
-                      <button
-                        key={c}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-[#F3F0E9] font-serif border-b border-gray-50"
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          setSearchTerm(c);
-                          setShowSuggestions(false);
-                          handleCountrySelect(c);
-                        }}
-                      >
-                        📍 {c}
-                      </button>
-                    ))}
                     {partnersData.filter((p: any) => 
-                      p['合作學校(中文名)']?.includes(searchTerm) || 
-                      p['合作學校(英文名)']?.toLowerCase().includes(searchTerm.toLowerCase())
+                      p.nameCn?.includes(searchTerm) || 
+                      p.name?.toLowerCase().includes(searchTerm.toLowerCase())
                     ).slice(0, 10).map((p: any, idx) => (
                       <button
                         key={'partner-'+idx}
                         className="w-full text-left px-4 py-2 text-sm text-[#5C6551] hover:bg-[#F3F0E9] font-serif border-b border-gray-50 flex flex-col"
                         onMouseDown={(e) => {
                           e.preventDefault();
-                          setSearchTerm(p['合作學校(中文名)']);
+                          setSearchTerm(p.nameCn);
                           setShowSuggestions(false);
-                          handleCountrySelect(p['國別']);
+                          handleCountrySelect(p.country);
                         }}
                       >
-                        <span className="font-bold truncate">{p['合作學校(中文名)']}</span>
-                        <span className="text-[10px] text-gray-500 truncate">{p['國別']}</span>
+                        <span className="font-bold truncate">{p.nameCn}</span>
+                        <span className="text-[10px] text-gray-500 truncate">{p.country}</span>
                       </button>
                     ))}
                   </>
@@ -183,9 +190,27 @@ export default function GlobalUniversityMap({ globalCountry, setGlobalCountry, o
               </div>
             )}
           </div>
-          <p className="text-xs text-gray-500 leading-relaxed font-serif tracking-wide mt-4">
-            可搜尋世界任意國家，點擊地圖標記或輸入國家名稱，探索該國頂尖大學與當地特色。
-          </p>
+          <div className="mt-6">
+            <h3 className="text-xs font-bold text-gray-500 mb-3 flex items-center gap-1.5">
+              <GraduationCap className="h-4 w-4 text-[#8F9779]" /> 中央大學全球姊妹校
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(partnersData.reduce((acc: any, p: any) => {
+                const c = p.country || '其他';
+                if (!acc[c]) acc[c] = 0;
+                acc[c]++;
+                return acc;
+              }, {})).sort((a: any, b: any) => b[1] - a[1]).slice(0, 15).map(([c, count]: any) => (
+                <button
+                  key={c}
+                  onClick={() => handleCountrySelect(c)}
+                  className="px-3 py-1.5 bg-white border border-[#EFECE6] rounded-xl text-xs font-bold text-[#5C6551] hover:bg-[#F3F0E9] hover:border-[#D6D2C4] hover:-translate-y-0.5 transition-all shadow-sm"
+                >
+                  {c.split(' ')[0]} <span className="text-[#A39D93] ml-0.5">({count})</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

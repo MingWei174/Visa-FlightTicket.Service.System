@@ -365,6 +365,8 @@ app.post("/api/send-line", async (req, res) => {
     }
 
     console.log(`[LINE Bot] Dispatching message to ${lineUserId}...`);
+    console.log(`[LINE Bot] Token length: ${lineToken.length}, Token prefix: ${lineToken.substring(0, 10)}...`);
+    console.log(`[LINE Bot] Token length: ${lineToken.length}, Token prefix: ${lineToken.substring(0, 10)}...`);
     
     const response = await fetch("https://api.line.me/v2/bot/message/push", {
       method: "POST",

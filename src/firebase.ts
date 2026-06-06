@@ -4,7 +4,7 @@
  */
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, query, where } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -24,4 +24,4 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export { collection, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, signInWithPopup, signOut, onAuthStateChanged };
+export { collection, getDocs, doc, setDoc, addDoc, updateDoc, deleteDoc, getDoc, query, where, signInWithPopup, signOut, onAuthStateChanged };

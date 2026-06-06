@@ -46,22 +46,17 @@ export const UniversityService = {
    */
   async getUniversityDetails(universityName: string): Promise<UniversityDetails> {
     try {
-      const response = await fetch(
-        `https://en.wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&exintro&explaintext&titles=${encodeURIComponent(universityName)}&format=json&origin=*&pithumbsize=800`
-      );
-      const data = await response.json();
-      const pages = data.query?.pages;
-      if (pages) {
-        const pageId = Object.keys(pages)[0];
-        if (pageId !== '-1') {
-          const page = pages[pageId];
-          return {
-            extract: page.extract || '此學校目前在維基百科上尚無詳細的介紹摘要。',
-            thumbnailUrl: page.thumbnail?.source || null
-          };
-        }
+      let res = await fetch(`https://zh.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(universityName)}`);
+      if (!res.ok) {
+        res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(universityName)}`);
       }
-      
+      if (res.ok) {
+        const data = await res.json();
+        return {
+          extract: data.extract || '此學校目前在維基百科上尚無詳細的介紹摘要。',
+          thumbnailUrl: data.thumbnail?.source || null
+        };
+      }
       return { extract: '此學校目前在維基百科上尚無詳細的介紹摘要。', thumbnailUrl: null };
     } catch (error) {
       console.error('Failed to fetch university details:', error);

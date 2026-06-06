@@ -122,22 +122,13 @@ export default function FlightPriceTracker({ globalCountry = 'Australia 澳洲',
     }
 
     if (!matchedRoute) {
-      // Generic fallback for unknown destinations based on name heuristic
-      let genericDist = 8000;
-      if (globalCountry.includes('亞洲') || globalCountry.includes('泰') || globalCountry.includes('越') || globalCountry.includes('星') || globalCountry.includes('馬')) genericDist = 3000;
-      else if (globalCountry.includes('歐') || globalCountry.includes('捷克') || globalCountry.includes('荷')) genericDist = 9500;
-      else if (globalCountry.includes('非')) genericDist = 11000;
-      
+      // Generic fallback for unknown destinations
+      const genericDist = 8000;
       const genericFlights = [
-        {id:'FL-GEN-0', airline:'中華航空 (China Airlines)',price:calcPrice(genericDist,false,false),departureTime:'23:30',arrivalTime:generateRandomTime(),duration:generateDuration(),stops:'1次轉機',baggage:'2x23kg',meal:'標準飛機餐',seatPitch:generateSeatPitch(),wifi:'全程免費 Wi-Fi',arrivalCode:code,destinationName:rawCountry},
-        {id:'FL-GEN-1', airline:'長榮航空 (EVA Air)',price:calcPrice(genericDist,false,false),departureTime:'22:00',arrivalTime:generateRandomTime(),duration:generateDuration(),stops:'1次轉機',baggage:'23kg',meal:'標準飛機餐',seatPitch:generateSeatPitch(),wifi:'全程免費 Wi-Fi',arrivalCode:code,destinationName:rawCountry},
-        {id:'FL-GEN-2', airline:'國泰航空 (Cathay Pacific)',price:calcPrice(genericDist,false,false),departureTime:'08:15',arrivalTime:generateRandomTime(),duration:generateDuration(),stops:'1次轉機',baggage:'2x23kg',meal:'標準飛機餐',seatPitch:generateSeatPitch(),wifi:'全程免費 Wi-Fi',arrivalCode:code,destinationName:rawCountry},
-        {id:'FL-GEN-3', airline:'阿聯酋航空 (Emirates)',price:calcPrice(genericDist,false,false),departureTime:'22:30',arrivalTime:generateRandomTime(),duration:generateDuration(),stops:'1次轉機',baggage:'30kg',meal:'標準飛機餐',seatPitch:generateSeatPitch(),wifi:'全程免費 Wi-Fi',arrivalCode:code,destinationName:rawCountry},
-        {id:'FL-GEN-4', airline:'新加坡航空 (Singapore Airlines)',price:calcPrice(genericDist,false,false),departureTime:'14:20',arrivalTime:generateRandomTime(),duration:generateDuration(),stops:'1次轉機',baggage:'25kg',meal:'標準飛機餐',seatPitch:generateSeatPitch(),wifi:'全程免費 Wi-Fi',arrivalCode:code,destinationName:rawCountry},
+        {id:'FL-GEN-0', airline:'中華航空 (China Airlines)',price:calcPrice(genericDist,false,false),departureTime:'23:30',arrivalTime:'08:00',duration:'轉機',stops:'1次轉機',baggage:'2x23kg',meal:'標準飛機餐',seatPitch:'舒適座位',wifi:'全程免費 Wi-Fi',arrivalCode:'???',destinationName:rawCountry},
+        {id:'FL-GEN-1', airline:'長榮航空 (EVA Air)',price:calcPrice(genericDist,false,false),departureTime:'22:00',arrivalTime:'07:30',duration:'轉機',stops:'1次轉機',baggage:'23kg',meal:'標準飛機餐',seatPitch:'舒適座位',wifi:'全程免費 Wi-Fi',arrivalCode:'???',destinationName:rawCountry},
+        {id:'FL-GEN-2', airline:'國泰航空 (Cathay Pacific)',price:calcPrice(genericDist,false,false),departureTime:'08:15',arrivalTime:'19:30',duration:'轉機',stops:'1次轉機',baggage:'2x23kg',meal:'標準飛機餐',seatPitch:'舒適座位',wifi:'全程免費 Wi-Fi',arrivalCode:'???',destinationName:rawCountry},
       ];
-      // Shuffle airlines
-      genericFlights.sort(() => Math.random() - 0.5);
-      
       setTimeout(() => { setFlights(genericFlights); setIsSearching(false); }, 800);
       return;
     }

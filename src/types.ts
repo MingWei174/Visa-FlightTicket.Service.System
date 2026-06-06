@@ -59,6 +59,7 @@ export interface StudentProgress {
   id: string;
   studentName: string;
   studentId: string;
+  studentNumber?: string;
   studentGmail: string;
   country?: string;
   university: string;

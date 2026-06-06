@@ -19,6 +19,7 @@ interface AIAgentProps {
   studentName?: string;
   remainingDays?: number;
   percentage?: number;
+  role?: 'student' | 'advisor';
 }
 
 export default function AIAgent({
@@ -27,6 +28,7 @@ export default function AIAgent({
   studentName = '留學先鋒',
   remainingDays = 42,
   percentage = 25,
+  role = 'student',
 }: AIAgentProps) {
   // Use globalCountry if provided, else fallback to country code mapping
   const countryNameMap: Record<string, string> = {
@@ -43,18 +45,25 @@ export default function AIAgent({
 
   // Generate welcome message whenever displayCountry changes
   useEffect(() => {
+    const isAdvisor = role === 'advisor';
     setMessages([
       {
         id: 'msg_welcome_' + Date.now(),
         sender: 'agent',
-        content: '👋 您好！我是您的智慧留學規劃 A.I. 顧問。\n我已經準備好為您即時解答前往 **' + displayCountry + '** 的留學事務囉！\n\n💡 根據目前的進度看板：\n*   **目標國家：** ' + displayCountry + '\n*   **出國倒數：** ' + remainingDays + ' 天\n*   **文件備齊進度：** ' + percentage + '%\n\n不論是 **簽證時效逆推、在留資格 (COE) 取得、體檢程序、GIC/海外開戶、或是出境海關嚴格申報規範**，我都非常清楚。您想先了解哪一部分呢？',
+        content: isAdvisor 
+          ? `👋 您好！我是您的顧問政策研究 A.I. 助手。\n我已經準備好為您即時解答協助 **${studentName}** 前往 **${displayCountry}** 的相關規定與行政事務囉！\n\n💡 根據目前的學生進度看板：\n*   **目標國家：** ${displayCountry}\n*   **出國倒數：** ${remainingDays} 天\n*   **文件備齊進度：** ${percentage}%\n\n您可以隨時詢問我關於各國最新的移民局政策、學生簽證申請細節，或請我幫忙草擬溝通信件等。您需要甚麼協助呢？`
+          : `👋 您好！我是您的智慧留學規劃 A.I. 顧問。\n我已經準備好為您即時解答前往 **${displayCountry}** 的留學事務囉！\n\n💡 根據目前的進度看板：\n*   **目標國家：** ${displayCountry}\n*   **出國倒數：** ${remainingDays} 天\n*   **文件備齊進度：** ${percentage}%\n\n不論是 **簽證時效逆推、在留資格 (COE) 取得、體檢程序、GIC/海外開戶、或是出境海關嚴格申報規範**，我都非常清楚。您想先了解哪一部分呢？`,
         timestamp: new Date(),
       },
     ]);
-  }, [displayCountry]);
+  }, [displayCountry, role, studentName, remainingDays, percentage]);
 
   // General suggestions (not locked to 4 countries)
-  const suggestions = [
+  const suggestions = role === 'advisor' ? [
+    { text: `如何協助 ${studentName} 準備 ${displayCountry} 的簽證？`, icon: '📋' },
+    { text: `查詢 ${displayCountry} 最新的國際學生政策`, icon: '🏛️' },
+    { text: `幫我草擬一封信提醒同學繳交護照`, icon: '✍️' },
+  ] : [
     { text: '前往 ' + displayCountry + ' 留學的簽證申辦流程與時程？', icon: '📋' },
     { text: displayCountry + ' 當地的醫療保險制度與留學生規定？', icon: '🏥' },
     { text: '入境 ' + displayCountry + ' 的行李與海關申報注意事項？', icon: '🎒' },
@@ -265,7 +274,7 @@ export default function AIAgent({
             value={inputValue}
             onChange={function(e) { setInputValue(e.target.value); }}
             disabled={isLoading}
-            placeholder={'在此詢問關於前往 ' + displayCountry + ' 的任何留學申辦問題...'}
+            placeholder={role === 'advisor' ? '在此詢問關於協助同學的留學政策或請 AI 草擬信件...' : '在此詢問關於前往 ' + displayCountry + ' 的任何留學申辦問題...'}
             className="bg-transparent text-xs text-[#4A4A4A] border-none outline-none focus:ring-0 w-full font-serif py-2 placeholder-[#A39D93]"
           />
         </div>
