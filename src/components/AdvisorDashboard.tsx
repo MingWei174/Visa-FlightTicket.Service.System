@@ -180,7 +180,14 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
         })
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      } else {
+        // Fallback for GitHub Pages where /api/ doesn't exist and returns index.html
+        data = { success: false, reason: 'needs_credentials', message: '線上版不支援真實寄送，已切換至沙盒模擬模式。' };
+      }
       if (response.ok && data.success) {
         const newLog = {
           id: `log_${Date.now()}`,
@@ -231,8 +238,15 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
         })
       });
 
-      const data = await response.json();
-      if (response.ok && data.success) {
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      } else {
+        // Fallback for GitHub Pages
+        data = { success: true, isSimulation: true, message: '線上版不支援真實寄送，已切換至沙盒模擬模式。' };
+      }
+      if ((response.ok || data.isSimulation) && data.success) {
         const newLog = {
           id: `log_${Date.now()}`,
           email: `LINE 推播: ${activeStudent.studentName}`,
