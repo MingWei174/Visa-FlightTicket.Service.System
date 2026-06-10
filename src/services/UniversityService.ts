@@ -31,12 +31,10 @@ export const UniversityService = {
 
       console.log('Querying Hipolabs with:', queryName);
 
-      const url = `http://universities.hipolabs.com/search?country=${encodeURIComponent(queryName)}`;
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`http://universities.hipolabs.com/search?country=${queryName}`)}`;
       const response = await fetch(proxyUrl);
       if (!response.ok) throw new Error('API response was not ok');
-      const proxyData = await response.json();
-      const data = JSON.parse(proxyData.contents);
+      const data = await response.json();
       return data;
     } catch (error) {
       console.error('Failed to fetch universities:', error);
