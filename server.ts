@@ -7,7 +7,6 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
-import { createServer as createViteServer } from "vite";
 import nodemailer from "nodemailer";
 
 // Load environment variables (locally from .env)
@@ -414,6 +413,7 @@ app.get("/api/health", (req, res) => {
 async function initServer() {
   if (process.env.NODE_ENV !== "production") {
     console.log("Starting server in development mode (Vite middleware integration)...");
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
