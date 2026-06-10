@@ -433,6 +433,11 @@ async function initServer() {
   });
 }
 
-initServer().catch(err => {
-  console.error("Failed to start full-stack server:", err);
-});
+// Export app for Vercel Serverless Function
+export default app;
+
+if (!process.env.VERCEL) {
+  initServer().catch(err => {
+    console.error("Failed to start full-stack server:", err);
+  });
+}
