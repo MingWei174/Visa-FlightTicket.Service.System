@@ -12,11 +12,11 @@ import { StudentProgress, Task } from '../types';
 import { initialStudents, initialTasks, initialTasksByCountry } from '../data';
 import { db, collection, getDocs, doc, setDoc, deleteDoc } from '../firebase';
 
-const getCountryTasks = (univName: string) => {
-  const u = univName || '';
-  if (u.includes('日本') || u.includes('東京') || u.includes('京都') || u.includes('大阪')) return initialTasksByCountry.JP;
-  if (u.includes('加拿大') || u.includes('多倫多') || u.includes('溫哥華') || u.includes('卑詩')) return initialTasksByCountry.CA;
-  if (u.includes('美國') || u.includes('紐約') || u.includes('華盛頓') || u.includes('哈佛') || u.includes('加州') || u.includes('史丹佛')) return initialTasksByCountry.US;
+const getCountryTasks = (countryOrUniv: string) => {
+  const s = countryOrUniv || '';
+  if (s.includes('日本') || s.includes('東京') || s.includes('早稻田') || s.includes('慶應') || s.includes('京都')) return initialTasksByCountry.JP;
+  if (s.includes('加拿大') || s.includes('多倫多') || s.includes('滑鐵盧') || s.includes('不列顛')) return initialTasksByCountry.CA;
+  if (s.includes('美國') || s.includes('哈佛') || s.includes('史丹佛') || s.includes('普渡') || s.includes('加州')) return initialTasksByCountry.US;
   return initialTasksByCountry.AU;
 };
 
@@ -77,7 +77,7 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
     if (!activeStudent) return;
     setIsDrafting(true);
     try {
-      const missingTasksList = getCountryTasks(activeStudent.university).filter(item => {
+      const missingTasksList = getCountryTasks(activeStudent.country || activeStudent.university).filter(item => {
         const p = activeStudent.tasksProgress.find(tp => tp.taskId === item.id);
         return !p || !p.completed;
       }).map(t => t.title).join('、');
@@ -130,7 +130,9 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
                 data = { body: replyText };
               }
             } else {
-              throw new Error("Frontend Gemini API call failed");
+              const errorText = await geminiResponse.text();
+              console.error("Gemini API Error:", errorText);
+              throw new Error("Frontend Gemini API call failed: " + errorText);
             }
           } catch (geminiErr) {
             console.warn("Frontend Gemini API fallback failed, using static simulation:", geminiErr);
@@ -472,7 +474,7 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
 
   // Send automated nudges
   const handleSendNudge = (std: StudentProgress) => {
-    const missingTasks = getCountryTasks(std.university).filter(item => {
+    const missingTasks = getCountryTasks(std.country || std.university).filter(item => {
       const p = std.tasksProgress.find(tp => tp.taskId === item.id);
       return !p || !p.completed;
     }).map(t => t.title).join('、');
@@ -845,7 +847,7 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
                 <p className="text-[11px] font-black text-slate-450 text-gray-500 block">時序對位文件查核現狀：</p>
                 
                 <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
-                  {getCountryTasks(activeStudent.university).map(t => {
+                  {getCountryTasks(activeStudent.country || activeStudent.university).map(t => {
                     const found = activeStudent.tasksProgress.find(tp => tp.taskId === t.id);
                     const isCompleted = found ? found.completed : false;
 
