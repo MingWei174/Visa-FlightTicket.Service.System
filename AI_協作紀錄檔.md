@@ -53,6 +53,18 @@
 
 ---
 
+## 階段五：離線容錯機制 (Fallback) 與前端直連 AI 升級
+
+**🧑‍💻 學生 Prompt：**
+> 「為何後臺 gmail 內容起草功能不能用了？還有我選定學生後再切到顧問政策研究 A.I. 助手，國家好像還是會受到我管理員自己建的的學生帳號選日本後，大家就變成日本了？後來我發現起草功能只是把顧問備註貼上去而已，為何現在顯示有錯誤 (import.meta.env)？」
+
+**🤖 AI 回應與協作重點：**
+1. **修復全域狀態污染 (State Leak)：** 診斷出舊版或手動新增的 Firebase 學生資料缺少 `country` 欄位，導致 `AIAgent` 退回讀取管理員的全域變數。協助在 `AdvisorDashboard` 同步資料時，加入自動依據「學校名稱」反推補齊國家的保護機制，解決了國家狀態異常覆蓋的問題。
+2. **實作前端 AI 直連 (Serverless Architecture)：** 因 GitHub Pages 不支援 Express 後端 API，導致起草與聊天功能失效或退回固定的備用靜態文字。協助在 `.env` 中綁定 `VITE_GEMINI_API_KEY`，並在前端實作了優雅的降級機制 (Graceful Degradation)：當後端斷線時，自動切換由前端瀏覽器直接呼叫 Gemini API，確保 AI 智慧生成功能在純靜態網頁環境也能完美運作。
+3. **解決 Vite TypeScript 型別錯誤：** 針對編輯器中出現的 `Property 'env' does not exist on type 'ImportMeta'` 報錯，解釋了 Vite 型別載入的特性，並透過 TypeScript 型別斷言 (`as any`) 成功消除了開發環境中的紅色波浪線警告，確保打包編譯順利通過。
+
+---
+
 ## 總結
 
 透過這次與 AI 的深度協作，專案不僅成功從單機版升級為具備真實資料庫的雲端系統，更在解決**「React 狀態管理衝突」**與**「前端網頁部屬 (CORS / Mixed Content)」**等真實世界常見的工程問題上，獲得了極大的學習成效。AI 在此過程中扮演了資深工程師的角色，引導並解釋每一行程式碼背後的邏輯。

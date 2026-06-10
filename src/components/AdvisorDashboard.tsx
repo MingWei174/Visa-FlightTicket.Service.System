@@ -107,7 +107,7 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
         }
       } catch (fetchErr) {
         console.warn("Backend API unavailable, attempting frontend Gemini API fallback...");
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY;
         if (apiKey) {
           try {
             const systemInstruction = `你是一位專業且溫暖的留學輔導資深顧問，任職於「Atlas. 留學準備中心」。請為一位特定的學生撰寫一份留學進度催辦/督課或鼓勵信件（同時也可以作為簡訊的範本）。\n你需要依據學生的當前進度與警示評級給出高度客製化、精準且充滿親和力的督促。信件語氣應親切流暢、結構清晰，避免冷冰冰的格式化文字。`;
