@@ -144,7 +144,7 @@ export default function AIAgent({
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              system_instruction: { parts: [{ text: systemInstruction }] },
+              systemInstruction: { parts: [{ text: systemInstruction }] },
               contents: [{ parts: [{ text: text }] }],
               generationConfig: { temperature: 0.7 }
             })
