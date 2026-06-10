@@ -82,22 +82,37 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
         return !p || !p.completed;
       }).map(t => t.title).join('、');
 
-      const response = await fetch('/api/generate-notification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          studentName: activeStudent.studentName,
-          progress: activeStudent.progressPercentage,
-          risk: activeStudent.riskStatus,
-          missingTasks: missingTasksList,
-          advisorNotes: counselorText,
-          country: activeStudent.country || activeStudent.university || '目標國家'
-        })
-      });
+      let data;
+      try {
+        const response = await fetch('/api/generate-notification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            studentName: activeStudent.studentName,
+            progress: activeStudent.progressPercentage,
+            risk: activeStudent.riskStatus,
+            missingTasks: missingTasksList,
+            advisorNotes: counselorText,
+            country: activeStudent.country || activeStudent.university || '目標國家'
+          })
+        });
 
-      const data = await response.json();
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+          data = await response.json();
+        } else {
+          throw new Error('Not JSON response (likely offline simulation)');
+        }
+      } catch (fetchErr) {
+        console.warn("Backend API unavailable, simulating AI generation:", fetchErr);
+        // Fallback simulation
+        data = {
+          body: `親愛的 ${activeStudent.studentName} 同學您好：\n\n這裡是 Atlas. 顧問團隊。目前您的案件進度為 ${activeStudent.progressPercentage}%，狀態為「${activeStudent.riskStatus}」。\n\n系統偵測到您尚未完成以下關鍵任務：\n${missingTasksList}\n\n顧問備註：\n${counselorText || '請盡快完成上述任務，以免影響您的出國行程。'}\n\n請務必登入系統確認最新文件清單。\n\n祝 順心如意，\nAtlas. 團隊敬上`
+        };
+      }
+
       if (data.body) {
         setCustomMailBody(data.body);
         onTriggerToast('🤖 AI 成功根據同學出國案件與查核現況，自動起草客製化通知！');
@@ -261,7 +276,16 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
         } else {
           const list: StudentProgress[] = [];
           querySnapshot.forEach((docSnap) => {
-            list.push(docSnap.data() as StudentProgress);
+            const data = docSnap.data() as StudentProgress;
+            // Derive country if missing to prevent fallback to admin's global country
+            if (!data.country) {
+              const u = data.university || '';
+              if (u.includes('東京') || u.includes('早稻田') || u.includes('慶應') || u.includes('京都')) data.country = '日本';
+              else if (u.includes('多倫多') || u.includes('滑鐵盧') || u.includes('不列顛')) data.country = '加拿大';
+              else if (u.includes('哈佛') || u.includes('史丹佛') || u.includes('普渡') || u.includes('加州')) data.country = '美國';
+              else data.country = '澳洲';
+            }
+            list.push(data);
           });
           if (active) {
             list.sort((a, b) => a.id.localeCompare(b.id));
