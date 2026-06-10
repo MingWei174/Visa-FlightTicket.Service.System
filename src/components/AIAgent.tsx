@@ -133,7 +133,8 @@ export default function AIAgent({
 
     } catch (err) {
       console.warn("Backend API unavailable, attempting frontend Gemini API fallback...");
-      const apiKey = (import.meta as any).env.VITE_GEMINI_API_KEY;
+      // @ts-ignore
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
       let replyGenerated = false;
 
       if (apiKey) {
