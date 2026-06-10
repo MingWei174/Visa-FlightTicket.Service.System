@@ -19,7 +19,7 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
 
   var containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: { staggerChildren: 0.15, delayChildren: 0.3 }
     }
@@ -80,7 +80,7 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
 
   return (
     <div className={'w-full flex flex-col items-center justify-start p-6 ' + bgClass}>
-      <motion.div 
+      <motion.div
         className="max-w-5xl w-full mx-auto"
         variants={containerVariants}
         initial="hidden"
@@ -91,7 +91,7 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
           <motion.div variants={textVariants} className="font-serif italic text-[#A39D93] text-lg tracking-[0.3em] uppercase">
             Atlas. Manifesto
           </motion.div>
-          
+
           <motion.h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#2C2C2A] leading-[1.2] tracking-tight max-w-4xl mx-auto">
             <motion.span variants={textVariants} className="block">
               一站式留學規劃平台，
@@ -136,9 +136,9 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
             <h2 className="font-serif text-3xl text-[#2C2C2A] tracking-wide mb-3">Core Features</h2>
             <p className="text-[#A39D93] text-sm tracking-widest uppercase font-serif">六大核心功能一覽</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map(function(feat, idx) {
+            {features.map(function (feat, idx) {
               var IconComp = feat.icon;
               return (
                 <motion.div
@@ -164,7 +164,7 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
         <motion.div variants={textVariants} className="text-center mb-16">
           <div className="border-t border-[#EFECE6] pt-12 max-w-2xl mx-auto">
             <p className="text-[#A39D93] text-xs tracking-[0.3em] uppercase mb-4 font-serif">Crafted by</p>
-            <h3 className="font-serif text-xl text-[#2C2C2A] mb-2">中央大學資管系 畢業專題</h3>
+            <h3 className="font-serif text-xl text-[#2C2C2A] mb-2">中央大學資管系 期末專題</h3>
             <p className="text-sm text-[#6A6A6A] font-serif">張茗崴 (113403547) & 張子衡 (113403062)</p>
             <p className="text-xs text-[#A39D93] mt-2 font-serif">Atlas. — Study Abroad Ticket & Student Visa Service System</p>
           </div>
@@ -174,10 +174,10 @@ export default function AboutPage({ onStart, isFirstTime = true }: AboutPageProp
         <div className="text-center pb-24 flex flex-col items-center">
           <motion.p variants={textVariants} className="font-serif italic text-[#A39D93] mb-8 tracking-widest">Begin Your Journey</motion.p>
           <motion.div variants={lineVariants} className="w-[1.5px] bg-[#2C2C2A]/20 mb-12"></motion.div>
-          
+
           <AnimatePresence>
             {showButton && (
-              <motion.button 
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
