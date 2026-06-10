@@ -113,7 +113,7 @@ export default function AdvisorDashboard({ onTriggerToast, onActiveStudentChange
             const systemInstruction = `你是一位專業且溫暖的留學輔導資深顧問，任職於「Atlas. 留學準備中心」。請為一位特定的學生撰寫一份留學進度催辦/督課或鼓勵信件（同時也可以作為簡訊的範本）。\n你需要依據學生的當前進度與警示評級給出高度客製化、精準且充滿親和力的督促。信件語氣應親切流暢、結構清晰，避免冷冰冰的格式化文字。`;
             const prompt = `請為以下留學學員自動生成一份專屬的 Email 通知信：\n學員姓名：${activeStudent.studentName}\n目標國家：${activeStudent.country || activeStudent.university || '出國國家'}\n目前進度：${activeStudent.progressPercentage}%\n目前警示級別：${activeStudent.riskStatus}\n缺漏未辦妥的關鍵任務：${missingTasksList || '無'}\n顧問備忘備註(溝通狀況與追蹤)：${counselorText || '無特別備註'}\n\n請根據以上資訊，為「Atlas. 留學準備中心」起草一封親切且具體的提醒信。\n**重點要求：**\n1. 必須**強烈參考「顧問備忘備註」**的內容來調整語氣與提醒重點。如果備註中提到特定的困難(如猶豫不決、體檢遲交等)，務必在信中關心並給出具體建議。\n2. 包含合適的親切招呼、進度簡要分析、溫馨的安全與時效限制叮嚀。\n3. 輸出格式必須包含「主旨：」和「內文：」。請直接輸出利於一般文字寄送的純文字排版，掌握字數在 200-300 字。`;
 
-            const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({

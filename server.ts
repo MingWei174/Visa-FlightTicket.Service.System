@@ -61,9 +61,9 @@ app.post("/api/chat", async (req, res) => {
 
     const userMessage = messages[messages.length - 1]?.content || "";
 
-    // Generate content using gemini-3.5-flash for standard assistant tasks
+    // Generate content using gemini-1.5-flash-latest for standard assistant tasks
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-1.5-flash-latest",
       contents: userMessage,
       config: {
         systemInstruction: systemInstruction,
@@ -173,7 +173,7 @@ app.get("/api/flights", async (req, res) => {
 
     console.log(`[API Live Flight] Querying Google Search Grounding for ${route}...`);
     const searchResult = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-1.5-flash-latest",
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],
@@ -262,7 +262,7 @@ app.post("/api/generate-notification", async (req, res) => {
 3. 輸出格式必須包含「主旨：」和「內文：」。請直接輸出利於一般文字寄送的純文字排版，掌握字數在 200-300 字。`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      model: "gemini-1.5-flash-latest",
       contents: prompt,
       config: {
         systemInstruction: systemInstruction,

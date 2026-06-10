@@ -140,7 +140,7 @@ export default function AIAgent({
         try {
           const systemInstruction = `你是一位專業的留學輔導與出國規劃 AI 顧問。\n當前使用者正在規劃前往「${displayCountry}」留學。\n學生成員/姓名為：${studentName}。\n距預定出發日還有：${remainingDays} 天。\n目前倒數文件的計畫完成率已達到：${percentage}%。\n你的使命是解答日本、加拿大、美國、澳洲的「簽證時效逆推、COE取得、OSHC健康保險、GIC與就學貸款申辦、行李動植物海關申報與檢疫規範、開戶與住宿安排」等細節。\n請根據使用者提問給出專業、簡潔、具體且富有人情味的建議。必要時可用繁體中文 (zh-TW) 回覆，結構清晰並使用 markdown 格式。`;
 
-          const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+          const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
