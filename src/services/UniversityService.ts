@@ -29,10 +29,9 @@ export const UniversityService = {
       if (queryName.includes('Germany') || queryName.includes('德國')) queryName = 'Germany';
       if (queryName.includes('France') || queryName.includes('法國')) queryName = 'France';
 
-      console.log('Querying Hipolabs with:', queryName);
+      console.log('Querying backend proxy with:', queryName);
 
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(`http://universities.hipolabs.com/search?country=${queryName}`)}`;
-      const response = await fetch(proxyUrl);
+      const response = await fetch(`/api/universities?country=${encodeURIComponent(queryName)}`);
       if (!response.ok) throw new Error('API response was not ok');
       const data = await response.json();
       return data;

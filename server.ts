@@ -404,6 +404,21 @@ app.post("/api/send-line", async (req, res) => {
   }
 });
 
+// 3. Universities API Proxy to bypass CORS
+app.get("/api/universities", async (req, res) => {
+  try {
+    const { country } = req.query;
+    if (!country) return res.status(400).json({ error: "Missing country parameter" });
+    const response = await fetch(`http://universities.hipolabs.com/search?country=${encodeURIComponent(country as string)}`);
+    if (!response.ok) throw new Error("Hipolabs API failed");
+    const data = await response.json();
+    res.json(data);
+  } catch (err: any) {
+    console.error("Universities API Error:", err);
+    res.status(500).json({ error: err.message || err });
+  }
+});
+
 // 6. Health Check API
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", env: process.env.NODE_ENV || "development" });
