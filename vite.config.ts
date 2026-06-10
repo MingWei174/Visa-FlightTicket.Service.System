@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/Visa-FlightTicket.Service.System/',
+    base: process.env.VERCEL ? '/' : '/Visa-FlightTicket.Service.System/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
