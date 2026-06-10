@@ -1499,8 +1499,7 @@ export default function App() {
               {/* Exact copy triggers */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  'ais-dev-qqe6lio76su7jbpen4p46z-460954312429.asia-east1.run.app',
-                  'ais-pre-qqe6lio76su7jbpen4p46z-460954312429.asia-east1.run.app'
+                  window.location.hostname
                 ].map((dom, idx) => {
                   return (
                     <div key={idx} className="bg-[#FDFBF7] px-3.5 py-3 rounded-xl border border-[#E5E5E0]/80 flex items-center justify-between gap-2 shadow-inner">
