@@ -65,6 +65,22 @@
 
 ---
 
+---
+
+## 階段六：Vercel 全端伺服器部屬與進階除錯
+
+**🧑‍💻 學生 Prompt：**
+> 「怎麼部署到Vercel？為何點進去網址是一片空白？我貼了過10還是無法登入Firebase。部署到vercel上後使用起草api好像又是503錯誤。用vercel打開後全球名校這裡不行，會寫查無相符的大學。」
+
+**🤖 AI 回應與協作重點：**
+1. **設定 Serverless 函數與路由：** 協助新增 `vercel.json` 並且將 `server.ts` 中的 `app` 進行 `export`，讓 Vercel 能夠成功將 Express 轉換為 Serverless 函數，處理 `/api/*` 請求。
+2. **解決白屏問題 (動態 Base Path)：** 從 GitHub Pages 遷移至 Vercel 後路徑改變，導致 JS/CSS 檔案 404 造成白屏。AI 協助在 `vite.config.ts` 加入環境變數判斷 (`process.env.VERCEL ? '/' : '/Visa-FlightTicket.Service.System/'`) 完美解決雙平台路徑問題。
+3. **動態讀取授權網域 (Firebase Auth)：** 發現登入報錯彈窗的提示網址被寫死在舊的測試環境 (`ais-dev...`)。AI 將 `App.tsx` 中的錯誤提示改寫為 `window.location.hostname`，引導學生正確將 Vercel 網域加入 Firebase 白名單。
+4. **修復 503 伺服器崩潰 (Vite 動態載入)：** 診斷出 Vercel 正式環境會移除開發套件，導致 `import { createServer } from "vite"` 在啟動時拋出 `MODULE_NOT_FOUND` 造成 503 錯誤。AI 協助將載入方式改為在開發模式下的非同步動態載入 (`await import("vite")`)，根治了伺服器崩潰。
+5. **架設後端代理繞過 CORS：** 因原先前端使用的 `corsproxy.io` 開始阻擋 Vercel 的連線，導致無法載入全球名校。AI 協助在 `server.ts` 內自建 `/api/universities` 代理路由，直接透過伺服器端抓取 Hipolabs 資料，徹底繞過瀏覽器的跨域限制與第三方跳板的封鎖。
+
+---
+
 ## 總結
 
-透過這次與 AI 的深度協作，專案不僅成功從單機版升級為具備真實資料庫的雲端系統，更在解決**「React 狀態管理衝突」**與**「前端網頁部屬 (CORS / Mixed Content)」**等真實世界常見的工程問題上，獲得了極大的學習成效。AI 在此過程中扮演了資深工程師的角色，引導並解釋每一行程式碼背後的邏輯。
+透過這次與 AI 的深度協作，專案不僅成功從單機版升級為具備真實資料庫的雲端系統，更在解決**「React 狀態管理衝突」**、**「環境變數與金鑰配置」**以及**「前端網頁與全端 Serverless 部屬 (CORS / Mixed Content / Vite 打包機制)」**等真實世界極其常見的工程問題上，獲得了極大的學習成效。AI 在此過程中扮演了資深工程師的角色，精準診斷各種因環境差異造成的靈異 Bug，並引導學生理解每一段修正程式碼背後的架構邏輯。
