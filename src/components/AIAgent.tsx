@@ -132,27 +132,65 @@ export default function AIAgent({
       setMessages((prev) => [...prev, agentMsg]);
 
     } catch (err) {
-      console.warn("Fallback to offline counselor simulation:", err);
-      setTimeout(() => {
-        var simulatedReply = '';
-        if (text.includes('簽證') || text.includes('時效') || text.includes('AIT') || text.includes('指紋')) {
-          simulatedReply = '💡 **關於 ' + displayCountry + ' 的簽證申請重點答詢：**\n\n1.  **辦理時程：** 建議您在出發前 45-60 天內即刻申辦。\n2.  **文件查核：** 請務必在出發前取得正式的入學許可與相關簽證資格認定文件。\n3.  **體檢注意：** 多數需持專屬體檢指引信赴官方認可之指定合規健檢醫院（如台北馬偕、台安醫院）進行篩查。\n\n如果您的 API 金鑰已設定，我能為您讀取更詳實的移民局條例。';
-        } else if (text.includes('保險') || text.includes('OSHC') || text.includes('健保')) {
-          simulatedReply = '🏥 **關於 ' + displayCountry + ' 醫療保險：**\n\n*   **重要法規：** 對於留學生，保險是核批學生簽證的強制性先決要件。\n*   **推薦方式：** 建議透過易安網 (einsure.com.tw) 等平台進行保險比較。\n*   **直付服務：** 部分高端保險享有簽約門診「免代墊即時直付」服務。';
-        } else if (text.includes('行李') || text.includes('申報') || text.includes('檢疫') || text.includes('海關')) {
-          simulatedReply = '🎒 **入境 ' + displayCountry + ' 行前入境與海關申報提示：**\n\n*   **檢疫嚴格：** 攜帶含有任何中西藥、感冒成藥，皆必須於海關單如實填載。\n*   **違禁品警告：** 新鮮水果、蛋奶製品、生鮮肉類與肉乾一律嚴格限制攜入，未申報經查獲可面臨巨額罰款！';
-        } else {
-          simulatedReply = '🧐 **感謝您的提問！**\n\n我推薦您可以參考我們為 **' + displayCountry + '** 留學逆推設計的核心文件倒數里程碑。\n目前您的文件計畫完成度已達 **' + percentage + '%**，還有 **' + remainingDays + ' 天** 起飛出發。\n\n*(提示：配置 GEMINI_API_KEY 環境變數，即可啟用全真 A.I. 深度諮詢)*';
-        }
+      console.warn("Backend API unavailable, attempting frontend Gemini API fallback...");
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      let replyGenerated = false;
 
-        const agentMsg: Message = {
-          id: 'agent_' + Date.now(),
-          sender: 'agent',
-          content: simulatedReply,
-          timestamp: new Date(),
-        };
-        setMessages((prev) => [...prev, agentMsg]);
-      }, 950);
+      if (apiKey) {
+        try {
+          const systemInstruction = `你是一位專業的留學輔導與出國規劃 AI 顧問。\n當前使用者正在規劃前往「${displayCountry}」留學。\n學生成員/姓名為：${studentName}。\n距預定出發日還有：${remainingDays} 天。\n目前倒數文件的計畫完成率已達到：${percentage}%。\n你的使命是解答日本、加拿大、美國、澳洲的「簽證時效逆推、COE取得、OSHC健康保險、GIC與就學貸款申辦、行李動植物海關申報與檢疫規範、開戶與住宿安排」等細節。\n請根據使用者提問給出專業、簡潔、具體且富有人情味的建議。必要時可用繁體中文 (zh-TW) 回覆，結構清晰並使用 markdown 格式。`;
+
+          const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: systemInstruction }] },
+              contents: [{ parts: [{ text: text }] }],
+              generationConfig: { temperature: 0.7 }
+            })
+          });
+
+          if (geminiResponse.ok) {
+            const geminiData = await geminiResponse.json();
+            const replyText = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (replyText) {
+              const agentMsg: Message = {
+                id: 'agent_' + Date.now(),
+                sender: 'agent',
+                content: replyText,
+                timestamp: new Date(),
+              };
+              setMessages((prev) => [...prev, agentMsg]);
+              replyGenerated = true;
+            }
+          }
+        } catch (geminiErr) {
+          console.warn("Frontend Gemini API fallback failed, using static simulation:", geminiErr);
+        }
+      }
+
+      if (!replyGenerated) {
+        setTimeout(() => {
+          var simulatedReply = '';
+          if (text.includes('簽證') || text.includes('時效') || text.includes('AIT') || text.includes('指紋')) {
+            simulatedReply = '💡 **關於 ' + displayCountry + ' 的簽證申請重點答詢：**\n\n1.  **辦理時程：** 建議您在出發前 45-60 天內即刻申辦。\n2.  **文件查核：** 請務必在出發前取得正式的入學許可與相關簽證資格認定文件。\n3.  **體檢注意：** 多數需持專屬體檢指引信赴官方認可之指定合規健檢醫院（如台北馬偕、台安醫院）進行篩查。\n\n如果您的 API 金鑰已設定，我能為您讀取更詳實的移民局條例。';
+          } else if (text.includes('保險') || text.includes('OSHC') || text.includes('健保')) {
+            simulatedReply = '🏥 **關於 ' + displayCountry + ' 醫療保險：**\n\n*   **重要法規：** 對於留學生，保險是核批學生簽證的強制性先決要件。\n*   **推薦方式：** 建議透過易安網 (einsure.com.tw) 等平台進行保險比較。\n*   **直付服務：** 部分高端保險享有簽約門診「免代墊即時直付」服務。';
+          } else if (text.includes('行李') || text.includes('申報') || text.includes('檢疫') || text.includes('海關')) {
+            simulatedReply = '🎒 **入境 ' + displayCountry + ' 行前入境與海關申報提示：**\n\n*   **檢疫嚴格：** 攜帶含有任何中西藥、感冒成藥，皆必須於海關單如實填載。\n*   **違禁品警告：** 新鮮水果、蛋奶製品、生鮮肉類與肉乾一律嚴格限制攜入，未申報經查獲可面臨巨額罰款！';
+          } else {
+            simulatedReply = '🧐 **感謝您的提問！**\n\n我推薦您可以參考我們為 **' + displayCountry + '** 留學逆推設計的核心文件倒數里程碑。\n目前您的文件計畫完成度已達 **' + percentage + '%**，還有 **' + remainingDays + ' 天** 起飛出發。\n\n*(提示：配置 GEMINI_API_KEY 環境變數，即可啟用全真 A.I. 深度諮詢)*';
+          }
+
+          const agentMsg: Message = {
+            id: 'agent_' + Date.now(),
+            sender: 'agent',
+            content: simulatedReply,
+            timestamp: new Date(),
+          };
+          setMessages((prev) => [...prev, agentMsg]);
+        }, 950);
+      }
     } finally {
       setIsLoading(false);
     }
